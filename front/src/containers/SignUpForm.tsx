@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signupAsync } from '../modules/user';
 
-const SignUpForm = () => {
+const SignUpForm: React.FC = () => {
   const [id, setId] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

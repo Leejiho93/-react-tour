@@ -11,19 +11,19 @@ export type LoginResponse = {
   nickname: string;
 };
 
-export type SignupResponse = {
+export type SignupPayload = {
   userId: string;
   nickname: string;
   email: string;
   password: string;
 };
 
-export type SignupRequest = {
-  userId: string;
-  email: string;
-  password: string;
-  nickname: string;
-};
+// export type SignupRequest = {
+//   userId: string;
+//   email: string;
+//   password: string;
+//   nickname: string;
+// };
 
 // export type SignupAction = {
 //   type: string;

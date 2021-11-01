@@ -1,25 +1,7 @@
-import {
-  SIGN_UP_REQUEST,
-  SIGN_UP_SUCCESS,
-  SIGN_UP_FAILURE,
-  signupAsync,
-} from './action';
-import {
-  // LoginResponse,
-  // LoginPayload,
-  SignupResponse,
-  SignupRequest,
-  // SignupAction,
-} from './type';
-import {
-  put,
-  takeEvery,
-  takeLatest,
-  call,
-  all,
-  fork,
-} from 'redux-saga/effects';
-import axios, { AxiosResponse } from 'axios';
+import { signupAsync } from './action';
+import { SignupPayload } from './type';
+import { put, takeLatest, call, all, fork } from 'redux-saga/effects';
+import axios from 'axios';
 
 // function loginAPI(loginData: LoginPayload) {
 //   return axios.post('/user/login', loginData, {
@@ -40,15 +22,13 @@ import axios, { AxiosResponse } from 'axios';
 //   yield takeLatest(LOG_IN_REQUEST, login);
 // }
 
-// function signupAPI(signupData: SignupRequest) {
-function signupAPI(signupData: SignupRequest) {
-  console.log('signupAPI data', signupData);
+function signupAPI(signupData: SignupPayload) {
   return axios.post('/user/signup', signupData);
 }
 
 function* signupSaga(action: ReturnType<typeof signupAsync.request>) {
   try {
-    const result: AxiosResponse = yield call(signupAPI, action.payload);
+    const result: SignupPayload = yield call(signupAPI, action.payload);
     yield put(signupAsync.success(result));
   } catch (e) {
     if (e instanceof Error) {

@@ -1,4 +1,4 @@
-import { SignupResponse, LoginResponse, SignupRequest } from './type';
+import { SignupPayload, LoginResponse } from './type';
 import { AxiosError, AxiosResponse } from 'axios';
 import { createAsyncAction } from 'typesafe-actions';
 
@@ -14,7 +14,8 @@ export const signupAsync = createAsyncAction(
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE
-)<SignupRequest, AxiosResponse<SignupResponse>, Error>();
+  // )<SignupPayload, AxiosResponse<SignupPayload>, Error>();
+)<SignupPayload, SignupPayload, Error>();
 
 export const loginAsync = createAsyncAction(
   LOG_IN_REQUEST,
