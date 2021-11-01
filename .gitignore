@@ -1,0 +1,14 @@
+# front/node_modules
+# front/package-lock
+# back/node_modules
+# back/.env
+# front/.env
+# front/.next/
+
+
+
+
+.env
+.next
+node_modules
+package-lock.json
