@@ -1,15 +1,13 @@
+import { Axios, AxiosError } from 'axios';
 import { ActionType } from 'typesafe-actions';
 import * as action from './action';
 
-// export type LoginPayload = {
-//   id: string;
-//   password: string;
-// };
-
-export type LoginResponse = {
-  id: string;
-  nickname: string;
+export type LoginPayload = {
+  userId: string;
+  password: string;
 };
+
+export type LoginResponse = Record<string, unknown>;
 
 export type SignupPayload = {
   userId: string;
@@ -18,25 +16,17 @@ export type SignupPayload = {
   password: string;
 };
 
-// export type SignupRequest = {
-//   userId: string;
-//   email: string;
-//   password: string;
-//   nickname: string;
-// };
-
-// export type SignupAction = {
-//   type: string;
-//   payload: SignupRequest;
-// };
+export type LoadUserPayload = {
+  id?: string;
+};
 
 export type UserState = {
   isLoggingin: boolean;
   isLoggingout: boolean;
-  loginError: string;
+  loginError: Error | string | AxiosError;
   isSignedup: boolean;
   isSigningup: boolean;
-  signupError: string;
+  signupError: Error | string;
   me: Record<string, unknown> | null;
 };
 

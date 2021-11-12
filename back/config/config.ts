@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 
 dotenv.config();
 
@@ -18,21 +18,21 @@ interface IConfigGroup {
 const config: IConfigGroup = {
   development: {
     username: "root",
-    password: process.env.DB_PASSWORD,
+    password: process.env.DB_PASSWORD!,
     database: "test1",
     host: "127.0.0.1",
     dialect: "mysql",
   },
   test: {
     username: "root",
-    password: process.env.DB_PASSWORD,
+    password: process.env.DB_PASSWORD!,
     database: "test1",
     host: "127.0.0.1",
     dialect: "mysql",
   },
   production: {
     username: "root",
-    password: process.env.DB_PASSWORD,
+    password: process.env.DB_PASSWORD!,
     database: "database_production",
     host: "127.0.0.1",
     dialect: "mysql",

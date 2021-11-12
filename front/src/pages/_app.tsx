@@ -1,32 +1,69 @@
-import type { AppContext, AppInitialProps, AppLayoutProps } from 'next/app';
+import type {
+  AppContext,
+  AppInitialProps,
+  AppLayoutProps,
+  AppProps,
+} from 'next/app';
 import reducer, { rootSaga } from '../modules';
 import { createWrapper } from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import createSagaMiddleware, { Task } from 'redux-saga';
 import { applyMiddleware, compose, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { NextComponentType } from 'next';
+import { GetServerSideProps, NextComponentType } from 'next';
 import { ReactNode } from 'react';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../styles/theme';
-import GlobalStyle from '../../styles/reset';
+import GlobalStyle from '../../styles/GlobalStyle';
+import Layout from '../components/Layout';
+
+// const getLayout = Component.getLayout || ((page: ReactNode) => page);
 
 interface SagaStore extends Store {
   sagaTask?: Task;
 }
 
-const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
-  Component,
-  pageProps,
-}: AppLayoutProps) => {
-  const getLayout = Component.getLayout || ((page: ReactNode) => page);
-  return getLayout(
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </ThemeProvider>
+function Tour({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </>
   );
-};
+}
+
+// const Tour: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
+//   Component,
+//   pageProps,
+// }:
+// AppLayoutProps) => {
+//   return (
+//     <ThemeProvider theme={theme}>
+//       <GlobalStyle />
+//       <Layout>
+//         <Component {...pageProps} />
+//       </Layout>
+//     </ThemeProvider>
+//   );
+// };
+// const Tour: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
+//   Component,
+//   pageProps,
+// }:
+// AppLayoutProps) => {
+//   return (
+//     <ThemeProvider theme={theme}>
+//       <GlobalStyle />
+//       <Layout>
+//         <Component {...pageProps} />
+//       </Layout>
+//     </ThemeProvider>
+//   );
+// };
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
@@ -35,9 +72,11 @@ const configureStore = () => {
     process.env.NODE_ENV === 'production'
       ? compose(applyMiddleware(...middlewares))
       : compose(composeWithDevTools(applyMiddleware(...middlewares)));
-  const store = createStore(reducer, enhancer);
-  (store as SagaStore).sagaTask = sagaMiddleware.run(rootSaga);
+  const store: SagaStore = createStore(reducer, enhancer);
+  store.sagaTask = sagaMiddleware.run(rootSaga);
   return store;
 };
 
-export default createWrapper(configureStore).withRedux(withReduxSaga(MyApp));
+export const wrapper = createWrapper(configureStore);
+
+export default wrapper.withRedux(withReduxSaga(Tour));

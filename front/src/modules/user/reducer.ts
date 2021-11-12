@@ -8,6 +8,9 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
+  LOG_OUT_REQUEST,
+  LOG_OUT_SUCCESS,
+  LOG_OUT_FAILURE,
 } from './action';
 
 const initialState: UserState = {
@@ -21,29 +24,13 @@ const initialState: UserState = {
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
-  [LOG_IN_REQUEST]: (state, action) =>
-    produce(state, (draft) => {
-      draft.isLoggingin = true;
-      draft.loginError = '';
-    }),
-  [LOG_IN_SUCCESS]: (state, action) =>
-    produce(state, (draft) => {
-      draft.isLoggingin = false;
-      draft.me = action.payload.data;
-    }),
-  [LOG_IN_FAILURE]: (state, action) =>
-    produce(state, (draft) => {
-      draft.isLoggingin = true;
-      draft.me = null;
-      draft.loginError = 'error';
-    }),
-  [SIGN_UP_REQUEST]: (state, action) =>
+  [SIGN_UP_REQUEST]: (state) =>
     produce(state, (draft) => {
       draft.isSigningup = true;
       draft.isSignedup = false;
       draft.signupError = '';
     }),
-  [SIGN_UP_SUCCESS]: (state, action) =>
+  [SIGN_UP_SUCCESS]: (state) =>
     produce(state, (draft) => {
       draft.isSigningup = false;
       draft.isSignedup = true;
@@ -52,7 +39,37 @@ const user = createReducer<UserState, UserAction>(initialState, {
     produce(state, (draft) => {
       draft.isSigningup = true;
       draft.isSignedup = false;
-      draft.signupError = 'error';
+      draft.signupError = action.payload;
+    }),
+  [LOG_IN_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.isLoggingin = true;
+      draft.loginError = '';
+      draft.me = null;
+    }),
+  [LOG_IN_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.isLoggingin = false;
+      draft.me = action.payload;
+    }),
+  [LOG_IN_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.isLoggingin = false;
+      draft.me = null;
+      draft.loginError = action.payload;
+    }),
+  [LOG_OUT_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.isLoggingout = true;
+    }),
+  [LOG_OUT_SUCCESS]: (state) =>
+    produce(state, (draft) => {
+      draft.me = null;
+      draft.isLoggingout = false;
+    }),
+  [LOG_OUT_FAILURE]: (state) =>
+    produce(state, (draft) => {
+      draft.isLoggingout = false;
     }),
 });
 

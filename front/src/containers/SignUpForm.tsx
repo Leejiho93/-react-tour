@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import Router from 'next/router';
+import * as React from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../modules';
 import { signupAsync } from '../modules/user';
 
 const SignUpForm: React.FC = () => {
@@ -9,6 +12,24 @@ const SignUpForm: React.FC = () => {
   const [nickname, setNickname] = useState('');
 
   const dispatch = useDispatch();
+
+  const { me, isSignedup, signupError } = useSelector(
+    (state: RootState) => state.user
+  );
+
+  React.useEffect(() => {
+    if (me) {
+      console.log(me.data);
+      Router.push('/');
+    }
+  }, [me]);
+
+  React.useEffect(() => {
+    if (isSignedup) {
+      console.log('회원가입 완료했습니다.');
+      Router.push('/'); //로그인하면 회원가입 페이지가 메인페이지로 바뀜
+    }
+  }, [isSignedup]);
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
@@ -22,7 +43,7 @@ const SignUpForm: React.FC = () => {
   const onChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
   };
-  const onSubmitForm = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(
       signupAsync.request({
@@ -35,7 +56,8 @@ const SignUpForm: React.FC = () => {
   };
   return (
     <>
-      <form onSubmit={onSubmitForm}>
+      <div>{signupError}</div>
+      <form onSubmit={onSubmit}>
         <label htmlFor="user-id">아이디</label>
         <input value={id} id="user-id" onChange={onChangeId} />
         <br />
