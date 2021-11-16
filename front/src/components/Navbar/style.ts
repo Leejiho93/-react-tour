@@ -7,8 +7,9 @@ export const NavbarWrapper = styled.div`
   align-items: center;
 `;
 
-export const A = styled.div`
+export const Search = styled.div`
   display: flex;
+  justify-content: center;
   flex: 1;
 `;
 
@@ -21,4 +22,5 @@ export const Logo = styled.div`
 export const Account = styled.div`
   display: flex;
   flex: 1;
+  justify-content: center;
 `;

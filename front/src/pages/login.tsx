@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import LoginLayout from '../components/LoginLayout';
 import Layout from '../components/Layout';
 import { RootState } from '../modules';
 import { loginAsync } from '../modules/user';
 import Router from 'next/router';
+import Link from 'next/link';
 
 const Login = () => {
   const [id, setId] = useState('');
@@ -23,7 +23,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (loginError) {
-      console.log(loginError);
+      alert(loginError);
     }
   }, [loginError]);
 
@@ -55,7 +55,11 @@ const Login = () => {
           onChange={onChangePassword}
         />
         <br />
-        {loginError ? loginError : null}
+
+        <div>
+          <Link href="/signup">회원가입</Link>
+        </div>
+
         <button>로그인</button>
       </form>
     </>

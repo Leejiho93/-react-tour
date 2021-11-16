@@ -3,7 +3,9 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AnyAction, combineReducers } from 'redux';
 import { all, call } from 'redux-saga/effects';
 import user from './user';
+import detail from './detail';
 import userSaga from './user/saga';
+import detailSaga from './detail/saga';
 
 axios.defaults.baseURL = `http://localhost:8081/api`;
 
@@ -18,6 +20,7 @@ const rootReducer = (state: any, action: any) => {
   } else {
     return combineReducers({
       user,
+      detail,
     })(state, action);
   }
 };
@@ -27,5 +30,5 @@ export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;
 
 export function* rootSaga() {
-  yield all([call(userSaga)]);
+  yield all([call(userSaga), call(detailSaga)]);
 }

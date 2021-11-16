@@ -7,6 +7,7 @@ import * as expressSession from "express-session";
 import passportConfig from "./passport";
 import { sequelize } from "./models";
 import userAPIRouter from "./routes/user";
+import detailAPIRouter from "./routes/detail";
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userAPIRouter);
+app.use("/api/detail", detailAPIRouter);
 
 app.listen(8081, () => {
   console.log("server is running");

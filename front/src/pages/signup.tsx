@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ReactElement } from 'react';
-import SignupLayout from '../components/SignupLayout';
 import SignUpForm from '../containers/SignUpForm';
 import Layout from '../components/Layout';
 

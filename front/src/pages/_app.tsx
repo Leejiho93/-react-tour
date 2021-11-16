@@ -1,7 +1,7 @@
 import type {
-  AppContext,
-  AppInitialProps,
-  AppLayoutProps,
+  // AppContext,
+  // AppInitialProps,
+  // AppLayoutProps,
   AppProps,
 } from 'next/app';
 import reducer, { rootSaga } from '../modules';
@@ -16,6 +16,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from '../../styles/theme';
 import GlobalStyle from '../../styles/GlobalStyle';
 import Layout from '../components/Layout';
+import 'antd/dist/antd.css';
 
 // const getLayout = Component.getLayout || ((page: ReactNode) => page);
 

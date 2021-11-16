@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { NavbarWrapper, Logo, A, Account } from './style';
+import { NavbarWrapper, Logo, Search, Account } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { logoutAsync } from '../../modules/user';
+import SearchForm from '../../containers/SearchForm';
 
 const Navbar: React.FC = () => {
   const { me } = useSelector((state: RootState) => state.user);
@@ -13,10 +14,12 @@ const Navbar: React.FC = () => {
   };
   return (
     <NavbarWrapper>
-      <A></A>
       <Logo>
         <Link href="/">Tour</Link>
       </Logo>
+      <Search>
+        <SearchForm />
+      </Search>
       <Account>
         {me ? (
           <>
@@ -25,7 +28,6 @@ const Navbar: React.FC = () => {
         ) : (
           <>
             <Link href="/login">로그인</Link>
-            <Link href="/signup">회원가입</Link>
           </>
         )}
       </Account>
