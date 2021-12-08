@@ -2,8 +2,8 @@ import Router from 'next/router';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../modules';
-import { signupAsync } from '../modules/user';
+import { RootState } from '../../modules';
+import { signupAsync } from '../../modules/user';
 
 const SignUpForm: React.FC = () => {
   const [id, setId] = useState('');

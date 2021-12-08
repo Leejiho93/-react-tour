@@ -1,4 +1,11 @@
-import { SearchResponse, SearchData, SearchPayload } from './type';
+import {
+  DetailData,
+  SearchData,
+  RegionData,
+  SearchPayload,
+  DetailPayload,
+  RegionPayload,
+} from './type';
 import { AxiosError } from 'axios';
 import { createAsyncAction } from 'typesafe-actions';
 
@@ -14,11 +21,15 @@ export const DETAIL_TOUR_REQUEST = 'DETAIL_TOUR_REQUEST';
 export const DETAIL_TOUR_SUCCESS = 'DETAIL_TOUR_SUCCESS';
 export const DETAIL_TOUR_FAILURE = 'DETAIL_TOUR_FAILURE';
 
+export const ALL_TOUR_REQUEST = 'ALL_TOUR_REQUEST';
+export const ALL_TOUR_SUCCESS = 'ALL_TOUR_SUCCESS';
+export const ALL_TOUR_FAILURE = 'ALL_TOUR_FAILURE';
+
 export const regionAsync = createAsyncAction(
   REGION_TOUR_REQUEST,
   REGION_TOUR_SUCCESS,
   REGION_TOUR_FAILURE
-)<string, {}, AxiosError>();
+)<RegionPayload, RegionData, AxiosError>();
 
 export const searchAsync = createAsyncAction(
   SEARCH_TOUR_REQUEST,
@@ -30,4 +41,10 @@ export const detailAsync = createAsyncAction(
   DETAIL_TOUR_REQUEST,
   DETAIL_TOUR_SUCCESS,
   DETAIL_TOUR_FAILURE
-)<string, SearchResponse, AxiosError>();
+)<DetailPayload, DetailData, AxiosError>();
+
+export const allAsync = createAsyncAction(
+  ALL_TOUR_REQUEST,
+  ALL_TOUR_SUCCESS,
+  ALL_TOUR_FAILURE
+)<undefined, any, AxiosError>();

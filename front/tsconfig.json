@@ -16,13 +16,9 @@
     "noUnusedLocals": false,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["kakao.maps.d.ts"]
   },
   "exclude": ["node_modules"],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/containers/SearchTest.jtsx"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

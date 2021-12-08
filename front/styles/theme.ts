@@ -1,8 +1,10 @@
 export const size = {
-  pc: '75em', // 1200px
-  tab: '56.25em', // 900px
-  mobile: '31.25em', // 500px
-  mobileS: '23.125em', // 370px
+  pc: '1300px',
+  laptop: '1024px',
+  tablet: '768px',
+  mobileL: '500px',
+  mobileM: '425px',
+  mobileS: '375px',
 };
 
 const theme = {
@@ -24,10 +26,12 @@ const theme = {
     info: '#5bc0de',
   },
   window: {
-    pc: `@media screen and (max-width: ${size.pc}px)`,
-    tab: `@media screen and (max-width: ${size.tab}px)`,
-    mobile: `@media screen and (max-width: ${size.mobile}px)`,
-    mobileS: `@media screen and (max-width: ${size.mobileS}px)`,
+    pc: `@media screen and (max-width: ${size.pc})`,
+    laptop: `@media screen and (max-width: ${size.laptop})`,
+    tablet: `@media screen and (max-width: ${size.tablet})`,
+    mobileL: `@media screen and (max-width: ${size.mobileL})`,
+    mobileM: `@media screen and (max-width: ${size.mobileM})`,
+    mobileS: `@media screen and (max-width: ${size.mobileS})`,
   },
 };
 

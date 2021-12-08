@@ -17,6 +17,9 @@ import theme from '../../styles/theme';
 import GlobalStyle from '../../styles/GlobalStyle';
 import Layout from '../components/Layout';
 import 'antd/dist/antd.css';
+import Script from 'next/script';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 // const getLayout = Component.getLayout || ((page: ReactNode) => page);
 
@@ -27,6 +30,9 @@ interface SagaStore extends Store {
 function Tour({ Component, pageProps }: AppProps) {
   return (
     <>
+      {/* <Script
+        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAO_MAP}&libraries=services,clusterer`}
+      /> */}
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Layout>

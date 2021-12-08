@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const MainWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
+  width: 1300px;
+  margin: 0 auto;
+  ${({ theme }) => theme.window.pc} {
+    width: 100%;
+  }
+  ${({ theme }) => theme.window.laptop} {
+  }
 `;

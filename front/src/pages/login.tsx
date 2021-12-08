@@ -1,18 +1,11 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Layout from '../components/Layout';
+import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import { loginAsync } from '../modules/user';
 import Router from 'next/router';
-import Link from 'next/link';
+import LoginForm from '../containers/LoginForm';
 
-const Login = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-
+const Login: React.FC = () => {
   const { me, loginError } = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (me) {
@@ -23,51 +16,15 @@ const Login = () => {
 
   React.useEffect(() => {
     if (loginError) {
-      alert(loginError);
+      console.log('loginError: ', loginError);
     }
   }, [loginError]);
 
-  const onChagneId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setId(e.target.value);
-  };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    dispatch(loginAsync.request({ userId: id, password }));
-  };
-
   return (
     <>
-      {/* {loginError ? loginError : null} */}
-      <br />
-      <form onSubmit={onSubmit}>
-        <label htmlFor="user-id">아이디</label>
-        <input type="text" id="user-id" value={id} onChange={onChagneId} />
-        <br />
-        <label htmlFor="user-password">비밀번호</label>
-        <input
-          type="password"
-          id="user-password"
-          value={password}
-          onChange={onChangePassword}
-        />
-        <br />
-
-        <div>
-          <Link href="/signup">회원가입</Link>
-        </div>
-
-        <button>로그인</button>
-      </form>
+      <LoginForm />
     </>
   );
 };
 
 export default Login;
-
-// Login.getLayout = function getLayout(page: React.ReactElement) {
-//   return <Layout>{page}</Layout>;
-// };

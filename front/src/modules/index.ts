@@ -8,6 +8,7 @@ import userSaga from './user/saga';
 import detailSaga from './detail/saga';
 
 axios.defaults.baseURL = `http://localhost:8081/api`;
+axios.defaults.withCredentials = true;
 
 const rootReducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {

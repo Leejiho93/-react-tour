@@ -28,6 +28,7 @@ export default () => {
           });
         } catch (e) {
           console.error(e);
+          console.log("local err ", e);
           return done(e);
         }
       }

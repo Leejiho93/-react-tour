@@ -21,8 +21,10 @@ declare module 'styled-components' {
     };
     window: {
       pc: string;
-      tab: string;
-      mobile: string;
+      laptop: string;
+      tablet: string;
+      mobileL: string;
+      mobileM: string;
       mobileS: string;
     };
   }
