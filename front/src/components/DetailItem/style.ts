@@ -14,6 +14,7 @@ export const DetailItemTitle = styled.h2`
   ${({ theme }) => theme.window.tablet} {
     font-size: 45px;
     width: 90%;
+    text-align: center;
   }
   ${({ theme }) => theme.window.mobileL} {
     font-size: 40px;
@@ -36,6 +37,7 @@ export const DetailItemInfo = styled.h3`
   font-weight: 600;
   margin: 30px 0;
   padding: 20px 10px 15px;
+  // font-family: 'Gowun Batang', serif;
 
   & span {
     font-size: 18px;
@@ -52,15 +54,34 @@ export const DetailItemInfo = styled.h3`
   }
 `;
 
-export const DetailItemOverview = styled.div`
+export const DetailItemOverview = styled.div<{ more: boolean }>`
   line-height: 1.5;
-  font-family: BMHANNAAir;
-  font-weight: 500;
-  font-size: 19px;
-  // height: 200px;
-  // overflow: hidden;
+  font-weight: 600;
+  font-size: 17px;
+  font-family: 'Gowun Batang', serif;
+  height: ${(props) => (props.more ? '100%;' : '160px;')} 
+  overflow: hidden;
+
+  
   ${({ theme }) => theme.window.laptop} {
     width: 90%;
     line-height: 1.3;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  text-align: center;
+  border: 1px solid #000;
+  cursor: pointer;
+  padding: 10px;
+  font-weight: 600;
+  & span {
+    padding: 0 3px;
+    font-size: 15px;
+  }
+  margin: 15px 0;
+  ${({ theme }) => theme.window.laptop} {
+    width: 90%;
   }
 `;

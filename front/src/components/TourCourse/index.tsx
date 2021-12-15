@@ -67,15 +67,15 @@ const TourCourse = ({ item }: DetailPropsItem) => {
                 />
               )
             }
-          >
-            {/* <Card.Meta title={imageTitle} /> */}
-          </CardWrapper>
+          ></CardWrapper>
         </CourseImage>
         <SubDetail>
           <div>
             <span>{imageTitle}</span>
           </div>
-          <p>{subOverview}</p>
+          {subOverview ? (
+            <p dangerouslySetInnerHTML={{ __html: subOverview }} />
+          ) : null}
         </SubDetail>
       </Wrapper>
     </>

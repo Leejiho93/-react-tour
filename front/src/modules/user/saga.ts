@@ -4,6 +4,7 @@ import {
   LoginPayload,
   LoginResponse,
   LoadUserPayload,
+  Me,
 } from './type';
 import { put, takeLatest, call, all, fork } from 'redux-saga/effects';
 import axios, { AxiosError } from 'axios';
@@ -40,7 +41,8 @@ function loginAPI(loginData: LoginPayload) {
 function* loginSaga(action: ReturnType<typeof loginAsync.request>) {
   try {
     const result: LoginResponse = yield call(loginAPI, action.payload);
-    yield put(loginAsync.success(result.data as LoginResponse));
+    console.log('login saga result', result);
+    yield put(loginAsync.success(result));
   } catch (e) {
     console.error(e);
     const err = e as AxiosError;

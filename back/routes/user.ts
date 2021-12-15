@@ -34,7 +34,7 @@ router.post("/signup", async (req, res, next) => {
       userId: req.body.userId,
       nickname: req.body.nickname,
       password: hashedPassword,
-      email: req.body.email,
+      // email: req.body.email,
     });
     // console.log(newUser);
     return res.status(200).json(newUser);

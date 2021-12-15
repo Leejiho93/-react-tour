@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { DetailPropsItem } from '../../modules/detail';
 import { DetailItemInfo } from '../DetailItem/style';
 import { Infowindow, IwContentWrapper, Map, MapWrapper } from './style';
+import Script from 'next/script';
 
 declare global {
   interface Window {
@@ -10,25 +11,21 @@ declare global {
   }
 }
 
-// const { kakao } = window;
-
 const Kakaomap = ({ item }: DetailPropsItem) => {
   const { mapx, mapy, title } = item;
   useEffect(() => {
-    console.log('mapx, mapy', mapx, mapy);
     const script = document.createElement('script');
-
+    script.async = true;
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAPS}&autoload=false`;
     document.head.appendChild(script);
 
+    const container = document.getElementById('map');
     script.onload = () => {
-      window?.kakao.maps.load(() => {
-        const container = document.querySelector('#map') as HTMLElement;
+      window.kakao.maps.load(() => {
         const options = {
           center: new window.kakao.maps.LatLng(mapy, mapx),
           level: 3,
         };
-
         const map = new window.kakao.maps.Map(container, options);
 
         // 마커 표시
@@ -38,14 +35,16 @@ const Kakaomap = ({ item }: DetailPropsItem) => {
         });
         marker.setMap(map);
 
+        // 지도 확대 막기
+        map.setZoomable(false);
+
         // 줌 컨트롤러
         // const zoomControl = new kakao.maps.ZoomControl();
         // map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
       });
     };
-
     return () => script.remove();
-  }, []);
+  }, [mapx, mapy]);
 
   return (
     <>

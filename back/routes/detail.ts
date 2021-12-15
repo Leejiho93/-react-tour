@@ -46,7 +46,7 @@ router.get("/:contenttypeid/:contentid", async (req, res, next) => {
     const data = response.data.response.body;
     data.items.item.intro = responseIntro.data.response.body.items.item;
     data.items.item.info = responseInfo.data.response.body.items.item;
-    console.log("detail repsonse data", data.items.item);
+    // console.log("detail repsonse data", data.items.item);
     return res.json(data);
   } catch (e) {
     console.error(e);
@@ -123,7 +123,7 @@ router.get("/all", async (req, res, next) => {
     data.items.festival = eventData.data.response.body.items.item;
     data.items.sleep = sleepData.data.response.body.items.item;
 
-    console.log("all data: ", data);
+    // console.log("all data: ", data);
     return res.json(data);
   } catch (e) {
     console.error(e);

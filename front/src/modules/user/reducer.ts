@@ -8,6 +8,7 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
+  SIGN_UP_RESET,
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
   LOG_OUT_FAILURE,
@@ -37,9 +38,13 @@ const user = createReducer<UserState, UserAction>(initialState, {
     }),
   [SIGN_UP_FAILURE]: (state, action) =>
     produce(state, (draft) => {
-      draft.isSigningup = true;
+      draft.isSigningup = false;
       draft.isSignedup = false;
       draft.signupError = action.payload;
+    }),
+  [SIGN_UP_RESET]: (state) =>
+    produce(state, (draft) => {
+      draft.isSignedup = false;
     }),
   [LOG_IN_REQUEST]: (state) =>
     produce(state, (draft) => {
@@ -50,7 +55,7 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [LOG_IN_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
       draft.isLoggingin = false;
-      draft.me = action.payload;
+      draft.me = action.payload.data;
     }),
   [LOG_IN_FAILURE]: (state, action) =>
     produce(state, (draft) => {

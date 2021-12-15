@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DetailPropsItem } from '../../modules/detail';
 import Image from 'next/image';
 import {
+  ButtonWrapper,
   DetailItemImage,
   DetailItemInfo,
   DetailItemOverview,
@@ -16,6 +17,8 @@ import TourSports from '../TourSports';
 import TourSleep from '../TourSleep';
 import TourMall from '../TourMall';
 import TourFood from '../TourFood';
+import CommentForm from '../../containers/CommentForm';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 const DetailItem = ({ item }: DetailPropsItem) => {
   const {
@@ -25,11 +28,26 @@ const DetailItem = ({ item }: DetailPropsItem) => {
     overview,
     homepage,
     contenttypeid,
+    addr1,
     intro,
   } = item;
+
+  const [more, setMore] = useState(true);
+  const [minHeight, setMinHeight] = useState(false);
+
   useEffect(() => {
-    console.log('detailitem', item);
-  });
+    const moreHeight = document.getElementById('moreDiv')!.clientHeight;
+    if (moreHeight < 160) {
+      setMinHeight(true);
+    } else {
+      setMore(!more);
+    }
+  }, []);
+
+  const onToggle = () => {
+    setMore(!more);
+  };
+
   return (
     <>
       <DetailItemWrapper>
@@ -40,10 +58,45 @@ const DetailItem = ({ item }: DetailPropsItem) => {
         />
         <DetailItemInfo>상세정보</DetailItemInfo>
         <DetailItemOverview
+          id="moreDiv"
+          more={more}
           dangerouslySetInnerHTML={{
-            __html: overview.replaceAll('*', '<br/><br/>*'),
+            __html: overview.replaceAll(/\s[*]/g, '<br/><br/>*'),
           }}
         />
+
+        {minHeight ? null : (
+          <ButtonWrapper onClick={onToggle}>
+            {!more ? (
+              <>
+                <b>더보기</b>
+                <span>
+                  <CaretDownOutlined />
+                </span>
+              </>
+            ) : (
+              <>
+                <b>닫기</b>
+                <span>
+                  <CaretUpOutlined />
+                </span>
+              </>
+            )}
+          </ButtonWrapper>
+        )}
+
+        {/* <ul>
+          <li>
+            <b>주소</b> {addr1}
+          </li>
+          <li>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: homepage,
+              }}
+            />
+          </li>
+        </ul> */}
 
         {(() => {
           switch (contenttypeid) {

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MapWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 10% 0;
+  padding: 5% 0;
 `;
 
 export const Map = styled.div`

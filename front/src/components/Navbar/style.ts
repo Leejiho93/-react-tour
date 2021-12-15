@@ -137,6 +137,9 @@ export const Account = styled.div<{ toggle: boolean }>`
     width: 100%;
     justify-content: center;
     & a {
+      width: 100%;
+      border-radius: 0;
+      text-align: center;
       color: #000;
       background-color: #fff;
       padding: 12px 5px;
@@ -158,5 +161,33 @@ export const HamburgerMenu = styled.div`
     top: 25px;
     right: 20px;
     font-size: 30px;
+  }
+`;
+
+export const LogoutButton = styled.button`
+  padding: 6px 10px;
+  border: 1px solid #5f6368;
+  border-radius: 4px;
+  color: #e8eaed;
+  background-color: #3c3d40;
+  margin-right: 30px;
+  cursor: pointer;
+  font-family: 'Gowun Batang', serif;
+  font-weight: 500;
+  &:hover {
+    background-color: #4a4b4e;
+  }
+  ${({ theme }) => theme.window.tablet} {
+    border: none;
+    color: #000;
+    background-color: #fff;
+    padding: 12px 5px;
+    font-family: BMJUA;
+    font-size: 22px;
+    margin-right: 0px;
+    width: 100%;
+    &:hover {
+      background-color: #e2e2e2;
+    }
   }
 `;

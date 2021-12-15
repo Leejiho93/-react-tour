@@ -1,12 +1,7 @@
-import React, { FormEvent, useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { searchAsync } from '../../modules/detail';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-// import { Input } from 'antd';
 import { Input, SearchButton, SearchWrapper } from './style';
 import { SearchOutlined } from '@ant-design/icons';
-
-// const { Search } = Input;
 
 const SearchForm = () => {
   const [search, setSearch] = useState('');
@@ -35,7 +30,6 @@ const SearchForm = () => {
           </SearchButton>
         </SearchWrapper>
       </form>
-      {/* <SearchInput value={search} onChange={onChange} onSearch={onSearch} /> */}
     </>
   );
 };

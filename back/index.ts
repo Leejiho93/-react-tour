@@ -8,6 +8,7 @@ import passportConfig from "./passport";
 import { sequelize } from "./models";
 import userAPIRouter from "./routes/user";
 import detailAPIRouter from "./routes/detail";
+import commentAPIRouter from "./routes/comment";
 
 const app = express();
 
@@ -50,6 +51,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userAPIRouter);
+app.use("/api/comment", commentAPIRouter);
 app.use("/api/detail", detailAPIRouter);
 
 app.listen(8081, () => {

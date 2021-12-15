@@ -20,5 +20,10 @@
     "types": ["kakao.maps.d.ts"]
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/containers/CommentForm"
+  ]
 }

@@ -1,5 +1,5 @@
-import { Button, Form, Input } from 'antd';
 import styled from 'styled-components';
+import { Button, Form, Input } from 'antd';
 
 export const Wrapper = styled.div`
   height: 80vh;
@@ -24,18 +24,24 @@ export const Title = styled.div`
   color: #000;
 `;
 
-export const LoginLabel = styled(Form.Item)`
+export const ErrorMessage = styled.div`
+  text-align: center;
+  margin-bottom: 30px;
+  color: red;
+`;
+
+export const SignupLabel = styled(Form.Item)`
   & label {
     font-size: 16px;
   }
 `;
 
-export const LoginInput = styled(Input)`
+export const SignupInput = styled(Input)`
   height: 50px;
   border-radius: 5px;
 `;
 
-export const LoginPassword = styled(Input.Password)`
+export const SignupPassword = styled(Input.Password)`
   height: 50px;
   border-radius: 5px;
 `;
@@ -46,7 +52,7 @@ export const ButtonWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const LoginButton = styled(Button)`
+export const SignupButton = styled(Button)`
   width: 100%;
   height: 40px;
   background-color: #1a73e8;
@@ -57,18 +63,4 @@ export const LoginButton = styled(Button)`
     background-color: #1890ff;
     color: #fff;
   }
-`;
-
-export const SubWrapper = styled.div`
-  width: 100%;
-  text-align: center;
-  & a {
-    color: #5b5b5b;
-  }
-`;
-
-export const LoginError = styled.div`
-  text-align: center;
-  margin-bottom: 30px;
-  color: red;
 `;

@@ -3,9 +3,19 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { loginAsync } from '../../modules/user';
-import { Button, Form, Input } from 'antd';
+import { Form } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { LoginError } from './style';
+import {
+  ButtonWrapper,
+  LoginButton,
+  LoginError,
+  LoginInput,
+  LoginLabel,
+  LoginPassword,
+  SubWrapper,
+  Title,
+  Wrapper,
+} from './style';
 import { RootState } from '../../modules';
 
 const LoginForm = () => {
@@ -15,7 +25,7 @@ const LoginForm = () => {
 
   const { loginError } = useSelector((state: RootState) => state.user);
 
-  const onChagneId = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,52 +35,45 @@ const LoginForm = () => {
     dispatch(loginAsync.request({ userId: id, password }));
   };
 
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
-  };
-
   return (
-    <>
-      <Form {...formItemLayout} autoComplete="off" onFinish={onSubmit}>
-        <Form.Item
-          label="아이디"
+    <Wrapper>
+      <Title>로그인</Title>
+      {loginError && <LoginError>{loginError}</LoginError>}
+      <Form autoComplete="off" onFinish={onSubmit}>
+        <LoginLabel
           name="id"
           rules={[{ required: true, message: '아이디를 입력해주세요.' }]}
         >
-          <Input
+          <LoginInput
             prefix={<UserOutlined />}
             value={id}
-            onChange={onChagneId}
+            onChange={onChangeId}
             id="id"
+            placeholder="아이디"
           />
-        </Form.Item>
-        <Form.Item
-          label="비밀번호"
+        </LoginLabel>
+        <LoginLabel
           name="password"
           rules={[{ required: true, message: '비밀번호를 입력해주세요.' }]}
         >
-          <Input.Password
+          <LoginPassword
             prefix={<LockOutlined />}
             id="password"
             value={password}
             onChange={onChangePassword}
+            placeholder="비밀번호"
           />
-        </Form.Item>
+        </LoginLabel>
 
-        <Button htmlType="submit">로그인 </Button>
-        <div>
+        <ButtonWrapper>
+          <LoginButton htmlType="submit">로그인 </LoginButton>
+        </ButtonWrapper>
+
+        <SubWrapper>
           <Link href="/signup">회원가입</Link>
-        </div>
-        {loginError && <LoginError>{loginError}</LoginError>}
+        </SubWrapper>
       </Form>
-    </>
+    </Wrapper>
   );
 };
 

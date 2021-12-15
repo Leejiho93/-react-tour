@@ -7,12 +7,20 @@ export type LoginPayload = {
   password: string;
 };
 
-export type LoginResponse = Record<string, unknown>;
+export type LoginResponse = {
+  data: Me;
+};
+
+export type Me = {
+  id: number;
+  nickname: string;
+  userId: string;
+};
 
 export type SignupPayload = {
   userId: string;
   nickname: string;
-  email: string;
+  email?: string;
   password: string;
 };
 
@@ -27,7 +35,7 @@ export type UserState = {
   isSignedup: boolean;
   isSigningup: boolean;
   signupError: Error | string;
-  me: Record<string, unknown> | null;
+  me: Me | null;
 };
 
 export type UserAction = ActionType<typeof action>;

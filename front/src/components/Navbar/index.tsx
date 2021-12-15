@@ -9,13 +9,14 @@ import {
   MobileSearch,
   Wrapper,
   HamburgerMenu,
+  LogoutButton,
 } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { logoutAsync } from '../../modules/user';
 import SearchForm from '../../containers/SearchForm';
 import { Avatar } from 'antd';
-import { UnorderedListOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import HeadItem from '../HeaderItem';
 
 const Navbar: React.FC = () => {
@@ -24,6 +25,7 @@ const Navbar: React.FC = () => {
   const dispatch = useDispatch();
   const onClickLogout = () => {
     dispatch(logoutAsync.request());
+    setToggle(false);
   };
   const toggleHanburger = () => {
     setToggle(!toggle);
@@ -62,8 +64,8 @@ const Navbar: React.FC = () => {
         <Account toggle={toggle}>
           {me ? (
             <>
-              <Avatar>{me.nickname}</Avatar>
-              {/* <button onClick={onClickLogout}>로그아웃 </button> */}
+              {/* <Avatar>{me.nickname}</Avatar> */}
+              <LogoutButton onClick={onClickLogout}>로그아웃 </LogoutButton>
             </>
           ) : (
             <>
@@ -77,7 +79,7 @@ const Navbar: React.FC = () => {
         </Account>
 
         <HamburgerMenu>
-          <UnorderedListOutlined onClick={toggleHanburger} />
+          <MenuOutlined onClick={toggleHanburger} />
         </HamburgerMenu>
       </NavbarWrapper>
       <MobileSearch onClick={falseHamburger}>
