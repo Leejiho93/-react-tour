@@ -9,13 +9,9 @@ const router = express.Router();
 
 // 내정보
 router.get("/", isLoggedIn, (req, res) => {
-  console.log("api/user/ req", req.user);
-  // req.user
-  // const user = req.user!.toJSON() as User;
-  // console.log("api/user/ user", user);
-  // delete user.password;
-  // const user = { id: 12, userId: "1", email: "1", nickname: "1" };
-  // return res.json(req.user);
+  console.log("loaduser 실행");
+  const user = req.user!.toJSON() as User;
+  return res.json(user);
 });
 
 // 회원가입
@@ -34,9 +30,7 @@ router.post("/signup", async (req, res, next) => {
       userId: req.body.userId,
       nickname: req.body.nickname,
       password: hashedPassword,
-      // email: req.body.email,
     });
-    // console.log(newUser);
     return res.status(200).json(newUser);
   } catch (e) {
     console.error(e);
@@ -66,7 +60,6 @@ router.post("/login", (req, res, next) => {
           where: { id: user.id },
           attributes: ["id", "nickname", "userId"],
         });
-        // console.log("fullUser: ", fullUser);
         return res.json(fullUser);
       } catch (e) {
         return next(e);
@@ -75,13 +68,16 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+// 로그아웃
 router.post("/logout", (req, res) => {
   req.logout();
   if (req.session) {
     req.session.destroy((err) => {
+      console.log("logout! sesstion destroy");
       res.send("logout! sesstion destroy");
     });
   } else {
+    console.log("logout!");
     res.send("logout!");
   }
 });

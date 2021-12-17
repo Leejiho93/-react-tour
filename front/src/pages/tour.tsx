@@ -1,7 +1,9 @@
 import { Spin } from 'antd';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { END } from 'redux-saga';
 import {
   Li,
   PaginationCustom,
@@ -15,13 +17,15 @@ import SortBox from '../components/SortBox';
 import TourList from '../components/TourList';
 import { RootState } from '../modules';
 import { regionAsync } from '../modules/detail';
+import { loadUserAsync } from '../modules/user';
+import { SagaStore, wrapper } from './_app';
 
 const Region = () => {
   const router = useRouter();
   const [areaCode, setAreaCode] = useState(undefined);
   const [pageNo, setPageNo] = useState(1);
   const [arrange, setArrange] = useState('P');
-  const { title, contentTypeId } = router.query;
+  const { title, contentTypeId, area } = router.query;
   const [areaName, setAreaName] = useState([
     ['전체', undefined],
     ['서울', 1],
@@ -47,6 +51,7 @@ const Region = () => {
   );
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(
       regionAsync.request({
@@ -105,5 +110,29 @@ const Region = () => {
     </Wrapper>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, query, ...ect }) => {
+      const cookie = req ? req.headers.cookie : '';
+      axios.defaults.headers!.Cookie = '';
+      if (req && cookie) {
+        axios.defaults.headers!.Cookie = cookie;
+      }
+      if (!store.getState().user.me) {
+        store.dispatch(loadUserAsync.request());
+      }
+      store.dispatch(
+        regionAsync.request({
+          contentTypeId: Number(query.contentTypeId),
+          arrange: 'P',
+          areaCode: undefined,
+        })
+      );
+      store.dispatch(END);
+
+      await (store as SagaStore).sagaTask!.toPromise();
+    }
+);
 
 export default Region;

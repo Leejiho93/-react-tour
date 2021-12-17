@@ -81,28 +81,22 @@ export function* watchLogout() {
   yield takeLatest(logoutAsync.request, logoutSaga);
 }
 
-// 유저정보 (로그인 ssr)
+// 로그인 유지
 
-// function loadUserAPI(userId: LoadUserPayload) {
 function loadUserAPI() {
-  // return axios.get(userId ? `/user/${userId}` : `/user/`, {
-  return axios.get(`/user/`, {
-    withCredentials: true,
-  });
+  return axios.get(`/user/`);
 }
 
-function* loadUserSaga(action: ReturnType<typeof loadUserAsync.request>) {
+function* loadUserSaga() {
   try {
-    console.log('loadUser result');
     const result: LoginResponse = yield call(loadUserAPI);
-    yield put(loadUserAsync.success(result));
+    yield put(loadUserAsync.success(result.data));
   } catch (e) {
     yield put(loadUserAsync.failure(e as AxiosError));
   }
 }
 
 export function* watchLoadUser() {
-  console.log('loadUser request saga');
   yield takeLatest(loadUserAsync.request, loadUserSaga);
 }
 
@@ -111,6 +105,6 @@ export default function* userSaga() {
     fork(watchSignup),
     fork(watchLogin),
     fork(watchLogout),
-    // fork(watchLoadUser),
+    fork(watchLoadUser),
   ]);
 }

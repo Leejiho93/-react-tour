@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { DetailPropsItem } from '../../modules/detail';
+import { DetailItemProps, DetailPropsItem } from '../../modules/detail';
 import Image from 'next/image';
 import {
   ButtonWrapper,
@@ -20,7 +20,7 @@ import TourFood from '../TourFood';
 import CommentForm from '../../containers/CommentForm';
 import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
-const DetailItem = ({ item }: DetailPropsItem) => {
+const DetailItem = ({ item }: DetailItemProps) => {
   const {
     title,
     firstimage,

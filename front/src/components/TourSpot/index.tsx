@@ -1,8 +1,8 @@
 import React from 'react';
-import { DetailPropsItem, TourSpotProps } from '../../modules/detail';
+import { DetailItemProps } from '../../modules/detail';
 import { IntroWrapper, Li } from './style';
 
-const TourSpot = ({ item }: DetailPropsItem) => {
+const TourSpot = ({ item }: DetailItemProps) => {
   const { addr1, homepage } = item;
   const {
     accomcount,

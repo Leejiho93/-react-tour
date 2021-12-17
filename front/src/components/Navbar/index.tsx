@@ -46,14 +46,14 @@ const Navbar: React.FC = () => {
 
         <Category toggle={toggle} onClick={falseHamburger}>
           <ul>
-            <HeadItem title="관광지" contentTypeId={12} />
-            <HeadItem title="문화시설" contentTypeId={14} />
-            <HeadItem title="축제" contentTypeId={15} />
-            <HeadItem title="코스" contentTypeId={25} />
-            <HeadItem title="레포츠" contentTypeId={28} />
-            <HeadItem title="숙박" contentTypeId={32} />
-            <HeadItem title="쇼핑" contentTypeId={38} />
-            <HeadItem title="식당" contentTypeId={39} />
+            <HeadItem title="관광지" contentTypeId={12} area={undefined} />
+            <HeadItem title="문화시설" contentTypeId={14} area={undefined} />
+            <HeadItem title="축제" contentTypeId={15} area={undefined} />
+            <HeadItem title="코스" contentTypeId={25} area={undefined} />
+            <HeadItem title="레포츠" contentTypeId={28} area={undefined} />
+            <HeadItem title="숙박" contentTypeId={32} area={undefined} />
+            <HeadItem title="쇼핑" contentTypeId={38} area={undefined} />
+            <HeadItem title="식당" contentTypeId={39} area={undefined} />
           </ul>
         </Category>
 

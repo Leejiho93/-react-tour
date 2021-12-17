@@ -1,4 +1,4 @@
-import { Axios, AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { ActionType } from 'typesafe-actions';
 import * as action from './action';
 

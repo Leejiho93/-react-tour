@@ -12,7 +12,12 @@ import {
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
   LOG_OUT_FAILURE,
+  LOAD_USER_REQUEST,
+  LOAD_USER_SUCCESS,
+  LOAD_USER_FAILURE,
 } from './action';
+
+export type IUserReducerState = typeof initialState;
 
 const initialState: UserState = {
   isLoggingin: false,
@@ -75,6 +80,19 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [LOG_OUT_FAILURE]: (state) =>
     produce(state, (draft) => {
       draft.isLoggingout = false;
+    }),
+  [LOAD_USER_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      // draft.isLoggingout = true;
+    }),
+  [LOAD_USER_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.me = action.payload;
+      // draft.isLoggingout = false;
+    }),
+  [LOAD_USER_FAILURE]: (state) =>
+    produce(state, (draft) => {
+      // draft.isLoggingout = false;
     }),
 });
 

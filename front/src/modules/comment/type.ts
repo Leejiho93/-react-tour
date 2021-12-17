@@ -1,10 +1,11 @@
 export type CommentState = {
   //   commentList: [] | undefined;
   commentInfo: any;
-  commentList: CommentData[] | CommentData | undefined;
+  // commentList: CommentData[] | CommentData | undefined;
+  commentList: CommentData[] | CommentData;
   commentAdded: boolean;
   isAddingComment: boolean;
-  commentError: Error | undefined;
+  commentError: Error | '';
   commentEditedError: boolean;
 };
 
@@ -23,7 +24,7 @@ export type LoadCommentPayload = {
 };
 
 export type LoadComments = {
-  data: CommentData[] | CommentData | undefined;
+  data: CommentData[] | CommentData;
 };
 
 export type CommentDataProps = {

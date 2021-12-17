@@ -8,14 +8,24 @@ import comment from './comment';
 import userSaga from './user/saga';
 import detailSaga from './detail/saga';
 import commentSaga from './comment/saga';
+import { IUserReducerState } from './user/reducer';
+import { ICommentReducerState } from './comment/reducer';
+import { IDetailReducerState } from './detail/reducer';
 
 axios.defaults.baseURL = `http://localhost:8081/api`;
 axios.defaults.withCredentials = true;
 
-const rootReducer = (state: any, action: any) => {
+export interface IReducerState {
+  user: IUserReducerState;
+  comment: ICommentReducerState;
+  detail: IDetailReducerState;
+}
+
+const rootReducer = (
+  state: IReducerState | undefined,
+  action: AnyAction
+): IReducerState => {
   if (action.type === HYDRATE) {
-    console.log('HYDRATE state', state);
-    console.log('HYDRATE action', action);
     return {
       ...state,
       ...action.payload,
@@ -29,9 +39,9 @@ const rootReducer = (state: any, action: any) => {
   }
 };
 
-export default rootReducer;
-
 export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;
 
 export function* rootSaga() {
   yield all([call(userSaga), call(detailSaga), call(commentSaga)]);

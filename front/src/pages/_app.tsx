@@ -1,38 +1,23 @@
-import type {
-  // AppContext,
-  // AppInitialProps,
-  // AppLayoutProps,
-  AppProps,
-} from 'next/app';
-import reducer, { rootSaga } from '../modules';
-import { createWrapper } from 'next-redux-wrapper';
+import App, { AppProps } from 'next/app';
+import reducer, { IReducerState, rootSaga, RootState } from '../modules';
+import { Context, createWrapper } from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import createSagaMiddleware, { Task } from 'redux-saga';
-import { applyMiddleware, compose, createStore, Store } from 'redux';
+import { AnyAction, applyMiddleware, compose, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { GetServerSideProps, NextComponentType } from 'next';
-import { ReactNode } from 'react';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../styles/theme';
 import GlobalStyle from '../../styles/GlobalStyle';
 import Layout from '../components/Layout';
 import 'antd/dist/antd.css';
-import Script from 'next/script';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
-// const getLayout = Component.getLayout || ((page: ReactNode) => page);
-
-interface SagaStore extends Store {
+export interface SagaStore extends Store {
   sagaTask?: Task;
 }
 
-function Tour({ Component, pageProps }: AppProps) {
+const Tour = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      {/* <Script
-        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAO_MAP}&libraries=services,clusterer`}
-      /> */}
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Layout>
@@ -41,36 +26,7 @@ function Tour({ Component, pageProps }: AppProps) {
       </ThemeProvider>
     </>
   );
-}
-
-// const Tour: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
-//   Component,
-//   pageProps,
-// }:
-// AppLayoutProps) => {
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <GlobalStyle />
-//       <Layout>
-//         <Component {...pageProps} />
-//       </Layout>
-//     </ThemeProvider>
-//   );
-// };
-// const Tour: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
-//   Component,
-//   pageProps,
-// }:
-// AppLayoutProps) => {
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <GlobalStyle />
-//       <Layout>
-//         <Component {...pageProps} />
-//       </Layout>
-//     </ThemeProvider>
-//   );
-// };
+};
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
@@ -84,6 +40,6 @@ const configureStore = () => {
   return store;
 };
 
-export const wrapper = createWrapper(configureStore);
+export const wrapper = createWrapper<Store<IReducerState>>(configureStore);
 
 export default wrapper.withRedux(withReduxSaga(Tour));

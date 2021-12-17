@@ -1,7 +1,6 @@
 // import { Image, Timeline } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { DetailPropsItem, TourCourseProps } from '../../modules/detail';
-import Link from 'next/link';
+import { DetailItemProps, DetailPropsItem } from '../../modules/detail';
 import {
   CardImage,
   CardWrapper,
@@ -12,16 +11,9 @@ import {
   SubDetail,
   Wrapper,
 } from './style';
-import Image from 'next/image';
-import { Card } from 'antd';
 import { DetailItemInfo } from '../DetailItem/style';
 
-const TourCourse = ({ item }: DetailPropsItem) => {
-  useEffect(() => {
-    console.log('course info', item.info);
-    console.log('course info', item.intro);
-  });
-
+const TourCourse = ({ item }: DetailItemProps) => {
   const [imageSrc, setImageSrc] = useState(item.info[0].subdetailimg);
   const [imageTitle, setImageTitle] = useState(item.info[0].subname);
   const [subId, setSubId] = useState(item.info[0].subcontentid);

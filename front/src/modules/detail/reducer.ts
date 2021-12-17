@@ -31,7 +31,7 @@ const initialState: DetailState = {
   detailResult: {
     loading: false,
     data: {
-      items: '',
+      items: { item: null },
       numOfRows: 10,
       pageNo: 1,
       totalCount: 1,
@@ -42,12 +42,10 @@ const initialState: DetailState = {
     loading: false,
     data: {
       items: {
-        item: '',
-        festival: '',
-        sleep: '',
+        item: [],
+        festival: [],
+        sleep: [],
       },
-      // festival: '',
-      // sleep: '',
       numOfRows: 10,
       pageNo: 1,
       totalCount: 1,
@@ -65,6 +63,8 @@ const initialState: DetailState = {
     error: null,
   },
 };
+
+export type IDetailReducerState = typeof initialState;
 
 const detail = createReducer<DetailState, DetailAction>(initialState, {
   [SEARCH_TOUR_REQUEST]: (state) =>
@@ -93,7 +93,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.detailResult.loading = true;
       draft.detailResult.error = null;
-      draft.detailResult.data.items = '';
+      draft.detailResult.data.items.item = null;
     }),
   [DETAIL_TOUR_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
@@ -106,7 +106,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.detailResult.error = action.payload;
       draft.detailResult.loading = false;
-      draft.detailResult.data.items = '';
+      draft.detailResult.data.items.item = null;
     }),
   [REGION_TOUR_REQUEST]: (state) =>
     produce(state, (draft) => {
@@ -131,9 +131,9 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.allData.loading = true;
       draft.allData.error = null;
-      draft.allData.data.items.item = '';
-      draft.allData.data.items.festival = '';
-      draft.allData.data.items.sleep = '';
+      draft.allData.data.items.item = [];
+      draft.allData.data.items.festival = [];
+      draft.allData.data.items.sleep = [];
     }),
   [ALL_TOUR_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
@@ -145,9 +145,9 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.allData.error = action.payload;
       draft.allData.loading = false;
-      draft.allData.data.items.item = '';
-      draft.allData.data.items.festival = '';
-      draft.allData.data.items.sleep = '';
+      draft.allData.data.items.item = [];
+      draft.allData.data.items.festival = [];
+      draft.allData.data.items.sleep = [];
     }),
 });
 

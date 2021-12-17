@@ -8,7 +8,7 @@ import { Wrapper } from './style';
 const HotList = ({ list }: RegionProps) => {
   return (
     <Wrapper>
-      {list ? (
+      {list.length !== 0 ? (
         list.map((item) => <HotItem list={item} key={item.contentid} />)
       ) : (
         <MainSkelton />

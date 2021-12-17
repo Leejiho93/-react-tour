@@ -1,29 +1,15 @@
 import * as React from 'react';
-import { Comment, Avatar } from 'antd';
-import comment, {
-  CommentDataProps,
-  deleteCommentAsync,
-  LoadComments,
-} from '../../modules/comment';
+import { Avatar } from 'antd';
+import { CommentDataProps, deleteCommentAsync } from '../../modules/comment';
 import { useDispatch, useSelector } from 'react-redux';
-import * as moment from 'moment';
 import { RootState } from '../../modules';
 import { CommentStyle } from './style';
 import Swal from 'sweetalert2';
-import CommentForm from '../../containers/CommentForm';
 import EditForm from '../../containers/EditForm';
-
-// interface Date {
-//   toLocaleString(locales?: string | string[], options?: Intl.DateTimeFormatOptions, timeZone?: string): string;
-// }
 
 const CommentItem = ({ data }: CommentDataProps) => {
   const [editable, setEditable] = React.useState(false);
   const dispatch = useDispatch();
-  React.useEffect(() => {
-    // console.log('CommentItem data', data);
-    // console.log('CommentItem userid', id);
-  });
 
   const id = useSelector(
     (state: RootState) => state.user.me && state.user.me.id
@@ -41,11 +27,6 @@ const CommentItem = ({ data }: CommentDataProps) => {
       }
     });
   };
-
-  // React.useEffect(() => {
-  //   window.addEventListener('click', modifyComment, true);
-  // });
-
   const modifyComment = () => {
     setEditable(true);
   };

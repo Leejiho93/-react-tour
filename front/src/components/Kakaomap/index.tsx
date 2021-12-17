@@ -1,9 +1,7 @@
 import { ArrowRightOutlined } from '@ant-design/icons';
 import React, { useEffect } from 'react';
-import { DetailPropsItem } from '../../modules/detail';
-import { DetailItemInfo } from '../DetailItem/style';
-import { Infowindow, IwContentWrapper, Map, MapWrapper } from './style';
-import Script from 'next/script';
+import { DetailItemProps, DetailPropsItem } from '../../modules/detail';
+import { Infowindow, Map, MapWrapper } from './style';
 
 declare global {
   interface Window {
@@ -11,7 +9,7 @@ declare global {
   }
 }
 
-const Kakaomap = ({ item }: DetailPropsItem) => {
+const Kakaomap = ({ item }: DetailItemProps) => {
   const { mapx, mapy, title } = item;
   useEffect(() => {
     const script = document.createElement('script');

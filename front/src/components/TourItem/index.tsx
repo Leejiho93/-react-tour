@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SearchPropsItem } from '../../modules/detail';
 import Link from 'next/link';
 import { Img, CardWrapper, CardMeta, ImageReady } from './style';

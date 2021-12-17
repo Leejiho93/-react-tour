@@ -85,7 +85,7 @@ function regionAPI({
 function* regionDetailSaga(action: ReturnType<typeof regionAsync.request>) {
   try {
     const result: RegionResponse = yield call(regionAPI, action.payload);
-    console.log('all saga result ', result);
+    // console.log('all saga result ', result);
     yield put(regionAsync.success(result.data));
   } catch (e) {
     console.error(e);
@@ -104,7 +104,7 @@ function allAPI() {
 function* allDataSaga() {
   try {
     const result: AllResponse = yield call(allAPI);
-    console.log('alldata saga result', result);
+    // console.log('alldata saga result', result);
     yield put(allAsync.success(result.data));
   } catch (e) {
     console.error(e);

@@ -17,18 +17,20 @@ import {
 import { createReducer } from 'typesafe-actions';
 const initialState: CommentState = {
   commentInfo: {},
-  commentList: undefined,
+  commentList: [],
   commentAdded: false,
   isAddingComment: false,
-  commentError: undefined,
+  commentError: '',
   commentEditedError: false,
 };
+
+export type ICommentReducerState = typeof initialState;
 
 const comment = createReducer(initialState, {
   [ADD_COMMENT_REQUEST]: (state) =>
     produce(state, (draft) => {
       draft.isAddingComment = true;
-      draft.commentError = undefined;
+      draft.commentError = '';
     }),
   [ADD_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
@@ -45,7 +47,7 @@ const comment = createReducer(initialState, {
     }),
   [LOAD_COMMENT_REQUEST]: (state) =>
     produce(state, (draft) => {
-      draft.commentList = undefined;
+      draft.commentList = [];
     }),
   [LOAD_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
@@ -54,11 +56,11 @@ const comment = createReducer(initialState, {
     }),
   [LOAD_COMMENT_FAILURE]: (state, action) =>
     produce(state, (draft) => {
-      draft.commentList = undefined;
+      draft.commentList = [];
     }),
   [DELETE_COMMENT_REQUEST]: (state) =>
     produce(state, (draft) => {
-      draft.commentError = undefined;
+      draft.commentError = '';
     }),
   [DELETE_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {

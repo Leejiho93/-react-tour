@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { RootState } from '../../modules';
 import { addCommentAsync, loadCommentAsync } from '../../modules/comment';
-import { DetailPropsItem } from '../../modules/detail';
+import { DetailItemProps, DetailPropsItem } from '../../modules/detail';
 import {
   ButtonWrapper,
   FormWrapper,
@@ -15,7 +15,7 @@ import {
   TextAreaWrapper,
 } from './style';
 
-const CommentForm = ({ item }: DetailPropsItem) => {
+const CommentForm = ({ item }: DetailItemProps) => {
   const [commentText, setCommentText] = React.useState('');
 
   const { me } = useSelector((state: RootState) => state.user);

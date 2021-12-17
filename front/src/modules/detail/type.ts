@@ -16,14 +16,10 @@ export type AllData = {
   loading: boolean;
   data: {
     items: {
-      item: RegionItem[] | string;
-      festival: RegionItem[] | string;
-      sleep: RegionItem[] | string;
+      item: RegionItem[] | [];
+      festival: RegionItem[] | [];
+      sleep: RegionItem[] | [];
     };
-    // items: RegionItem | string;
-
-    // festival: RegionItem | string;
-    // sleep: RegionItem | string;
     numOfRows: number;
     pageNo: number;
     totalCount: number;
@@ -150,14 +146,20 @@ export type DetailResponse = {
   data: DetailData;
 };
 export type DetailData = {
-  items: DetailItem[] | string;
+  // items: DetailItem[] | DetailItem;
+  items: DetailPropsItem;
   numOfRows: number;
   pageNo: number;
   totalCount: number;
 };
 export type DetailPropsItem = {
+  item: DetailItem | null;
+};
+
+export type DetailItemProps = {
   item: DetailItem;
 };
+
 export type DetailItem = {
   contentid: number;
   contenttypeid: number;

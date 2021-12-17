@@ -1,11 +1,11 @@
-import { Pagination, Spin } from 'antd';
+import { Spin } from 'antd';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { END } from 'redux-saga';
 import {
   PaginationCustom,
-  SortButton,
-  SortWrapper,
   Title,
   TitleWrapper,
   Wrapper,
@@ -14,6 +14,8 @@ import SortBox from '../components/SortBox';
 import TourList from '../components/TourList';
 import { RootState } from '../modules';
 import { searchAsync } from '../modules/detail';
+import { loadUserAsync } from '../modules/user';
+import { SagaStore, wrapper } from './_app';
 
 const Search = () => {
   const router = useRouter();
@@ -72,5 +74,33 @@ const Search = () => {
     </Wrapper>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, query, ...ect }) => {
+      const cookie = req ? req.headers.cookie : '';
+      axios.defaults.headers!.Cookie = '';
+
+      console.log('ect', ect);
+      if (req && cookie) {
+        axios.defaults.headers!.Cookie = cookie;
+      }
+      if (!store.getState().user.me) {
+        store.dispatch(loadUserAsync.request());
+      }
+
+      store.dispatch(
+        searchAsync.request({
+          search: String(query.search),
+          pageNo: Number(query.pageNo),
+          arrange: 'Q',
+        })
+      );
+
+      store.dispatch(END);
+
+      await (store as SagaStore).sagaTask!.toPromise();
+    }
+);
 
 export default Search;

@@ -49,6 +49,6 @@ export const loadUserAsync = createAsyncAction(
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAILURE
-)<LoadUserPayload, LoginResponse, AxiosError>();
+)<undefined, any, AxiosError>();
 
 export const signupReset = createStandardAction(SIGN_UP_RESET)();
