@@ -1,41 +1,46 @@
-import { AxiosError } from 'axios';
 import { ActionType } from 'typesafe-actions';
 import * as action from './action';
 
-export type LoginPayload = {
-  userId: string;
-  password: string;
-};
-
-export type LoginResponse = {
-  data: Me;
-};
-
-export type Me = {
-  id: number;
-  nickname: string;
-  userId: string;
-};
-
-export type SignupPayload = {
-  userId: string;
-  nickname: string;
-  email?: string;
-  password: string;
-};
-
-export type LoadUserPayload = {
-  id?: string;
-};
-
-export type UserState = {
+// 유저 초기값
+export interface UserState {
   isLoggingin: boolean;
   isLoggingout: boolean;
-  loginError: Error | string | AxiosError;
+  loginError: Error | string;
   isSignedup: boolean;
   isSigningup: boolean;
   signupError: Error | string;
-  me: Me | null;
-};
+  me: LoginResponse | null;
+}
+
+// 회원가입
+export interface SignupPayload {
+  userId: string;
+  nickname: string;
+  password: string;
+}
+export interface SignupResult {
+  data: SignupResponse;
+}
+export interface SignupResponse {
+  userId: string;
+  nickname: string;
+  createdAt: string;
+  password: string;
+  updatedAt: string;
+}
+
+// 로그인
+export interface LoginPayload {
+  userId: string;
+  password: string;
+}
+export interface LoginResult {
+  data: LoginResponse;
+}
+export interface LoginResponse {
+  id: number;
+  nickname: string;
+  userId: string;
+}
 
 export type UserAction = ActionType<typeof action>;

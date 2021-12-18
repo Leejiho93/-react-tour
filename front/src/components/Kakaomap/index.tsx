@@ -1,6 +1,6 @@
 import { ArrowRightOutlined } from '@ant-design/icons';
 import React, { useEffect } from 'react';
-import { DetailItemProps, DetailPropsItem } from '../../modules/detail';
+import { DetailItemprops } from '../../modules/detail';
 import { Infowindow, Map, MapWrapper } from './style';
 
 declare global {
@@ -9,12 +9,11 @@ declare global {
   }
 }
 
-const Kakaomap = ({ item }: DetailItemProps) => {
+const Kakaomap = ({ item }: DetailItemprops) => {
   const { mapx, mapy, title } = item;
   useEffect(() => {
     const script = document.createElement('script');
-    script.async = true;
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAPS}&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.NEXT_PUBLIC_KAKAO_MAPS}`;
     document.head.appendChild(script);
 
     const container = document.getElementById('map');
@@ -42,7 +41,7 @@ const Kakaomap = ({ item }: DetailItemProps) => {
       });
     };
     return () => script.remove();
-  }, [mapx, mapy]);
+  }, [item, mapx, mapy]);
 
   return (
     <>

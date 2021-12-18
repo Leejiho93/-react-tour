@@ -10,7 +10,10 @@ export const DetailItemTitle = styled.h2`
   font-family: BMJUA;
   font-size: 50px;
   font-weight: 600;
-  padding: 100px 0 50px;
+  padding: 50px 0;
+  ${({ theme }) => theme.window.laptop} {
+    padding: 100px 0 50px;
+  }
   ${({ theme }) => theme.window.tablet} {
     font-size: 45px;
     width: 90%;
@@ -26,6 +29,9 @@ export const DetailItemImage = styled.img`
   padding: 0 0 50px 0;
   ${({ theme }) => theme.window.laptop} {
     width: 90%;
+  }
+  ${({ theme }) => theme.window.tablet} {
+    padding: 0;
   }
 `;
 

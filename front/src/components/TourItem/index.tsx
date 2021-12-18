@@ -1,9 +1,13 @@
 import React from 'react';
-import { SearchPropsItem } from '../../modules/detail';
+import { RegionItem, SearchItem } from '../../modules/detail';
 import Link from 'next/link';
 import { Img, CardWrapper, CardMeta, ImageReady } from './style';
 
-const TourItem = ({ list }: SearchPropsItem) => {
+interface ITourItem {
+  list: SearchItem | RegionItem;
+}
+
+const TourItem = ({ list }: ITourItem) => {
   const { title, addr1, firstimage, contentid, contenttypeid } = list;
 
   return (

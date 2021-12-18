@@ -3,7 +3,10 @@ import styled from 'styled-components';
 export const MapWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 5% 0;
+  padding: 70px 0 0;
+  ${({ theme }) => theme.window.laptop} {
+    width: 90%;
+  }
 `;
 
 export const Map = styled.div`
@@ -11,11 +14,7 @@ export const Map = styled.div`
   height: 400px;
   position: relative;
 
-  }
-
   ${({ theme }) => theme.window.laptop} {
-    width: 95%;
-    margin: 0 auto;
   }
   ${({ theme }) => theme.window.tablet} {
     height: 350px;

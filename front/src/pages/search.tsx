@@ -99,7 +99,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       store.dispatch(END);
 
-      await (store as SagaStore).sagaTask!.toPromise();
+      return await (store as SagaStore).sagaTask!.toPromise();
     }
 );
 

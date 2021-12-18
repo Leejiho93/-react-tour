@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { RegionPropsItem } from '../../modules/detail';
+import { RegionItem } from '../../modules/detail';
 import { HotImage, HotTitle, Wrapper } from './style';
 import Link from 'next/link';
 
-const HotItem = ({ list }: RegionPropsItem) => {
+interface IHotItem {
+  list: RegionItem;
+}
+
+const HotItem = ({ list }: IHotItem) => {
   const filter: any = list.title.match(/\[.*\]/gi);
   return (
     <>

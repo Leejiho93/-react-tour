@@ -11,6 +11,24 @@ import { searchAsync, detailAsync, regionAsync, allAsync } from './action';
 import { takeLatest, put, call, all, fork } from 'redux-saga/effects';
 import axios, { AxiosError } from 'axios';
 
+// 메인 화면
+function allAPI() {
+  return axios.get('/detail/all');
+}
+function* allDataSaga() {
+  try {
+    const result: AllResponse = yield call(allAPI);
+    yield put(allAsync.success(result.data));
+  } catch (e: any) {
+    console.error(e);
+    yield put(allAsync.failure(e.response.data));
+  }
+}
+export function* watchAllData() {
+  yield takeLatest(allAsync.request, allDataSaga);
+}
+
+// 검색기능
 function searchAPI({ search, pageNo, arrange }: SearchPayload) {
   return axios.get(`/detail/search`, {
     params: {
@@ -20,50 +38,20 @@ function searchAPI({ search, pageNo, arrange }: SearchPayload) {
     },
   });
 }
-
 function* searchDetailSaga(action: ReturnType<typeof searchAsync.request>) {
   try {
     const result: SearchResponse = yield call(searchAPI, action.payload);
-    // console.log('success result', result.data);
     yield put(searchAsync.success(result.data));
-  } catch (e) {
+  } catch (e: any) {
     console.error(e);
-    yield put(searchAsync.failure(e as AxiosError));
+    yield put(searchAsync.failure(e.response.data));
   }
 }
-
 export function* watchSearchDetail() {
   yield takeLatest(searchAsync.request, searchDetailSaga);
 }
 
-function detailAPI({ contentId, contentTypeId }: DetailPayload) {
-  // console.log('detail API contentTypeId', contentTypeId);
-  // console.log('detail API contentId', contentId);
-  return axios.get(
-    `/detail/${contentTypeId}/${contentId}`
-    // `${
-    //   contentId
-    //     ? `/detail/${contentTypeId}/${contentId}`
-    //     : `/detail/${contentTypeId}/solo`
-    // }`
-  );
-}
-
-function* detailResultSaga(action: ReturnType<typeof detailAsync.request>) {
-  try {
-    const result: DetailResponse = yield call(detailAPI, action.payload);
-    // console.log('detail saga', result.data);
-    yield put(detailAsync.success(result.data));
-  } catch (e) {
-    console.error(e);
-    yield put(detailAsync.failure(e as AxiosError));
-  }
-}
-
-export function* watchDetailResult() {
-  yield takeLatest(detailAsync.request, detailResultSaga);
-}
-
+// 지역기반 검색
 function regionAPI({
   arrange,
   areaCode,
@@ -81,39 +69,34 @@ function regionAPI({
     },
   });
 }
-
 function* regionDetailSaga(action: ReturnType<typeof regionAsync.request>) {
   try {
     const result: RegionResponse = yield call(regionAPI, action.payload);
-    // console.log('all saga result ', result);
     yield put(regionAsync.success(result.data));
-  } catch (e) {
+  } catch (e: any) {
     console.error(e);
-    yield put(regionAsync.failure(e as AxiosError));
+    yield put(regionAsync.failure(e.response.data));
   }
 }
-
 export function* watchRegionDetail() {
   yield takeLatest(regionAsync.request, regionDetailSaga);
 }
 
-function allAPI() {
-  return axios.get('/detail/all');
+// 상세 정보
+function detailAPI({ contentId, contentTypeId }: DetailPayload) {
+  return axios.get(`/detail/${contentTypeId}/${contentId}`);
 }
-
-function* allDataSaga() {
+function* detailResultSaga(action: ReturnType<typeof detailAsync.request>) {
   try {
-    const result: AllResponse = yield call(allAPI);
-    // console.log('alldata saga result', result);
-    yield put(allAsync.success(result.data));
-  } catch (e) {
+    const result: DetailResponse = yield call(detailAPI, action.payload);
+    yield put(detailAsync.success(result.data));
+  } catch (e: any) {
     console.error(e);
-    yield put(allAsync.failure(e as AxiosError));
+    yield put(detailAsync.failure(e.response.data));
   }
 }
-
-export function* watchAllData() {
-  yield takeLatest(allAsync.request, allDataSaga);
+export function* watchDetailResult() {
+  yield takeLatest(detailAsync.request, detailResultSaga);
 }
 
 export default function* detailSaga() {

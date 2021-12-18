@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { DetailItemProps, DetailPropsItem } from '../../modules/detail';
-import Image from 'next/image';
+import { DetailItemprops } from '../../modules/detail';
 import {
   ButtonWrapper,
   DetailItemImage,
@@ -17,20 +16,11 @@ import TourSports from '../TourSports';
 import TourSleep from '../TourSleep';
 import TourMall from '../TourMall';
 import TourFood from '../TourFood';
-import CommentForm from '../../containers/CommentForm';
 import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
+import Kakaomap from '../Kakaomap';
 
-const DetailItem = ({ item }: DetailItemProps) => {
-  const {
-    title,
-    firstimage,
-    firstimage2,
-    overview,
-    homepage,
-    contenttypeid,
-    addr1,
-    intro,
-  } = item;
+const DetailItem = ({ item }: DetailItemprops) => {
+  const { title, firstimage, firstimage2, overview, contenttypeid } = item;
 
   const [more, setMore] = useState(true);
   const [minHeight, setMinHeight] = useState(false);
@@ -85,18 +75,7 @@ const DetailItem = ({ item }: DetailItemProps) => {
           </ButtonWrapper>
         )}
 
-        {/* <ul>
-          <li>
-            <b>주소</b> {addr1}
-          </li>
-          <li>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: homepage,
-              }}
-            />
-          </li>
-        </ul> */}
+        {<Kakaomap item={item} />}
 
         {(() => {
           switch (contenttypeid) {

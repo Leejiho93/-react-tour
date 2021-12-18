@@ -1,7 +1,7 @@
 import React from 'react';
-import { DetailPropsItem, TourSportsProps } from '../../modules/detail';
+import { DetailItemprops } from '../../modules/detail';
 
-const TourSports = ({ item }: DetailPropsItem) => {
+const TourSports = ({ item }: DetailItemprops) => {
   return <div></div>;
 };
 

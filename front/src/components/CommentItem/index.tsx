@@ -1,19 +1,27 @@
 import * as React from 'react';
 import { Avatar } from 'antd';
-import { CommentDataProps, deleteCommentAsync } from '../../modules/comment';
+import { CommentData, deleteCommentAsync } from '../../modules/comment';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { CommentStyle } from './style';
 import Swal from 'sweetalert2';
 import EditForm from '../../containers/EditForm';
 
-const CommentItem = ({ data }: CommentDataProps) => {
+interface CommentItemProps {
+  data: CommentData;
+}
+
+const CommentItem = ({ data }: CommentItemProps) => {
   const [editable, setEditable] = React.useState(false);
   const dispatch = useDispatch();
 
   const id = useSelector(
     (state: RootState) => state.user.me && state.user.me.id
   );
+
+  React.useEffect(() => {
+    console.log('data', data.User);
+  }, []);
 
   const removeComment = () => {
     Swal.fire({

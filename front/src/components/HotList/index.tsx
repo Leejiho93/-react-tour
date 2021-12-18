@@ -1,17 +1,21 @@
 import * as React from 'react';
 
-import { RegionProps } from '../../modules/detail';
+import { RegionItem } from '../../modules/detail';
 import HotItem from '../HotItem';
 import MainSkelton from '../MainSkeleton';
 import { Wrapper } from './style';
 
-const HotList = ({ list }: RegionProps) => {
+interface IHotList {
+  list: RegionItem[];
+}
+
+const HotList = ({ list }: IHotList) => {
   return (
     <Wrapper>
-      {list.length !== 0 ? (
-        list.map((item) => <HotItem list={item} key={item.contentid} />)
-      ) : (
+      {list.length === 0 ? (
         <MainSkelton />
+      ) : (
+        list.map((item) => <HotItem list={item} key={item.contentid} />)
       )}
     </Wrapper>
   );

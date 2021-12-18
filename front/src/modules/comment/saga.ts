@@ -1,8 +1,8 @@
 import {
   LoadCommentPayload,
-  LoadComments,
-  CommentPayload,
-  AddComment,
+  LoadCommentResponse,
+  AddCommentPayload,
+  AddCommentResult,
   DeleteCommentPayload,
   ModifyCommentPayload,
   ModifyCommentResponse,
@@ -15,48 +15,46 @@ import {
   modifyCommentAsync,
 } from './action';
 import { takeLatest, put, call, fork, all } from 'redux-saga/effects';
-import { ConsoleSqlOutlined } from '@ant-design/icons';
 
-function addCommentAPI({ contentid, commentText }: CommentPayload) {
+// 댓글 추가
+function addCommentAPI({ contentid, commentText }: AddCommentPayload) {
   return axios.post(`/comment/${contentid}`, { content: commentText });
 }
-
 function* addCommentSaga(action: ReturnType<typeof addCommentAsync.request>) {
   try {
-    const result: AddComment = yield call(addCommentAPI, action.payload);
-    console.log('addComment saga result.data', result.data);
+    const result: AddCommentResult = yield call(addCommentAPI, action.payload);
     yield put(addCommentAsync.success(result.data));
-  } catch (e) {
-    yield put(addCommentAsync.failure(e as AxiosError));
+  } catch (e: any) {
+    yield put(addCommentAsync.failure(e.response.data));
   }
 }
-
 export function* watchAddComment() {
-  //   console.log('watch add comment');
   yield takeLatest(addCommentAsync.request, addCommentSaga);
 }
 
+// 댓글 로드
 function loadCommentsAPI({ contentId }: LoadCommentPayload) {
   return axios.get(`/comment/${contentId}`);
 }
-
 function* loadCommentsSaga(
   action: ReturnType<typeof loadCommentAsync.request>
 ) {
   try {
-    const result: LoadComments = yield call(loadCommentsAPI, action.payload);
-    yield put(loadCommentAsync.success(result));
-  } catch (e) {
-    yield put(loadCommentAsync.failure(e as AxiosError));
+    const result: LoadCommentResponse = yield call(
+      loadCommentsAPI,
+      action.payload
+    );
+    yield put(loadCommentAsync.success(result.data));
+  } catch (e: any) {
+    yield put(loadCommentAsync.failure(e.response.data));
   }
 }
-
 export function* watchLoadComments() {
   yield takeLatest(loadCommentAsync.request, loadCommentsSaga);
 }
 
+// 댓글 삭제
 function deleteCommentAPI({ id }: DeleteCommentPayload) {
-  console.log('delete comment id', id);
   return axios.delete(`/comment/${id}`);
 }
 
@@ -68,11 +66,9 @@ function* deleteCommentSaga(
       deleteCommentAPI,
       action.payload
     );
-    console.log('delete comment saga result', result);
     yield put(deleteCommentAsync.success(result));
-  } catch (e) {
-    console.log('delete comment error', e);
-    yield put(deleteCommentAsync.failure(e as AxiosError));
+  } catch (e: any) {
+    yield put(deleteCommentAsync.failure(e.response.data));
   }
 }
 
@@ -92,10 +88,9 @@ function* modifyCommentSaga(
       modifyCommentAPI,
       action.payload
     );
-    console.log('modify comment saga result', result.data);
     yield put(modifyCommentAsync.success(result.data));
-  } catch (e) {
-    yield put(modifyCommentAsync.failure(e as AxiosError));
+  } catch (e: any) {
+    yield put(modifyCommentAsync.failure(e.response.data));
   }
 }
 

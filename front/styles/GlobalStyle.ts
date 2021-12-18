@@ -27,9 +27,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: "BMHANNAAir";
     src: url("/fonts/BMHANNAAir_ttf.ttf") format("truetype");
   }
-  // &::selection {
-  //   background-color: #fff;
-  // }
 `;
 
 export default GlobalStyle;

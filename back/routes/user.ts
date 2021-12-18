@@ -25,15 +25,27 @@ router.post("/signup", async (req, res, next) => {
     if (exUser) {
       return res.status(403).send("이미 사용중인 아이디입니다.");
     }
+    const exNickname = await User.findOne({
+      where: {
+        nickname: req.body.nickname,
+      },
+    });
+    if (exNickname) {
+      return res.status(403).send("이미 사용중인 닉네임입니다.");
+    }
     const hashedPassword = await bcrypt.hash(req.body.password, 11);
     const newUser = await User.create({
       userId: req.body.userId,
       nickname: req.body.nickname,
       password: hashedPassword,
     });
-    return res.status(200).json(newUser);
+    const fullUser = await User.findOne({
+      where: { id: req.body.userId },
+      attributes: ["id", "nickname", "userId"],
+    });
+    return res.status(200).json(fullUser);
   } catch (e) {
-    console.error(e);
+    console.error("signup error", e);
     return next(e);
   }
 });
@@ -73,11 +85,9 @@ router.post("/logout", (req, res) => {
   req.logout();
   if (req.session) {
     req.session.destroy((err) => {
-      console.log("logout! sesstion destroy");
       res.send("logout! sesstion destroy");
     });
   } else {
-    console.log("logout!");
     res.send("logout!");
   }
 });

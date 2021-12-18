@@ -60,7 +60,7 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [LOG_IN_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
       draft.isLoggingin = false;
-      draft.me = action.payload.data;
+      draft.me = action.payload;
     }),
   [LOG_IN_FAILURE]: (state, action) =>
     produce(state, (draft) => {
@@ -83,16 +83,15 @@ const user = createReducer<UserState, UserAction>(initialState, {
     }),
   [LOAD_USER_REQUEST]: (state) =>
     produce(state, (draft) => {
-      // draft.isLoggingout = true;
+      //
     }),
   [LOAD_USER_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
       draft.me = action.payload;
-      // draft.isLoggingout = false;
     }),
   [LOAD_USER_FAILURE]: (state) =>
     produce(state, (draft) => {
-      // draft.isLoggingout = false;
+      //
     }),
 });
 

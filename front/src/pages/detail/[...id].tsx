@@ -8,30 +8,24 @@ import Kakaomap from '../../components/Kakaomap';
 import { DtailWrapper } from './style';
 import CommentForm from '../../containers/CommentForm';
 import { loadCommentAsync } from '../../modules/comment';
-import CommentItem from '../../components/CommentItem';
 import CommentList from '../../components/CommentList';
 import { SagaStore, wrapper } from '../_app';
 import axios from 'axios';
 import { loadUserAsync } from '../../modules/user';
 import { END } from 'redux-saga';
 import { NextPage } from 'next';
+import MainSkelton from '../../components/MainSkeleton';
 
 const Detail: NextPage<IReducerState> = ({ detail }) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  // const { data, loading } = useSelector(
-  //   (state: RootState) => state.detail.detailResult
-  // );
-  // const { item } = data.items;
-  const { item } = detail.detailResult.data.items;
 
+  const { item } = detail.detailResult.data.items;
+  const { loading } = detail.detailResult;
   const { commentList } = useSelector((state: RootState) => state.comment);
   const contentId = router.query.id && router.query.id[1];
   const contentTypeId = router.query.id && router.query.id[0];
 
-  useEffect(() => {
-    console.log('detail: ', item);
-  });
   useEffect(() => {
     dispatch(
       detailAsync.request({
@@ -47,8 +41,7 @@ const Detail: NextPage<IReducerState> = ({ detail }) => {
   return (
     <DtailWrapper>
       {item && <DetailItem item={item} />}
-      {item && <Kakaomap item={item} />}
-      {commentList && <CommentList data={commentList} />}
+      {<CommentList data={commentList} />}
       {item && <CommentForm item={item} />}
     </DtailWrapper>
   );
@@ -66,7 +59,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         store.dispatch(loadUserAsync.request());
       }
       store.dispatch(END);
-      await (store as SagaStore).sagaTask!.toPromise();
+      return await (store as SagaStore).sagaTask!.toPromise();
     }
 );
 

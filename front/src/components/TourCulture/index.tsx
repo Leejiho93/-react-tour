@@ -1,7 +1,7 @@
 import React from 'react';
-import { DetailItemProps } from '../../modules/detail';
+import { DetailItemprops } from '../../modules/detail';
 
-const TourCulture = ({ item }: DetailItemProps) => {
+const TourCulture = ({ item }: DetailItemprops) => {
   const {
     accomcountculture,
     chkbabycarriageculture,

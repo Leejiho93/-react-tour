@@ -1,114 +1,63 @@
 import { ActionType } from 'typesafe-actions';
 import * as action from './action';
 
-export type DetailState = {
+export interface DetailState {
   searchResult: SearchResult;
   detailResult: DetailResult;
-  allData: AllData;
+  allData: AllResult;
   regionResult: RegionResult;
-};
+}
 
-export type AllResponse = {
+// 메인
+export interface AllResponse {
   data: AllData;
-};
-
-export type AllData = {
+}
+export interface AllData {
+  items: {
+    item: RegionItem[];
+    festival: RegionItem[];
+    sleep: RegionItem[];
+  };
+  numOfRows: number;
+  pageNo: number;
+  totalCount: number;
+}
+export interface AllResult {
   loading: boolean;
   data: {
     items: {
-      item: RegionItem[] | [];
-      festival: RegionItem[] | [];
-      sleep: RegionItem[] | [];
+      item: RegionItem[];
+      festival: RegionItem[];
+      sleep: RegionItem[];
     };
     numOfRows: number;
     pageNo: number;
     totalCount: number;
   };
   error: Error | null;
-};
-
-// 지역기반 검색
-export type RegionPayload = {
-  arrange?: string;
-  areaCode?: number;
-  contentTypeId?: number;
-  pageNo?: number;
-  numOfRows?: number;
-};
-export type RegionResult = {
-  loading: boolean;
-  error: Error | null;
-  data: RegionData;
-};
-export type RegionResponse = {
-  data: RegionData;
-};
-export type RegionData = {
-  items: RegionItem[] | string;
-  numOfRows: number;
-  pageNo: number;
-  totalCount: number;
-};
-
-export type RegionProps = {
-  list: RegionItem[];
-};
-export type RegionPropsItem = {
-  list: RegionItem;
-};
-
-export type RegionItem = {
-  contentid: number;
-  contenttypeid: number;
-  createdtime: number;
-  modifiedtime: number;
-  title: string;
-  addr1?: string;
-  addr2?: string;
-  areacode?: number;
-  booktour?: number;
-  cat1?: string;
-  cat2?: string;
-  cat3?: string;
-  firstimage?: string;
-  firstimage2?: string;
-  mapx?: number;
-  mapy?: number;
-  mlevel?: number;
-  readcount?: number;
-  sigungucode?: number;
-  zipcode?: number;
-  tel?: string;
-};
+}
 
 // 검색
-export type SearchPayload = {
+export interface SearchPayload {
   search: string;
   pageNo: number;
   arrange: string;
-};
-export type SearchResult = {
+}
+export interface SearchResult {
   loading: boolean;
   error: Error | null;
   data: SearchData;
-};
-export type SearchResponse = {
+}
+export interface SearchResponse {
   data: SearchData;
-};
-export type SearchData = {
-  items: SearchItem[] | string;
+}
+export interface SearchData {
+  items: { item: SearchItem[] };
   numOfRows: number;
   pageNo: number;
   totalCount: number;
   search: string;
-};
-export type SearchProps = {
-  list: SearchItem[];
-};
-export type SearchPropsItem = {
-  list: SearchItem;
-};
-
+}
 export interface SearchItem {
   addr1?: string;
   addr2?: string;
@@ -132,35 +81,78 @@ export interface SearchItem {
   title: string;
 }
 
-// 상세정보
-export type DetailPayload = {
-  contentId: number;
-  contentTypeId: number;
-};
-export type DetailResult = {
+// 지역기반 검색
+export interface RegionPayload {
+  arrange?: string;
+  areaCode?: number;
+  contentTypeId?: number;
+  pageNo?: number;
+  numOfRows?: number;
+}
+export interface RegionResult {
   loading: boolean;
   error: Error | null;
-  data: DetailData;
-};
-export type DetailResponse = {
-  data: DetailData;
-};
-export type DetailData = {
-  // items: DetailItem[] | DetailItem;
-  items: DetailPropsItem;
+  data: RegionData;
+}
+export interface RegionResponse {
+  data: RegionData;
+}
+export interface RegionData {
+  items: { item: RegionItem[] };
   numOfRows: number;
   pageNo: number;
   totalCount: number;
-};
-export type DetailPropsItem = {
-  item: DetailItem | null;
-};
+}
+export interface RegionItem {
+  contentid: number;
+  contenttypeid: number;
+  createdtime: number;
+  modifiedtime: number;
+  title: string;
+  addr1?: string;
+  addr2?: string;
+  areacode?: number;
+  booktour?: number;
+  cat1?: string;
+  cat2?: string;
+  cat3?: string;
+  firstimage?: string;
+  firstimage2?: string;
+  mapx?: number;
+  mapy?: number;
+  mlevel?: number;
+  readcount?: number;
+  sigungucode?: number;
+  zipcode?: number;
+  tel?: string;
+}
 
-export type DetailItemProps = {
-  item: DetailItem;
-};
-
-export type DetailItem = {
+// 상세정보
+export interface DetailPayload {
+  contentId: number;
+  contentTypeId: number;
+}
+export interface DetailResult {
+  loading: boolean;
+  error: Error | null;
+  data: DetailData;
+}
+export interface DetailResponse {
+  data: DetailData;
+}
+export interface DetailData {
+  items: { item: IDetailItem | null };
+  numOfRows: number;
+  pageNo: number;
+  totalCount: number;
+}
+// export interface DetailPropsItem {
+//   item: IDetailItem[];
+// }
+export interface DetailItemprops {
+  item: IDetailItem;
+}
+export interface IDetailItem {
   contentid: number;
   contenttypeid: number;
   homepage: string;
@@ -181,9 +173,9 @@ export type DetailItem = {
     TourSleep &
     TourMall;
   info: TourInfo[];
-};
+}
 
-export type TourInfo = {
+export interface TourInfo {
   contentid: number;
   contenttypeid: number;
   fldgubun?: number;
@@ -196,13 +188,13 @@ export type TourInfo = {
   subdetailoverview?: string;
   subname?: string;
   subnum?: number;
-};
+}
 
 // 상세정보 sub
-export type TourSpotProps = {
+export interface TourSpotProps {
   intro: TourSpot;
-};
-export type TourSpot = {
+}
+export interface TourSpot {
   contentId: number;
   contentTypeId: number;
   accomcount?: string;
@@ -220,12 +212,12 @@ export type TourSpot = {
   heritage1?: number;
   heritage2?: number;
   heritage3?: number;
-};
+}
 
-export type TourCultureProps = {
-  intro: TourCulture;
-};
-export type TourCulture = {
+// export interface TourCultureProps {
+//   intro: TourCulture;
+// }
+export interface TourCulture {
   contentId: number;
   contentTypeId: number;
   accomcountculture?: number;
@@ -241,12 +233,12 @@ export type TourCulture = {
   usetimeculture?: string;
   scale?: string;
   spendtime?: string;
-};
+}
 
-export type TourEventProps = {
+export interface TourEventProps {
   intro: TourEvent;
-};
-export type TourEvent = {
+}
+export interface TourEvent {
   contentId: number;
   contentTypeId: number;
   agelimit?: string;
@@ -267,12 +259,12 @@ export type TourEvent = {
   sponsor2tel?: string;
   subevent?: string;
   usetimefestival?: string;
-};
+}
 
-export type TourCourseProps = {
+export interface TourCourseProps {
   intro: TourCourse;
-};
-export type TourCourse = {
+}
+export interface TourCourse {
   contentId: number;
   contentTypeId: number;
   distance?: string;
@@ -280,12 +272,12 @@ export type TourCourse = {
   schedule?: string;
   taketime?: string;
   theme?: string;
-};
+}
 
-export type TourSportsProps = {
+export interface TourSportsProps {
   intro: TourSports;
-};
-export type TourSports = {
+}
+export interface TourSports {
   contentId: number;
   contentTypeId: number;
   accomcountleports?: string;
@@ -302,12 +294,12 @@ export type TourSports = {
   scaleleports?: string;
   usefeeleports?: string;
   usetimeleports?: string;
-};
+}
 
-export type TourSleepProps = {
+export interface TourSleepProps {
   intro: TourSleep;
-};
-export type TourSleep = {
+}
+export interface TourSleep {
   contentId: number;
   contentTypeId: number;
   accomcountlodging?: string;
@@ -340,12 +332,12 @@ export type TourSleep = {
   seminar?: number;
   sports?: number;
   refundregulation?: string;
-};
+}
 
-export type TourMallProps = {
+export interface TourMallProps {
   intro: TourMall;
-};
-export type TourMall = {
+}
+export interface TourMall {
   contentId: number;
   contentTypeId: number;
   chkbabycarriageshopping?: string;
@@ -363,12 +355,12 @@ export type TourMall = {
   saleitemcost?: string;
   scaleshopping?: string;
   shopguide?: string;
-};
+}
 
-export type TourFoodProps = {
+export interface TourFoodProps {
   intro: TourFood;
-};
-export type TourFood = {
+}
+export interface TourFood {
   contentId: number;
   contentTypeId: number;
   chkcreditcardfood?: string;
@@ -387,5 +379,5 @@ export type TourFood = {
   smoking?: string;
   treatmenu?: string;
   lcnsno?: string;
-};
+}
 export type DetailAction = ActionType<typeof action>;

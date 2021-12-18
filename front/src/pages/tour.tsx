@@ -113,7 +113,7 @@ const Region = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, query, ...ect }) => {
+    async ({ req, query }) => {
       const cookie = req ? req.headers.cookie : '';
       axios.defaults.headers!.Cookie = '';
       if (req && cookie) {
@@ -131,7 +131,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       );
       store.dispatch(END);
 
-      await (store as SagaStore).sagaTask!.toPromise();
+      return await (store as SagaStore).sagaTask!.toPromise();
     }
 );
 

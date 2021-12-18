@@ -1,7 +1,8 @@
 import React from 'react';
-import { DetailPropsItem, TourFoodProps } from '../../modules/detail';
+import { DetailItemprops } from '../../modules/detail';
+// import { DetailPropsItem, TourFoodProps } from '../../modules/detail';
 
-const TourFood = ({ item }: DetailPropsItem) => {
+const TourFood = ({ item }: DetailItemprops) => {
   return <div></div>;
 };
 

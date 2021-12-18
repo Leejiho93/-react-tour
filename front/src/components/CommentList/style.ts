@@ -15,6 +15,7 @@ export const CommentTitle = styled.div`
   padding: 10px 20px;
   font-family: BMeuljiro;
   font-size: 25px;
+  margin-top: 50px;
 
   & span {
     font-family: BMJUA;

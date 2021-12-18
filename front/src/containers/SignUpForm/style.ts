@@ -64,3 +64,9 @@ export const SignupButton = styled(Button)`
     color: #fff;
   }
 `;
+
+export const ValidationError = styled.div`
+  color: red;
+  margin-bottom: 10px;
+  margin-top: -5px;
+`;

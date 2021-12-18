@@ -36,9 +36,7 @@ const comment = createReducer(initialState, {
     produce(state, (draft) => {
       draft.isAddingComment = false;
       draft.commentInfo = action.payload;
-      Array.isArray(draft.commentList)
-        ? draft.commentList.push(action.payload)
-        : (draft.commentList = [action.payload]);
+      draft.commentList.push(action.payload);
     }),
   [ADD_COMMENT_FAILURE]: (state, action) =>
     produce(state, (draft) => {
@@ -51,10 +49,9 @@ const comment = createReducer(initialState, {
     }),
   [LOAD_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
-      draft.commentList = action.payload.data;
-      //
+      draft.commentList = action.payload;
     }),
-  [LOAD_COMMENT_FAILURE]: (state, action) =>
+  [LOAD_COMMENT_FAILURE]: (state) =>
     produce(state, (draft) => {
       draft.commentList = [];
     }),
@@ -64,35 +61,34 @@ const comment = createReducer(initialState, {
     }),
   [DELETE_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
-      const index =
-        Array.isArray(draft.commentList) &&
-        draft.commentList.findIndex((v) => v.id === action.payload.data);
+      const index = draft.commentList.findIndex(
+        (v) => v.id === action.payload.data
+      );
       if (index) {
-        Array.isArray(draft.commentList) && draft.commentList.splice(index, 1);
+        draft.commentList.splice(index, 1);
       }
     }),
   [DELETE_COMMENT_FAILURE]: (state, action) =>
     produce(state, (draft) => {
       draft.commentError = action.payload;
     }),
-  [MODIFY_COMMENT_REQUEST]: (state, action) =>
+  [MODIFY_COMMENT_REQUEST]: (state) =>
     produce(state, (draft) => {
       draft.commentEditedError = false;
     }),
   [MODIFY_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
-      const index =
-        Array.isArray(draft.commentList) &&
-        draft.commentList.findIndex((v) => v.id === Number(action.payload.id));
+      const index = draft.commentList.findIndex(
+        (v) => v.id === Number(action.payload.id)
+      );
       if (index) {
-        Array.isArray(draft.commentList) &&
-          draft.commentList.map((c, i) => {
-            i === index ? (c.content = action.payload.editComment) : c.content;
-          });
+        draft.commentList.map((c, i) => {
+          i === index ? (c.content = action.payload.editComment) : c.content;
+        });
       }
       draft.commentEditedError = false;
     }),
-  [MODIFY_COMMENT_FAILURE]: (state, action) =>
+  [MODIFY_COMMENT_FAILURE]: (state) =>
     produce(state, (draft) => {
       draft.commentEditedError = true;
     }),

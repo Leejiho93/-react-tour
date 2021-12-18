@@ -41,11 +41,11 @@ const Home = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, ...ect }) => {
+    async ({ req }) => {
       const cookie = req ? req.headers.cookie : '';
       const storeState = store.getState();
       axios.defaults.headers!.Cookie = '';
-      console.log(' ssr cookie;', cookie);
+      // console.log(' ssr cookie;', cookie);
       if (req && cookie) {
         axios.defaults.headers!.Cookie = cookie;
       }
@@ -56,7 +56,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       store.dispatch(allAsync.request());
 
       store.dispatch(END);
-      await (store as SagaStore).sagaTask!.toPromise();
+      return await (store as SagaStore).sagaTask!.toPromise();
     }
 );
 

@@ -20,7 +20,7 @@ const initialState: DetailState = {
   searchResult: {
     loading: false,
     data: {
-      items: '',
+      items: { item: [] },
       numOfRows: 10,
       pageNo: 1,
       totalCount: 0,
@@ -55,7 +55,7 @@ const initialState: DetailState = {
   regionResult: {
     loading: false,
     data: {
-      items: '',
+      items: { item: [] },
       numOfRows: 10,
       pageNo: 1,
       totalCount: 1,
@@ -71,7 +71,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.searchResult.loading = true;
       draft.searchResult.error = null;
-      draft.searchResult.data.items = '';
+      draft.searchResult.data.items.item = [];
     }),
   [SEARCH_TOUR_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
@@ -87,7 +87,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.searchResult.error = action.payload;
       draft.searchResult.loading = false;
-      draft.searchResult.data.items = '';
+      draft.searchResult.data.items.item = [];
     }),
   [DETAIL_TOUR_REQUEST]: (state) =>
     produce(state, (draft) => {
@@ -112,7 +112,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.regionResult.loading = true;
       draft.regionResult.error = null;
-      draft.regionResult.data.items = '';
+      draft.regionResult.data.items.item = [];
     }),
   [REGION_TOUR_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
@@ -125,7 +125,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.regionResult.error = action.payload;
       draft.regionResult.loading = false;
-      draft.regionResult.data.items = '';
+      draft.regionResult.data.items.item = [];
     }),
   [ALL_TOUR_REQUEST]: (state) =>
     produce(state, (draft) => {
@@ -137,7 +137,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     }),
   [ALL_TOUR_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
-      draft.allData.data.items = action.payload.items;
+      draft.allData.data = action.payload;
       draft.allData.error = null;
       draft.allData.loading = false;
     }),

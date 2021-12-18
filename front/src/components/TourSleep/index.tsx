@@ -1,7 +1,8 @@
 import React from 'react';
-import { DetailPropsItem, TourSleepProps } from '../../modules/detail';
+import { DetailItemprops } from '../../modules/detail';
+// import { DetailPropsItem, TourSleepProps } from '../../modules/detail';
 
-const TourSleep = ({ item }: DetailPropsItem) => {
+const TourSleep = ({ item }: DetailItemprops) => {
   return <div></div>;
 };
 

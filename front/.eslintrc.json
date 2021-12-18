@@ -1,26 +1,21 @@
 {
-  "plugins": ["@typescript-eslint"], // Add
-  "extends": [
-    "next",
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
-  "rules": {
-    "@typescript-eslint/ban-types": [
-      "error",
-      {
-        "extendDefaults": true,
-        "types": {
-          "{}": false
-        }
-      }
+    "plugins": ["@typescript-eslint"], // Add
+    "extends": [
+        "next",
+        "next/core-web-vitals",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
     ],
-    "@next/next/no-document-import-in-page": "off"
-    // You can remove the prefer-const rule, as it is already added by @typescript-eslint/recommended
-    // "no-unused-vars": "off",
-    // I suggest you add at least those two rules:
-    // "@typescript-eslint/no-unused-vars": "error",
-    // "@typescript-eslint/no-explicit-any": "error"
-  }
+    "rules": {
+        "@typescript-eslint/ban-types": [
+            "error",
+            {
+                "extendDefaults": true,
+                "types": {
+                    "{}": false
+                }
+            }
+        ],
+        "@next/next/no-document-import-in-page": "off"
+    }
 }

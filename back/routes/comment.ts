@@ -6,11 +6,6 @@ import User from "../models/user";
 const router = express.Router();
 
 router.post(`/:id`, isLoggedIn, async (req, res, next) => {
-  console.log("-------------- comment post-------------");
-  console.log("req.body", req.body);
-  console.log("req.query", req.query);
-  console.log("req.params", req.params);
-  console.log("req.user", req.user);
   try {
     const newComment = await Comment.create({
       contentId: req.params.id,
@@ -38,11 +33,6 @@ router.post(`/:id`, isLoggedIn, async (req, res, next) => {
 });
 
 router.get(`/:id`, async (req, res, next) => {
-  console.log("--------------get comments-------------");
-  console.log("req.body", req.body);
-  console.log("req.query", req.query);
-  console.log("req.params", req.params);
-  console.log("req.user", req.user);
   try {
     const comments = await Comment.findAll({
       where: {
@@ -64,11 +54,6 @@ router.get(`/:id`, async (req, res, next) => {
 });
 
 router.delete(`/:id`, isLoggedIn, async (req, res, next) => {
-  console.log("--------------delete comment-------------");
-  console.log("req.body", req.body);
-  console.log("req.query", req.query);
-  console.log("req.params", req.params);
-  console.log("req.user", req.user);
   try {
     await Comment.destroy({ where: { id: req.params.id } });
     return res.send(req.params.id);
@@ -79,10 +64,6 @@ router.delete(`/:id`, isLoggedIn, async (req, res, next) => {
 });
 
 router.put("/:id", isLoggedIn, async (req, res, next) => {
-  console.log("--------------update comment-------------");
-  console.log("req.body", req.body);
-  console.log("req.query", req.query);
-  console.log("req.params", req.params);
   try {
     await Comment.update(
       { content: req.body.content },

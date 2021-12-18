@@ -1,7 +1,8 @@
 import {
-  CommentPayload,
+  AddCommentPayload,
+  CommentData,
   LoadCommentPayload,
-  LoadComments,
+  LoadCommentResponse,
   ModifyCommentPayload,
   ModifyCommentResponse,
 } from './type';
@@ -28,13 +29,13 @@ export const addCommentAsync = createAsyncAction(
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAILURE
-)<CommentPayload, any, AxiosError>();
+)<AddCommentPayload, CommentData, AxiosError>();
 
 export const loadCommentAsync = createAsyncAction(
   LOAD_COMMENT_REQUEST,
   LOAD_COMMENT_SUCCESS,
   LOAD_COMMENT_FAILURE
-)<LoadCommentPayload, LoadComments, AxiosError>();
+)<LoadCommentPayload, CommentData[], AxiosError>();
 
 export const deleteCommentAsync = createAsyncAction(
   DELETE_COMMENT_REQUEST,

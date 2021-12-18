@@ -11,6 +11,7 @@ import {
   SignupLabel,
   SignupPassword,
   Title,
+  ValidationError,
   Wrapper,
 } from './style';
 import { SubWrapper, ButtonWrapper } from '../LoginForm/style';
@@ -23,6 +24,7 @@ const SignUpForm: React.FC = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
   const dispatch = useDispatch();
 
@@ -65,6 +67,16 @@ const SignUpForm: React.FC = () => {
     setNickname(e.target.value);
   };
   const onSubmit = () => {
+    const checkPassword = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
+    console.log('id, password, nickname', id, password, nickname);
+    if (!checkPassword.test(password)) {
+      return setPasswordErrorMessage(
+        '8~20자의 영문자, 숫자, 특수문자를 사용하세요.'
+      );
+    } else {
+      setPasswordErrorMessage('');
+    }
+
     dispatch(
       signupAsync.request({
         userId: id,
@@ -76,6 +88,7 @@ const SignUpForm: React.FC = () => {
   return (
     <Wrapper>
       <Title>회원가입</Title>
+
       <ErrorMessage>{signupError}</ErrorMessage>
       <Form onFinish={onSubmit}>
         <SignupLabel
@@ -90,6 +103,7 @@ const SignUpForm: React.FC = () => {
             placeholder="아이디"
           />
         </SignupLabel>
+
         <SignupLabel
           name="password"
           rules={[{ required: true, message: '비밀번호를 입력해주세요.' }]}
@@ -102,6 +116,8 @@ const SignUpForm: React.FC = () => {
             placeholder="비밀번호"
           />
         </SignupLabel>
+        <ValidationError>{passwordErrorMessage}</ValidationError>
+
         <SignupLabel
           name="nickname"
           rules={[{ required: true, message: '닉네임를 입력해주세요.' }]}

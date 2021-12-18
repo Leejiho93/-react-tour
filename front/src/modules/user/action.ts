@@ -1,13 +1,13 @@
 import {
   SignupPayload,
+  SignupResponse,
   LoginResponse,
   LoginPayload,
-  LoadUserPayload,
 } from './type';
 import { AxiosError } from 'axios';
 import { createAsyncAction } from 'typesafe-actions';
 import { deprecated } from 'typesafe-actions';
-const { createAction, createStandardAction, createCustomAction } = deprecated;
+const { createStandardAction } = deprecated;
 
 export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
@@ -31,7 +31,7 @@ export const signupAsync = createAsyncAction(
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE
-)<SignupPayload, SignupPayload, AxiosError>();
+)<SignupPayload, SignupResponse, AxiosError>();
 
 export const loginAsync = createAsyncAction(
   LOG_IN_REQUEST,
@@ -49,6 +49,6 @@ export const loadUserAsync = createAsyncAction(
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAILURE
-)<undefined, any, AxiosError>();
+)<undefined, LoginResponse, AxiosError>();
 
 export const signupReset = createStandardAction(SIGN_UP_RESET)();
