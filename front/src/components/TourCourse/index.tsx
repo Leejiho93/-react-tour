@@ -1,6 +1,4 @@
-// import { Image, Timeline } from 'antd';
-import React, { useEffect, useState } from 'react';
-// import { DetailItemProps, DetailPropsItem } from '../../modules/detail';
+import React, { useState } from 'react';
 import {
   CardImage,
   CardWrapper,
@@ -15,18 +13,33 @@ import { DetailItemInfo } from '../DetailItem/style';
 import { DetailItemprops } from '../../modules/detail';
 
 const TourCourse = ({ item }: DetailItemprops) => {
-  const [imageSrc, setImageSrc] = useState(item.info[0].subdetailimg);
-  const [imageTitle, setImageTitle] = useState(item.info[0].subname);
-  const [subId, setSubId] = useState(item.info[0].subcontentid);
-  const [subOverview, setSubOverview] = useState(
-    item.info[0].subdetailoverview
+  const [imageSrc, setImageSrc] = useState(
+    Array.isArray(item.info)
+      ? item.info[0].subdetailimg
+      : item.info.subdetailimg
   );
-  const changeImageSrc = (src: any) => () => {
-    setImageSrc(src.subdetailimg);
-    setImageTitle(src.subname);
-    setSubId(src.subcontentid);
-    setSubOverview(src.subdetailoverview);
-  };
+  const [imageTitle, setImageTitle] = useState(
+    Array.isArray(item.info) ? item.info[0].subname : item.info.subname
+  );
+  const [subId, setSubId] = useState(
+    Array.isArray(item.info)
+      ? item.info[0].subcontentid
+      : item.info.subcontentid
+  );
+  const [subOverview, setSubOverview] = useState(
+    Array.isArray(item.info)
+      ? item.info[0].subdetailoverview
+      : item.info.subdetailoverview
+  );
+  const changeImageSrc = React.useCallback(
+    (src: any) => () => {
+      setImageSrc(src.subdetailimg);
+      setImageTitle(src.subname);
+      setSubId(src.subcontentid);
+      setSubOverview(src.subdetailoverview);
+    },
+    []
+  );
   return (
     <>
       <DetailItemInfo>
@@ -34,7 +47,7 @@ const TourCourse = ({ item }: DetailItemprops) => {
       </DetailItemInfo>
       <Wrapper>
         <CourseList>
-          {item &&
+          {item.info && Array.isArray(item.info) ? (
             item.info.map((course) => (
               <Item key={course.subcontentid}>
                 <div
@@ -44,7 +57,17 @@ const TourCourse = ({ item }: DetailItemprops) => {
                   {course.subname}
                 </div>
               </Item>
-            ))}
+            ))
+          ) : (
+            <Item>
+              <div
+                className={imageTitle == item.info.subname ? 'active' : ''}
+                onClick={changeImageSrc(item.info)}
+              >
+                {item.info.subname}
+              </div>
+            </Item>
+          )}
         </CourseList>
         <CourseImage>
           <CardWrapper

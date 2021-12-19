@@ -1,10 +1,9 @@
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import DetailItem from '../../components/DetailItem';
 import { IReducerState, RootState } from '../../modules';
 import { detailAsync } from '../../modules/detail';
-import Kakaomap from '../../components/Kakaomap';
 import { DtailWrapper } from './style';
 import CommentForm from '../../containers/CommentForm';
 import { loadCommentAsync } from '../../modules/comment';
@@ -14,7 +13,7 @@ import axios from 'axios';
 import { loadUserAsync } from '../../modules/user';
 import { END } from 'redux-saga';
 import { NextPage } from 'next';
-import MainSkelton from '../../components/MainSkeleton';
+import DetailSkeleton from '../../components/DetailSkeleton';
 
 const Detail: NextPage<IReducerState> = ({ detail }) => {
   const router = useRouter();
@@ -40,7 +39,7 @@ const Detail: NextPage<IReducerState> = ({ detail }) => {
   }, [contentId, dispatch]);
   return (
     <DtailWrapper>
-      {item && <DetailItem item={item} />}
+      {!loading && item ? <DetailItem item={item} /> : <DetailSkeleton />}
       {<CommentList data={commentList} />}
       {item && <CommentForm item={item} />}
     </DtailWrapper>

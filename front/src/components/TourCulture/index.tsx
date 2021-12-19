@@ -1,40 +1,89 @@
 import React from 'react';
 import { DetailItemprops } from '../../modules/detail';
+import { IntroWrapper, Li } from '../TourSpot/style';
 
 const TourCulture = ({ item }: DetailItemprops) => {
-  const {
-    accomcountculture,
-    chkbabycarriageculture,
-    chkcreditcardculture,
-    chkpetculture,
-    discountinfo,
-    infocenterculture,
-    parkingculture,
-    parkingfee,
-    restdateculture,
-    usefee,
-    usetimeculture,
-    scale,
-    spendtime,
-  } = item.intro;
+  const { addr1, homepage } = item;
+  const { infocenterculture, parkingculture, parkingfee, usetimeculture } =
+    item.intro;
   return (
-    <>
+    <IntroWrapper>
       <ul>
-        {!accomcountculture ? null : <li>{accomcountculture}</li>}
-        {!chkbabycarriageculture ? null : <li>{chkbabycarriageculture}</li>}
-        {!chkcreditcardculture ? null : <li>{chkcreditcardculture}</li>}
-        {!chkpetculture ? null : <li>{chkpetculture}</li>}
-        {!discountinfo ? null : <li>{discountinfo}</li>}
-        {!infocenterculture ? null : <li>{infocenterculture}</li>}
-        {!parkingculture ? null : <li>{parkingculture}</li>}
-        {!parkingfee ? null : <li>{parkingfee}</li>}
-        {!restdateculture ? null : <li>{restdateculture}</li>}
-        {!usefee ? null : <li>{usefee}</li>}
-        {!usetimeculture ? null : <li>{usetimeculture}</li>}
-        {!scale ? null : <li>{scale}</li>}
-        {!spendtime ? null : <li>{spendtime}</li>}
+        {addr1 ? (
+          <Li>
+            <b>주소</b> <p>{addr1}</p>
+          </Li>
+        ) : null}
+        {homepage ? (
+          <Li>
+            <b>홈페이지</b>{' '}
+            <p
+              dangerouslySetInnerHTML={{
+                __html: homepage,
+              }}
+            />
+          </Li>
+        ) : null}
+        {infocenterculture ? (
+          <Li>
+            <b>문의</b> <p>{infocenterculture}</p>
+          </Li>
+        ) : null}
+        {parkingculture ? (
+          <Li>
+            <b>주차</b>{' '}
+            <p
+              dangerouslySetInnerHTML={{
+                __html: parkingculture,
+              }}
+            />
+          </Li>
+        ) : null}
+        {parkingfee ? (
+          <Li>
+            <b>요금</b>{' '}
+            <p
+              dangerouslySetInnerHTML={{
+                __html: parkingfee,
+              }}
+            />
+          </Li>
+        ) : null}
+        {usetimeculture ? (
+          <Li>
+            <b>이용시간</b>{' '}
+            <p
+              dangerouslySetInnerHTML={{
+                __html: usetimeculture,
+              }}
+            />
+          </Li>
+        ) : null}
+        {item.info ? (
+          Array.isArray(item.info) ? (
+            item.info.map((v) => (
+              <Li key={v.infoname}>
+                <b>{v.infoname}</b>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: v.infotext,
+                  }}
+                />
+              </Li>
+            ))
+          ) : (
+            <Li>
+              <b>{item.info.infoname}</b>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: item.info.infotext,
+                }}
+              />
+            </Li>
+          )
+        ) : null}
       </ul>
-    </>
+    </IntroWrapper>
   );
 };
 

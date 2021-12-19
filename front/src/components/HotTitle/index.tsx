@@ -2,7 +2,12 @@ import { HotMenu } from '../../../styles/common';
 import Link from 'next/link';
 import { ArrowRightOutlined } from '@ant-design/icons';
 
-const HotTitle = ({ title, contentTypeId }: any) => {
+interface IHotTitle {
+  title: string;
+  contentTypeId: number;
+}
+
+const HotTitle = ({ title, contentTypeId }: IHotTitle) => {
   return (
     <>
       <HotMenu>

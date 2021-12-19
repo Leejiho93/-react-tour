@@ -25,15 +25,21 @@ const LoginForm = () => {
 
   const { loginError } = useSelector((state: RootState) => state.user);
 
-  const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setId(e.target.value);
-  };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-  const onSubmit = () => {
+  const onChangeId = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setId(e.target.value);
+    },
+    []
+  );
+  const onChangePassword = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setPassword(e.target.value);
+    },
+    []
+  );
+  const onSubmit = React.useCallback(() => {
     dispatch(loginAsync.request({ userId: id, password }));
-  };
+  }, [id, password, dispatch]);
 
   return (
     <Wrapper>

@@ -1,12 +1,10 @@
 import { Form } from 'antd';
 import router from 'next/router';
-import Router from 'next/router';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-
 import { RootState } from '../../modules';
-import { addCommentAsync, loadCommentAsync } from '../../modules/comment';
+import { addCommentAsync } from '../../modules/comment';
 import { DetailItemprops } from '../../modules/detail';
 import {
   ButtonWrapper,
@@ -23,11 +21,14 @@ const CommentForm = ({ item }: DetailItemprops) => {
 
   const dispatch = useDispatch();
 
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentText(e.target.value);
-  };
+  const onChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setCommentText(e.target.value);
+    },
+    []
+  );
 
-  const showModal = () => {
+  const showModal = React.useCallback(() => {
     return Swal.fire({
       title: '로그인 화면 이동',
       text: '댓글을 작성하려면 로그인 하세요.',
@@ -40,9 +41,9 @@ const CommentForm = ({ item }: DetailItemprops) => {
         router.push('/login');
       }
     });
-  };
+  }, []);
 
-  const onSubmit = () => {
+  const onSubmit = React.useCallback(() => {
     if (!commentText.trim()) {
       return Swal.fire({
         title: '댓글을 입력하세요',
@@ -53,7 +54,7 @@ const CommentForm = ({ item }: DetailItemprops) => {
       addCommentAsync.request({ contentid: item.contentid, commentText })
     );
     setCommentText('');
-  };
+  }, [commentText, dispatch, item.contentid]);
 
   return (
     <FormWrapper>

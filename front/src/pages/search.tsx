@@ -1,7 +1,7 @@
 import { Spin } from 'antd';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 import {
@@ -27,19 +27,18 @@ const Search = () => {
   const [arrange, setArrange] = useState('Q');
   const search = String(router.query.search);
   const { items, totalCount } = data;
-  const item = items.item;
+  const item = items && items.item;
 
-  const onChange = (page: number) => {
-    console.log('onchange searchasync', page);
+  const onChange = useCallback((page: number) => {
     setPageNo(page);
-  };
+  }, []);
 
-  const sortHot = () => {
+  const sortHot = useCallback(() => {
     setArrange('P');
-  };
-  const sortRecent = () => {
+  }, []);
+  const sortRecent = useCallback(() => {
     setArrange('Q');
-  };
+  }, []);
 
   useEffect(() => {
     dispatch(
@@ -77,11 +76,10 @@ const Search = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, query, ...ect }) => {
+    async ({ req, query }) => {
       const cookie = req ? req.headers.cookie : '';
       axios.defaults.headers!.Cookie = '';
 
-      console.log('ect', ect);
       if (req && cookie) {
         axios.defaults.headers!.Cookie = cookie;
       }

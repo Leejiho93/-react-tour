@@ -1,4 +1,4 @@
-import { Form, Input, Button } from 'antd';
+import { Form, Button } from 'antd';
 import styled from 'styled-components';
 
 export const FormWrapper = styled.div`
@@ -23,12 +23,10 @@ export const TextArea = styled.textarea`
 `;
 
 export const SubmitButton = styled(Button)`
-  //   background-color: #1a73e8;
   background-color: #ffae59;
   border: #1a73e8;
   border-radius: 5px;
   &:hover {
-    // background-color: #2b7de9;
     background-color: #ffb86e;
   }
 `;

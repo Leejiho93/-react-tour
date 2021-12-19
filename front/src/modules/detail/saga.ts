@@ -9,7 +9,7 @@ import {
 } from './type';
 import { searchAsync, detailAsync, regionAsync, allAsync } from './action';
 import { takeLatest, put, call, all, fork } from 'redux-saga/effects';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 // 메인 화면
 function allAPI() {
@@ -41,6 +41,7 @@ function searchAPI({ search, pageNo, arrange }: SearchPayload) {
 function* searchDetailSaga(action: ReturnType<typeof searchAsync.request>) {
   try {
     const result: SearchResponse = yield call(searchAPI, action.payload);
+    console.log('search result', result.data);
     yield put(searchAsync.success(result.data));
   } catch (e: any) {
     console.error(e);

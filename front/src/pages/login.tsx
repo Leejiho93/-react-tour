@@ -5,7 +5,7 @@ import Router from 'next/router';
 import LoginForm from '../containers/LoginForm';
 
 const Login: React.FC = () => {
-  const { me, loginError } = useSelector((state: RootState) => state.user);
+  const { me } = useSelector((state: RootState) => state.user);
 
   React.useEffect(() => {
     if (me) {
@@ -13,12 +13,6 @@ const Login: React.FC = () => {
       Router.push('/');
     }
   }, [me]);
-
-  React.useEffect(() => {
-    if (loginError) {
-      console.log('loginError: ', loginError);
-    }
-  }, [loginError]);
 
   return (
     <>

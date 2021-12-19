@@ -52,7 +52,7 @@ export interface SearchResponse {
   data: SearchData;
 }
 export interface SearchData {
-  items: { item: SearchItem[] };
+  items: { item: SearchItem[] } | '';
   numOfRows: number;
   pageNo: number;
   totalCount: number;
@@ -172,15 +172,16 @@ export interface IDetailItem {
     TourSports &
     TourSleep &
     TourMall;
-  info: TourInfo[];
+  tel: string;
+  info: TourInfo[] | TourInfo;
 }
 
 export interface TourInfo {
   contentid: number;
   contenttypeid: number;
   fldgubun?: number;
-  infoname?: string;
-  infotext?: string;
+  infoname: string;
+  infotext: string;
   serialnum?: number;
   subcontentid?: number;
   subdetailalt?: string;

@@ -34,9 +34,9 @@ const DetailItem = ({ item }: DetailItemprops) => {
     }
   }, []);
 
-  const onToggle = () => {
+  const onToggle = React.useCallback(() => {
     setMore(!more);
-  };
+  }, [more]);
 
   return (
     <>

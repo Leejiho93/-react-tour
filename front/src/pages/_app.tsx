@@ -1,9 +1,9 @@
-import App, { AppProps } from 'next/app';
-import reducer, { IReducerState, rootSaga, RootState } from '../modules';
-import { Context, createWrapper } from 'next-redux-wrapper';
+import { AppProps } from 'next/app';
+import reducer, { IReducerState, rootSaga } from '../modules';
+import { createWrapper } from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import createSagaMiddleware, { Task } from 'redux-saga';
-import { AnyAction, applyMiddleware, compose, createStore, Store } from 'redux';
+import { applyMiddleware, compose, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../styles/theme';

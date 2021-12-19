@@ -33,11 +33,14 @@ const EditForm = ({ text, id, onCancel, onModify }: EditFormProps) => {
       onModify();
     }
   }, [commentEditedError, onModify]);
-  const onChangeInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInput(e.target.value);
-  };
+  const onChangeInput = React.useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setInput(e.target.value);
+    },
+    []
+  );
 
-  const onSubmit = () => {
+  const onSubmit = React.useCallback(() => {
     if (!input.trim()) {
       return Swal.fire({
         title: '댓글을 입력하세요',
@@ -46,7 +49,7 @@ const EditForm = ({ text, id, onCancel, onModify }: EditFormProps) => {
     }
     dispatch(modifyCommentAsync.request({ id: id, editComment: input }));
     onCancel();
-  };
+  }, [input, id, dispatch, onCancel]);
   return (
     <FormWrapper>
       <Form onFinish={onSubmit}>

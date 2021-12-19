@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import Router from 'next/router';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,16 +58,22 @@ const SignUpForm: React.FC = () => {
     }
   }, [isSignedup, dispatch]);
 
-  const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setId(e.target.value);
-  };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-  const onChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
-  };
-  const onSubmit = () => {
+  }, []);
+  const onChangePassword = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setPassword(e.target.value);
+    },
+    []
+  );
+  const onChangeNickname = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setNickname(e.target.value);
+    },
+    []
+  );
+  const onSubmit = useCallback(() => {
     const checkPassword = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
     console.log('id, password, nickname', id, password, nickname);
     if (!checkPassword.test(password)) {
@@ -84,7 +91,7 @@ const SignUpForm: React.FC = () => {
         nickname,
       })
     );
-  };
+  }, [id, password, nickname, dispatch]);
   return (
     <Wrapper>
       <Title>회원가입</Title>

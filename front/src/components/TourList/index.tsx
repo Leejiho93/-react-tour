@@ -4,7 +4,7 @@ import TourItem from '../TourItem';
 import { EmptyResult, ListWrapper } from './style';
 
 interface ITourList {
-  list: SearchItem[] | RegionItem[];
+  list: SearchItem[] | RegionItem[] | '';
 }
 
 const TourList: React.FC<ITourList> = ({ list }) => {

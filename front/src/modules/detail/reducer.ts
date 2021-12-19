@@ -20,7 +20,7 @@ const initialState: DetailState = {
   searchResult: {
     loading: false,
     data: {
-      items: { item: [] },
+      items: '',
       numOfRows: 10,
       pageNo: 1,
       totalCount: 0,
@@ -71,7 +71,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.searchResult.loading = true;
       draft.searchResult.error = null;
-      draft.searchResult.data.items.item = [];
+      draft.searchResult.data.items = '';
     }),
   [SEARCH_TOUR_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
@@ -87,7 +87,7 @@ const detail = createReducer<DetailState, DetailAction>(initialState, {
     produce(state, (draft) => {
       draft.searchResult.error = action.payload;
       draft.searchResult.loading = false;
-      draft.searchResult.data.items.item = [];
+      draft.searchResult.data.items = '';
     }),
   [DETAIL_TOUR_REQUEST]: (state) =>
     produce(state, (draft) => {

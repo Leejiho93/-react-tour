@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { CommentStyle } from './style';
 import Swal from 'sweetalert2';
-import EditForm from '../../containers/EditForm';
+import EditForm from '../EditForm';
 
 interface CommentItemProps {
   data: CommentData;
@@ -19,11 +19,7 @@ const CommentItem = ({ data }: CommentItemProps) => {
     (state: RootState) => state.user.me && state.user.me.id
   );
 
-  React.useEffect(() => {
-    console.log('data', data.User);
-  }, []);
-
-  const removeComment = () => {
+  const removeComment = React.useCallback(() => {
     Swal.fire({
       title: '댓글을 정말 삭제하시겠습니까?',
       showCancelButton: true,
@@ -34,13 +30,13 @@ const CommentItem = ({ data }: CommentItemProps) => {
         dispatch(deleteCommentAsync.request({ id: data.id }));
       }
     });
-  };
-  const modifyComment = () => {
+  }, [dispatch, data.id]);
+  const modifyComment = React.useCallback(() => {
     setEditable(true);
-  };
-  const cancelComment = () => {
+  }, []);
+  const cancelComment = React.useCallback(() => {
     setEditable(!editable);
-  };
+  }, [editable]);
 
   return (
     <>

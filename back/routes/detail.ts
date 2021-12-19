@@ -51,7 +51,6 @@ router.get("/region", async (req, res, next) => {
     ? `&arrange=${encodeURIComponent(req.query.arrange as string)}`
     : "&arrange=P";
   const areaCode = req.query.areaCode ? `&areaCode=${req.query.areaCode}` : "";
-  console.log("areaCode: ", areaCode);
   const contentTypeId = req.query.contentTypeId
     ? `&contentTypeId=${req.query.contentTypeId}`
     : "";

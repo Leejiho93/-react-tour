@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const HotImage = styled.img`
-  ${({ theme }) => theme.window.pc} {
-    // width: 320px;
-    // height: 230px;
-    width: 100%;
-  }
   width: 400px;
   height: 250px;
   transition: transform 1s ease;
   transform: scale(1.5);
+  ${({ theme }) => theme.window.pc} {
+    width: 100%;
+  }
 `;
 
 export const HotTitle = styled.div`

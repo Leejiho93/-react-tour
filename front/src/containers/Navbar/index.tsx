@@ -14,25 +14,24 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { logoutAsync } from '../../modules/user';
-import SearchForm from '../../containers/SearchForm';
-import { Avatar } from 'antd';
+import SearchForm from '../SearchForm';
 import { MenuOutlined } from '@ant-design/icons';
-import HeadItem from '../HeaderItem';
+import HeadItem from '../../components/HeaderItem';
 
 const Navbar: React.FC = () => {
   const [toggle, setToggle] = React.useState(false);
   const { me } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
-  const onClickLogout = () => {
+  const onClickLogout = React.useCallback(() => {
     dispatch(logoutAsync.request());
     setToggle(false);
-  };
-  const toggleHanburger = () => {
+  }, [dispatch]);
+  const toggleHanburger = React.useCallback(() => {
     setToggle(!toggle);
-  };
-  const falseHamburger = () => {
+  }, [toggle]);
+  const falseHamburger = React.useCallback(() => {
     setToggle(false);
-  };
+  }, []);
   return (
     <Wrapper>
       <NavbarWrapper>
@@ -46,14 +45,14 @@ const Navbar: React.FC = () => {
 
         <Category toggle={toggle} onClick={falseHamburger}>
           <ul>
-            <HeadItem title="관광지" contentTypeId={12} area={undefined} />
-            <HeadItem title="문화시설" contentTypeId={14} area={undefined} />
-            <HeadItem title="축제" contentTypeId={15} area={undefined} />
-            <HeadItem title="코스" contentTypeId={25} area={undefined} />
-            <HeadItem title="레포츠" contentTypeId={28} area={undefined} />
-            <HeadItem title="숙박" contentTypeId={32} area={undefined} />
-            <HeadItem title="쇼핑" contentTypeId={38} area={undefined} />
-            <HeadItem title="식당" contentTypeId={39} area={undefined} />
+            <HeadItem title="관광지" contentTypeId={12} />
+            <HeadItem title="문화시설" contentTypeId={14} />
+            <HeadItem title="축제" contentTypeId={15} />
+            <HeadItem title="코스" contentTypeId={25} />
+            <HeadItem title="레포츠" contentTypeId={28} />
+            <HeadItem title="숙박" contentTypeId={32} />
+            <HeadItem title="쇼핑" contentTypeId={38} />
+            <HeadItem title="식당" contentTypeId={39} />
           </ul>
         </Category>
 
@@ -64,7 +63,6 @@ const Navbar: React.FC = () => {
         <Account toggle={toggle}>
           {me ? (
             <>
-              {/* <Avatar>{me.nickname}</Avatar> */}
               <LogoutButton onClick={onClickLogout}>로그아웃 </LogoutButton>
             </>
           ) : (
@@ -77,7 +75,6 @@ const Navbar: React.FC = () => {
             </>
           )}
         </Account>
-
         <HamburgerMenu>
           <MenuOutlined onClick={toggleHanburger} />
         </HamburgerMenu>

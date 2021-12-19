@@ -45,7 +45,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       const cookie = req ? req.headers.cookie : '';
       const storeState = store.getState();
       axios.defaults.headers!.Cookie = '';
-      // console.log(' ssr cookie;', cookie);
       if (req && cookie) {
         axios.defaults.headers!.Cookie = cookie;
       }

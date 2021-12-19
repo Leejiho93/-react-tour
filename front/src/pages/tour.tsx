@@ -1,7 +1,7 @@
 import { Spin } from 'antd';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 import {
@@ -25,7 +25,7 @@ const Region = () => {
   const [areaCode, setAreaCode] = useState(undefined);
   const [pageNo, setPageNo] = useState(1);
   const [arrange, setArrange] = useState('P');
-  const { title, contentTypeId, area } = router.query;
+  const { title, contentTypeId } = router.query;
   const [areaName, setAreaName] = useState([
     ['전체', undefined],
     ['서울', 1],
@@ -63,19 +63,22 @@ const Region = () => {
     );
   }, [areaCode, pageNo, arrange, contentTypeId, dispatch]);
 
-  const onChange = (page: number) => {
+  const onChange = useCallback((page: number) => {
     setPageNo(page);
-  };
-  const changeAreaCode = (code: any) => () => {
-    setAreaCode(code);
-  };
+  }, []);
+  const changeAreaCode = useCallback(
+    (code: any) => () => {
+      setAreaCode(code);
+    },
+    []
+  );
 
-  const sortHot = () => {
+  const sortHot = useCallback(() => {
     setArrange('P');
-  };
-  const sortRecent = () => {
+  }, []);
+  const sortRecent = useCallback(() => {
     setArrange('Q');
-  };
+  }, []);
   return (
     <Wrapper>
       <TitleWrapper>

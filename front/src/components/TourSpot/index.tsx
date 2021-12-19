@@ -1,24 +1,10 @@
 import React from 'react';
 import { DetailItemprops } from '../../modules/detail';
-
 import { IntroWrapper, Li } from './style';
 
 const TourSpot = ({ item }: DetailItemprops) => {
   const { addr1, homepage } = item;
-  const {
-    accomcount,
-    chkbabycarriage,
-    chkcreditcard,
-    chkpet,
-    expagerange,
-    expguide,
-    infocenter,
-    opendate,
-    parking,
-    restdate,
-    useseason,
-    usetime,
-  } = item.intro;
+  const { infocenter, usetime } = item.intro;
   return (
     <IntroWrapper>
       <ul>
@@ -37,22 +23,45 @@ const TourSpot = ({ item }: DetailItemprops) => {
             />
           </Li>
         ) : null}
-        {/* {!accomcount ? null : (
+        {infocenter ? (
           <Li>
-            <strong>수용인원</strong>: {accomcount}
+            <b>문의</b> <p>{infocenter}</p>
           </Li>
-        )} */}
-        {/* {!chkbabycarriage ? null : <Li>유모차대여 {chkbabycarriage}</Li>}
-        {!chkcreditcard ? null : <Li>신용카드가능여부 {chkcreditcard}</Li>}
-        {!chkpet ? null : <Li>애완동물 동반 {chkpet}</Li>}
-        {!expagerange ? null : <Li>체험가능 연령{expagerange}</Li>}
-        {!expguide ? null : <Li>체험안내 {expguide}</Li>}
-        {!infocenter ? null : <Li>문의 {infocenter}</Li>}
-        {!opendate ? null : <Li>개장일 {opendate}</Li>}
-        {!parking ? null : <Li>주차시설 {parking}</Li>}
-        {!restdate ? null : <Li>휴무일 {restdate}</Li>}
-        {!useseason ? null : <Li>이용시기 {useseason}</Li>}
-        {!usetime ? null : <Li>이용시간 {usetime}</Li>} */}
+        ) : null}
+        {usetime ? (
+          <Li>
+            <b>이용시간 </b>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: usetime,
+              }}
+            />
+          </Li>
+        ) : null}
+
+        {item.info ? (
+          Array.isArray(item.info) ? (
+            item.info.map((v) => (
+              <Li key={v.infoname}>
+                <b>{v.infoname}</b>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: v.infotext,
+                  }}
+                />
+              </Li>
+            ))
+          ) : (
+            <Li>
+              <b>{item.info.infoname}</b>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: item.info.infotext,
+                }}
+              />
+            </Li>
+          )
+        ) : null}
       </ul>
     </IntroWrapper>
   );
