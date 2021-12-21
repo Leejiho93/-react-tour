@@ -1,8 +1,9 @@
 import React from 'react';
 import { DetailItemprops } from '../../modules/detail';
-import { IntroWrapper, Li } from '../TourSpot/style';
+import SubItem from '../SubItem';
+import { IntroWrapper } from '../SubItem/style';
 
-const TourSleep = ({ item }: DetailItemprops) => {
+const TourSleep: React.FC<DetailItemprops> = ({ item }) => {
   const { addr1, homepage } = item;
   const {
     reservationlodging,
@@ -15,98 +16,28 @@ const TourSleep = ({ item }: DetailItemprops) => {
   return (
     <IntroWrapper>
       <ul>
-        {addr1 ? (
-          <Li>
-            <b>주소</b> <p>{addr1}</p>
-          </Li>
-        ) : null}
-        {homepage ? (
-          <Li>
-            <b>홈페이지</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: homepage,
-              }}
-            />
-          </Li>
-        ) : null}
+        {addr1 ? <SubItem name="주소" html={addr1} /> : null}
+        {homepage ? <SubItem name="홈페이지" html={homepage} /> : null}
         {reservationlodging ? (
-          <Li>
-            <b>문의</b> <p>{reservationlodging}</p>
-          </Li>
+          <SubItem name="문의" html={reservationlodging} />
         ) : null}
-        {reservationurl ? (
-          <Li>
-            <b>예약</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: reservationurl,
-              }}
-            />
-          </Li>
-        ) : null}
-
-        {checkintime ? (
-          <Li>
-            <b>체크인</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: checkintime,
-              }}
-            />
-          </Li>
-        ) : null}
-        {checkouttime ? (
-          <Li>
-            <b>체크아웃</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: checkouttime,
-              }}
-            />
-          </Li>
-        ) : null}
+        {reservationurl ? <SubItem name="예약" html={reservationurl} /> : null}
+        {checkintime ? <SubItem name="체크인" html={checkintime} /> : null}
+        {checkouttime ? <SubItem name="체크아웃" html={checkouttime} /> : null}
         {refundregulation ? (
-          <Li>
-            <b>환불</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: refundregulation,
-              }}
-            />
-          </Li>
+          <SubItem name="환불" html={refundregulation} />
         ) : null}
-        {scalelodging ? (
-          <Li>
-            <b>규모</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: scalelodging,
-              }}
-            />
-          </Li>
-        ) : null}
+        {scalelodging ? <SubItem name="규모" html={scalelodging} /> : null}
+
         {item.info ? (
           Array.isArray(item.info) ? (
-            item.info.map((v) => (
-              <Li key={v.infoname}>
-                <b>{v.infoname}</b>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: v.infotext,
-                  }}
-                />
-              </Li>
-            ))
+            item.info
+              .filter((v) => v.infoname)
+              .map((v) => (
+                <SubItem key={v.infoname} name={v.infoname} html={v.infotext} />
+              ))
           ) : (
-            <Li>
-              <b>{item.info.infoname}</b>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: item.info.infotext,
-                }}
-              />
-            </Li>
+            <SubItem name={item.info.infoname} html={item.info.infotext} />
           )
         ) : null}
       </ul>

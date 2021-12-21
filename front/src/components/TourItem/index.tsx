@@ -7,7 +7,7 @@ interface ITourItem {
   list: SearchItem | RegionItem;
 }
 
-const TourItem = ({ list }: ITourItem) => {
+const TourItem: React.FC<ITourItem> = ({ list }) => {
   const { title, addr1, firstimage, contentid, contenttypeid } = list;
 
   return (

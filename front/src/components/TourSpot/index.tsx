@@ -1,65 +1,26 @@
 import React from 'react';
 import { DetailItemprops } from '../../modules/detail';
-import { IntroWrapper, Li } from './style';
+import SubItem from '../SubItem';
+import { IntroWrapper } from '../SubItem/style';
 
-const TourSpot = ({ item }: DetailItemprops) => {
+const TourSpot: React.FC<DetailItemprops> = ({ item }) => {
   const { addr1, homepage } = item;
   const { infocenter, usetime } = item.intro;
   return (
     <IntroWrapper>
       <ul>
-        {addr1 ? (
-          <Li>
-            <b>주소</b> <p>{addr1}</p>
-          </Li>
-        ) : null}
-        {homepage ? (
-          <Li>
-            <b>홈페이지</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: homepage,
-              }}
-            />
-          </Li>
-        ) : null}
-        {infocenter ? (
-          <Li>
-            <b>문의</b> <p>{infocenter}</p>
-          </Li>
-        ) : null}
-        {usetime ? (
-          <Li>
-            <b>이용시간 </b>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: usetime,
-              }}
-            />
-          </Li>
-        ) : null}
+        {addr1 ? <SubItem name="주소" html={addr1} /> : null}
+        {homepage ? <SubItem name="홈페이지" html={homepage} /> : null}
+        {infocenter ? <SubItem name="문의" html={infocenter} /> : null}
+        {usetime ? <SubItem name="이용시간" html={usetime} /> : null}
 
         {item.info ? (
           Array.isArray(item.info) ? (
             item.info.map((v) => (
-              <Li key={v.infoname}>
-                <b>{v.infoname}</b>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: v.infotext,
-                  }}
-                />
-              </Li>
+              <SubItem key={v.infoname} name={v.infoname} html={v.infotext} />
             ))
           ) : (
-            <Li>
-              <b>{item.info.infoname}</b>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: item.info.infotext,
-                }}
-              />
-            </Li>
+            <SubItem name={item.info.infoname} html={item.info.infotext} />
           )
         ) : null}
       </ul>

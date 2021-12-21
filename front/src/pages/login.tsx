@@ -9,7 +9,6 @@ const Login: React.FC = () => {
 
   React.useEffect(() => {
     if (me) {
-      console.log(me);
       Router.push('/');
     }
   }, [me]);

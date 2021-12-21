@@ -1,9 +1,9 @@
 import React from 'react';
 import { DetailItemprops } from '../../modules/detail';
-import { IntroWrapper, Li } from '../TourSpot/style';
-// import { DetailPropsItem, TourFoodProps } from '../../modules/detail';
+import SubItem from '../SubItem';
+import { IntroWrapper } from '../SubItem/style';
 
-const TourFood = ({ item }: DetailItemprops) => {
+const TourFood: React.FC<DetailItemprops> = ({ item }) => {
   const { addr1, homepage } = item;
   const {
     restdatefood,
@@ -15,82 +15,23 @@ const TourFood = ({ item }: DetailItemprops) => {
   return (
     <IntroWrapper>
       <ul>
-        {addr1 ? (
-          <Li>
-            <b>주소</b> <p>{addr1}</p>
-          </Li>
-        ) : null}
-        {homepage ? (
-          <Li>
-            <b>홈페이지</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: homepage,
-              }}
-            />
-          </Li>
-        ) : null}
-        {infocenterfood ? (
-          <Li>
-            <b>문의</b> <p>{infocenterfood}</p>
-          </Li>
-        ) : null}
-        {treatmenu ? (
-          <Li>
-            <b>메뉴</b> <p>{treatmenu}</p>
-          </Li>
-        ) : null}
+        {addr1 ? <SubItem name="주소" html={addr1} /> : null}
+        {homepage ? <SubItem name="홈페이지" html={homepage} /> : null}
+        {infocenterfood ? <SubItem name="문의" html={infocenterfood} /> : null}
+        {treatmenu ? <SubItem name="메뉴" html={treatmenu} /> : null}
         {reservationfood ? (
-          <Li>
-            <b>예약</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: reservationfood,
-              }}
-            />
-          </Li>
+          <SubItem name="에약" html={reservationfood} />
         ) : null}
-        {restdatefood ? (
-          <Li>
-            <b>휴일</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: restdatefood,
-              }}
-            />
-          </Li>
-        ) : null}
-        {opentimefood ? (
-          <Li>
-            <b>이용시간</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: opentimefood,
-              }}
-            />
-          </Li>
-        ) : null}
+        {restdatefood ? <SubItem name="휴일" html={restdatefood} /> : null}
+        {opentimefood ? <SubItem name="이용시간" html={opentimefood} /> : null}
+
         {item.info ? (
           Array.isArray(item.info) ? (
             item.info.map((v) => (
-              <Li key={v.infoname}>
-                <b>{v.infoname}</b>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: v.infotext,
-                  }}
-                />
-              </Li>
+              <SubItem key={v.infoname} name={v.infoname} html={v.infotext} />
             ))
           ) : (
-            <Li>
-              <b>{item.info.infoname}</b>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: item.info.infotext,
-                }}
-              />
-            </Li>
+            <SubItem name={item.info.infoname} html={item.info.infotext} />
           )
         ) : null}
       </ul>

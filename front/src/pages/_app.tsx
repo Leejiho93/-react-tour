@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import reducer, { IReducerState, rootSaga } from '../modules';
+import reducer, { rootSaga } from '../modules';
 import { createWrapper } from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import createSagaMiddleware, { Task } from 'redux-saga';
@@ -12,7 +12,7 @@ import Layout from '../components/Layout';
 import 'antd/dist/antd.css';
 
 export interface SagaStore extends Store {
-  sagaTask?: Task;
+  sagaTask: Task;
 }
 
 const Tour = ({ Component, pageProps }: AppProps) => {
@@ -35,11 +35,10 @@ const configureStore = () => {
     process.env.NODE_ENV === 'production'
       ? compose(applyMiddleware(...middlewares))
       : compose(composeWithDevTools(applyMiddleware(...middlewares)));
-  const store: SagaStore = createStore(reducer, enhancer);
-  store.sagaTask = sagaMiddleware.run(rootSaga);
+  const store = createStore(reducer, enhancer);
+  (store as SagaStore).sagaTask = sagaMiddleware.run(rootSaga);
   return store;
 };
 
-export const wrapper = createWrapper<Store<IReducerState>>(configureStore);
-
+export const wrapper = createWrapper(configureStore);
 export default wrapper.withRedux(withReduxSaga(Tour));

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 import {
   Li,
+  NullPage,
   PaginationCustom,
   Select,
   Title,
@@ -20,32 +21,33 @@ import { regionAsync } from '../modules/detail';
 import { loadUserAsync } from '../modules/user';
 import { SagaStore, wrapper } from './_app';
 
-const Region = () => {
+const areaArray = [
+  ['전체', undefined],
+  ['서울', 1],
+  ['인천', 2],
+  ['대전', 3],
+  ['대구', 4],
+  ['광주', 5],
+  ['부산', 6],
+  ['울산', 7],
+  ['세종', 8],
+  ['경기', 31],
+  ['강원', 32],
+  ['충북', 33],
+  ['충남', 34],
+  ['경북', 35],
+  ['경남', 36],
+  ['전북', 37],
+  ['전남', 38],
+  ['제주', 39],
+];
+
+const Region: React.FC = () => {
   const router = useRouter();
-  const [areaCode, setAreaCode] = useState(undefined);
-  const [pageNo, setPageNo] = useState(1);
-  const [arrange, setArrange] = useState('P');
+  const [areaCode, setAreaCode] = useState<number | undefined>(undefined);
+  const [pageNo, setPageNo] = useState<number>(1);
+  const [arrange, setArrange] = useState<'P' | 'Q'>('P');
   const { title, contentTypeId } = router.query;
-  const [areaName, setAreaName] = useState([
-    ['전체', undefined],
-    ['서울', 1],
-    ['인천', 2],
-    ['대전', 3],
-    ['대구', 4],
-    ['광주', 5],
-    ['부산', 6],
-    ['울산', 7],
-    ['세종', 8],
-    ['경기', 31],
-    ['강원', 32],
-    ['충북', 33],
-    ['충남', 34],
-    ['경북', 35],
-    ['경남', 36],
-    ['전북', 37],
-    ['전남', 38],
-    ['제주', 39],
-  ]);
   const { data, loading } = useSelector(
     (state: RootState) => state.detail.regionResult
   );
@@ -53,6 +55,13 @@ const Region = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setAreaCode(undefined);
+  }, [title]);
+
+  useEffect(() => {
+    if (!contentTypeId) {
+      return;
+    }
     dispatch(
       regionAsync.request({
         arrange: arrange,
@@ -63,11 +72,11 @@ const Region = () => {
     );
   }, [areaCode, pageNo, arrange, contentTypeId, dispatch]);
 
-  const onChange = useCallback((page: number) => {
+  const onChange = useCallback((page) => {
     setPageNo(page);
   }, []);
   const changeAreaCode = useCallback(
-    (code: any) => () => {
+    (code) => () => {
       setAreaCode(code);
     },
     []
@@ -87,7 +96,7 @@ const Region = () => {
 
       <Select>
         <Ul>
-          {areaName.map((item) => (
+          {areaArray.map((item) => (
             <Li
               className={item[1] === areaCode ? 'active' : ''}
               onClick={changeAreaCode(item[1])}
@@ -101,9 +110,13 @@ const Region = () => {
 
       <SortBox arrange={arrange} sortHot={sortHot} sortRecent={sortRecent} />
       <div>
-        <Spin spinning={loading}>
+        {loading ? (
+          <Spin spinning={true}>
+            <NullPage />
+          </Spin>
+        ) : (
           <TourList list={data.items.item} />
-        </Spin>
+        )}
         <PaginationCustom
           total={data.totalCount}
           showSizeChanger={false}
@@ -118,9 +131,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, query }) => {
       const cookie = req ? req.headers.cookie : '';
-      axios.defaults.headers!.Cookie = '';
-      if (req && cookie) {
-        axios.defaults.headers!.Cookie = cookie;
+      if (axios.defaults.headers) {
+        req && cookie
+          ? (axios.defaults.headers.Cookie = cookie)
+          : (axios.defaults.headers.Cookie = '');
       }
       if (!store.getState().user.me) {
         store.dispatch(loadUserAsync.request());
@@ -134,7 +148,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       );
       store.dispatch(END);
 
-      return await (store as SagaStore).sagaTask!.toPromise();
+      return await (store as SagaStore).sagaTask.toPromise();
     }
 );
 

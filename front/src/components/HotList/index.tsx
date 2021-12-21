@@ -9,7 +9,7 @@ interface IHotList {
   list: RegionItem[];
 }
 
-const HotList = ({ list }: IHotList) => {
+const HotList: React.FC<IHotList> = ({ list }) => {
   return (
     <Wrapper>
       {list.length === 0 ? (

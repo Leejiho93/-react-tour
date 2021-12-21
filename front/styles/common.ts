@@ -78,6 +78,10 @@ export const Title = styled.h2`
   text-align: center;
 `;
 
+export const NullPage = styled.div`
+  height: 100vh;
+`;
+
 // 공통
 export const SortWrapper = styled.div`
   text-align: end;

@@ -20,11 +20,12 @@ import { Form } from 'antd';
 import Link from 'next/link';
 import { UserOutlined, LockOutlined, SmileOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2';
+import useInput from '../../../utils/useInput';
 
 const SignUpForm: React.FC = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-  const [nickname, setNickname] = useState('');
+  const [id, onChangeId] = useInput('');
+  const [password, onChangePassword] = useInput('');
+  const [nickname, onChangeNickname] = useInput('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
   const dispatch = useDispatch();
@@ -58,24 +59,8 @@ const SignUpForm: React.FC = () => {
     }
   }, [isSignedup, dispatch]);
 
-  const onChangeId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setId(e.target.value);
-  }, []);
-  const onChangePassword = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setPassword(e.target.value);
-    },
-    []
-  );
-  const onChangeNickname = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setNickname(e.target.value);
-    },
-    []
-  );
   const onSubmit = useCallback(() => {
     const checkPassword = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
-    console.log('id, password, nickname', id, password, nickname);
     if (!checkPassword.test(password)) {
       return setPasswordErrorMessage(
         '8~20자의 영문자, 숫자, 특수문자를 사용하세요.'

@@ -6,7 +6,7 @@ interface IHeadItem {
   contentTypeId: number;
 }
 
-const HeadItem = ({ title, contentTypeId }: IHeadItem) => {
+const HeadItem: React.FC<IHeadItem> = ({ title, contentTypeId }) => {
   return (
     <>
       <Link

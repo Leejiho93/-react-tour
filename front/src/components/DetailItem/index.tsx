@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { DetailItemprops } from '../../modules/detail';
 import {
   ButtonWrapper,
@@ -18,25 +18,22 @@ import TourMall from '../TourMall';
 import TourFood from '../TourFood';
 import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 import Kakaomap from '../Kakaomap';
+import useToggle from '../../../utils/useToggle';
 
-const DetailItem = ({ item }: DetailItemprops) => {
+const DetailItem: React.FC<DetailItemprops> = ({ item }) => {
   const { title, firstimage, firstimage2, overview, contenttypeid } = item;
-
-  const [more, setMore] = useState(true);
-  const [minHeight, setMinHeight] = useState(false);
+  const [more, onToggleMore] = useToggle(true);
+  const [minHeight, onToggleMinHeight] = useToggle(false);
 
   useEffect(() => {
-    const moreHeight = document.getElementById('moreDiv')!.clientHeight;
+    const moreHeight = (document.getElementById('moreDiv') as HTMLDivElement)
+      .clientHeight;
     if (moreHeight < 160) {
-      setMinHeight(true);
+      onToggleMinHeight();
     } else {
-      setMore(!more);
+      onToggleMore();
     }
-  }, []);
-
-  const onToggle = React.useCallback(() => {
-    setMore(!more);
-  }, [more]);
+  }, [onToggleMore, onToggleMinHeight]);
 
   return (
     <>
@@ -56,7 +53,7 @@ const DetailItem = ({ item }: DetailItemprops) => {
         />
 
         {minHeight ? null : (
-          <ButtonWrapper onClick={onToggle}>
+          <ButtonWrapper onClick={onToggleMore}>
             {!more ? (
               <>
                 <b>더보기</b>

@@ -7,7 +7,7 @@ interface IHotTitle {
   contentTypeId: number;
 }
 
-const HotTitle = ({ title, contentTypeId }: IHotTitle) => {
+const HotTitle: React.FC<IHotTitle> = ({ title, contentTypeId }) => {
   return (
     <>
       <HotMenu>

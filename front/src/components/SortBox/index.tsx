@@ -1,6 +1,12 @@
 import { SortButton, SortWrapper } from '../../../styles/common';
 
-const SortBox = ({ arrange, sortHot, sortRecent }: any) => {
+interface ISortBox {
+  arrange: 'Q' | 'P';
+  sortHot: () => void;
+  sortRecent: () => void;
+}
+
+const SortBox: React.FC<ISortBox> = ({ arrange, sortHot, sortRecent }) => {
   return (
     <SortWrapper>
       <SortButton

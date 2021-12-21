@@ -1,15 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Input, SearchButton, SearchWrapper } from './style';
 import { SearchOutlined } from '@ant-design/icons';
+import useInput from '../../../utils/useInput';
 
-const SearchForm = () => {
-  const [search, setSearch] = useState('');
+const SearchForm: React.FC = () => {
+  const [search, onChangeSearch] = useInput('');
   const router = useRouter();
-
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  }, []);
   const onSearch = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
@@ -27,7 +24,7 @@ const SearchForm = () => {
     <>
       <form onSubmit={onSearch}>
         <SearchWrapper>
-          <Input value={search} onChange={onChange} />
+          <Input value={search} onChange={onChangeSearch} />
           <SearchButton type="submit">
             <SearchOutlined style={{ color: 'white' }} />
           </SearchButton>

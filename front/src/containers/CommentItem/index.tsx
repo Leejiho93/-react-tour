@@ -6,13 +6,14 @@ import { RootState } from '../../modules';
 import { CommentStyle } from './style';
 import Swal from 'sweetalert2';
 import EditForm from '../EditForm';
+import useToggle from '../../../utils/useToggle';
 
 interface CommentItemProps {
   data: CommentData;
 }
 
-const CommentItem = ({ data }: CommentItemProps) => {
-  const [editable, setEditable] = React.useState(false);
+const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
+  const [editable, onToggleEdit] = useToggle(false);
   const dispatch = useDispatch();
 
   const id = useSelector(
@@ -31,12 +32,6 @@ const CommentItem = ({ data }: CommentItemProps) => {
       }
     });
   }, [dispatch, data.id]);
-  const modifyComment = React.useCallback(() => {
-    setEditable(true);
-  }, []);
-  const cancelComment = React.useCallback(() => {
-    setEditable(!editable);
-  }, [editable]);
 
   return (
     <>
@@ -46,7 +41,7 @@ const CommentItem = ({ data }: CommentItemProps) => {
           actions={[
             // <span key="comment-nested-reply-to">답글</span>,
             id === data.UserId ? (
-              <span onClick={modifyComment} key="comment-modify">
+              <span onClick={onToggleEdit} key="comment-modify">
                 수정
               </span>
             ) : null,
@@ -72,8 +67,7 @@ const CommentItem = ({ data }: CommentItemProps) => {
           <EditForm
             text={data.content}
             id={data.id}
-            onModify={modifyComment}
-            onCancel={cancelComment}
+            toggleEdit={onToggleEdit}
           />
         </>
       )}

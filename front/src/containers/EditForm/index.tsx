@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Form } from 'antd';
 import {
   FormWrapper,
@@ -11,16 +11,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modifyCommentAsync } from '../../modules/comment';
 import { RootState } from '../../modules';
 import Swal from 'sweetalert2';
+import useInput from '../../../utils/useInput';
 
 interface EditFormProps {
   text: string;
   id: number;
-  onCancel: () => void;
-  onModify: () => void;
+  toggleEdit: () => void;
 }
 
-const EditForm = ({ text, id, onCancel, onModify }: EditFormProps) => {
-  const [input, setInput] = useState(text);
+const EditForm: React.FC<EditFormProps> = ({ text, id, toggleEdit }) => {
+  const [input, onChangeInput] = useInput(text);
 
   const dispatch = useDispatch();
 
@@ -30,15 +30,9 @@ const EditForm = ({ text, id, onCancel, onModify }: EditFormProps) => {
 
   useEffect(() => {
     if (commentEditedError) {
-      onModify();
+      toggleEdit();
     }
-  }, [commentEditedError, onModify]);
-  const onChangeInput = React.useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setInput(e.target.value);
-    },
-    []
-  );
+  }, [commentEditedError, toggleEdit]);
 
   const onSubmit = React.useCallback(() => {
     if (!input.trim()) {
@@ -48,8 +42,8 @@ const EditForm = ({ text, id, onCancel, onModify }: EditFormProps) => {
       });
     }
     dispatch(modifyCommentAsync.request({ id: id, editComment: input }));
-    onCancel();
-  }, [input, id, dispatch, onCancel]);
+    toggleEdit();
+  }, [input, id, dispatch, toggleEdit]);
   return (
     <FormWrapper>
       <Form onFinish={onSubmit}>
@@ -64,7 +58,7 @@ const EditForm = ({ text, id, onCancel, onModify }: EditFormProps) => {
             <SubmitButton htmlType="submit" type="primary">
               수정
             </SubmitButton>
-            <CancelButton onClick={onCancel}>취소</CancelButton>
+            <CancelButton onClick={toggleEdit}>취소</CancelButton>
           </ButtonWrapper>
         </TextAreaWrapper>
       </Form>

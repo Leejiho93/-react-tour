@@ -9,7 +9,7 @@ declare global {
   }
 }
 
-const Kakaomap = ({ item }: DetailItemprops) => {
+const Kakaomap: React.FC<DetailItemprops> = ({ item }) => {
   const { mapx, mapy, title } = item;
   useEffect(() => {
     const script = document.createElement('script');

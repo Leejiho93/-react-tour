@@ -7,14 +7,16 @@ interface IHotItem {
   list: RegionItem;
 }
 
-const HotItem = ({ list }: IHotItem) => {
-  const filter: any = list.title.match(/\[.*\]/gi);
+const HotItem: React.FC<IHotItem> = ({ list }) => {
+  const filter = list.title.match(/\[.*\]/);
   return (
     <>
       <Link href={`/detail/${list.contenttypeid}/${list.contentid}`} passHref>
         <a>
           <Wrapper>
-            <HotTitle>{list.title.replace(filter, '')}</HotTitle>
+            <HotTitle>
+              {filter ? list.title.replace(filter[0], '') : list.title}
+            </HotTitle>
             <HotImage src={list.firstimage} alt="이미지" />
           </Wrapper>
         </a>

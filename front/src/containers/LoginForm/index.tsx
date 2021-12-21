@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { loginAsync } from '../../modules/user';
@@ -17,26 +16,14 @@ import {
   Wrapper,
 } from './style';
 import { RootState } from '../../modules';
+import useInput from '../../../utils/useInput';
 
-const LoginForm = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+const LoginForm: React.FC = () => {
+  const [id, onChangeId] = useInput('');
+  const [password, onChangePassword] = useInput('');
   const dispatch = useDispatch();
 
   const { loginError } = useSelector((state: RootState) => state.user);
-
-  const onChangeId = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setId(e.target.value);
-    },
-    []
-  );
-  const onChangePassword = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setPassword(e.target.value);
-    },
-    []
-  );
   const onSubmit = React.useCallback(() => {
     dispatch(loginAsync.request({ userId: id, password }));
   }, [id, password, dispatch]);

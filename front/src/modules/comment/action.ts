@@ -2,9 +2,7 @@ import {
   AddCommentPayload,
   CommentData,
   LoadCommentPayload,
-  LoadCommentResponse,
   ModifyCommentPayload,
-  ModifyCommentResponse,
 } from './type';
 import { AxiosError } from 'axios';
 import { createAsyncAction } from 'typesafe-actions';

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { RegionItem, SearchItem } from '../../modules/detail';
 import TourItem from '../TourItem';
 import { EmptyResult, ListWrapper } from './style';

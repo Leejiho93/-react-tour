@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../../../styles/theme';
 
 export const Wrapper = styled.div`
   position: sticky;
@@ -13,7 +12,7 @@ export const NavbarWrapper = styled.div`
   padding: 20px 0;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 3px solid #eeeeee;
   background-color: #fff;
   ${({ theme }) => theme.window.tablet} {
     flex-direction: column;

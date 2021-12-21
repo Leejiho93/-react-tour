@@ -1,84 +1,32 @@
 import React from 'react';
 import { DetailItemprops } from '../../modules/detail';
-import { IntroWrapper, Li } from '../TourSpot/style';
+import SubItem from '../SubItem';
+import { IntroWrapper } from '../SubItem/style';
 
-const TourEvent = ({ item }: DetailItemprops) => {
+const TourEvent: React.FC<DetailItemprops> = ({ item }) => {
   const { addr1, homepage, tel } = item;
   const { usetimefestival, playtime, discountinfofestival } = item.intro;
   return (
     <IntroWrapper>
       <ul>
-        {addr1 ? (
-          <Li>
-            <b>주소</b> <p>{addr1}</p>
-          </Li>
-        ) : null}
-        {homepage ? (
-          <Li>
-            <b>홈페이지</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: homepage,
-              }}
-            />
-          </Li>
-        ) : null}
-        {tel ? (
-          <Li>
-            <b>문의</b> <p>{tel}</p>
-          </Li>
-        ) : null}
+        {addr1 ? <SubItem name="주소" html={addr1} /> : null}
+        {homepage ? <SubItem name="홈페이지" html={homepage} /> : null}
+        {tel ? <SubItem name="문의" html={tel} /> : null}
         {usetimefestival ? (
-          <Li>
-            <b>요금</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: usetimefestival,
-              }}
-            />
-          </Li>
+          <SubItem name="요금" html={usetimefestival} />
         ) : null}
-        {playtime ? (
-          <Li>
-            <b>일정</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: playtime,
-              }}
-            />
-          </Li>
-        ) : null}
+        {playtime ? <SubItem name="일정" html={playtime} /> : null}
         {discountinfofestival ? (
-          <Li>
-            <b>할인</b>{' '}
-            <p
-              dangerouslySetInnerHTML={{
-                __html: discountinfofestival,
-              }}
-            />
-          </Li>
+          <SubItem name="할인" html={discountinfofestival} />
         ) : null}
+
         {item.info ? (
           Array.isArray(item.info) ? (
             item.info.map((v) => (
-              <Li key={v.infoname}>
-                <b>{v.infoname}</b>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: v.infotext,
-                  }}
-                />
-              </Li>
+              <SubItem key={v.infoname} name={v.infoname} html={v.infotext} />
             ))
           ) : (
-            <Li>
-              <b>{item.info.infoname}</b>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: item.info.infotext,
-                }}
-              />
-            </Li>
+            <SubItem name={item.info.infoname} html={item.info.infotext} />
           )
         ) : null}
       </ul>

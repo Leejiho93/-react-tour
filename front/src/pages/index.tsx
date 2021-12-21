@@ -9,7 +9,7 @@ import { loadUserAsync } from '../modules/user';
 import axios from 'axios';
 import { END } from 'redux-saga';
 
-const Home = () => {
+const Home: React.FC = () => {
   const { data } = useSelector((state: RootState) => state.detail.allData);
   const region = data.items.item;
   const festival = data.items.festival;
@@ -44,9 +44,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
     async ({ req }) => {
       const cookie = req ? req.headers.cookie : '';
       const storeState = store.getState();
-      axios.defaults.headers!.Cookie = '';
-      if (req && cookie) {
-        axios.defaults.headers!.Cookie = cookie;
+      if (axios.defaults.headers) {
+        req && cookie
+          ? (axios.defaults.headers.Cookie = cookie)
+          : (axios.defaults.headers.Cookie = '');
       }
       if (!storeState.user.me) {
         store.dispatch(loadUserAsync.request());
@@ -55,7 +56,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       store.dispatch(allAsync.request());
 
       store.dispatch(END);
-      return await (store as SagaStore).sagaTask!.toPromise();
+      return await (store as SagaStore).sagaTask.toPromise();
     }
 );
 

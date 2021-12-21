@@ -3,6 +3,7 @@ import router from 'next/router';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
+import useInput from '../../../utils/useInput';
 import { RootState } from '../../modules';
 import { addCommentAsync } from '../../modules/comment';
 import { DetailItemprops } from '../../modules/detail';
@@ -14,19 +15,10 @@ import {
   TextAreaWrapper,
 } from './style';
 
-const CommentForm = ({ item }: DetailItemprops) => {
-  const [commentText, setCommentText] = React.useState('');
-
+const CommentForm: React.FC<DetailItemprops> = ({ item }) => {
+  const [commentText, onChangeCommentText, setCommentText] = useInput('');
   const { me } = useSelector((state: RootState) => state.user);
-
   const dispatch = useDispatch();
-
-  const onChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-      setCommentText(e.target.value);
-    },
-    []
-  );
 
   const showModal = React.useCallback(() => {
     return Swal.fire({
@@ -54,7 +46,7 @@ const CommentForm = ({ item }: DetailItemprops) => {
       addCommentAsync.request({ contentid: item.contentid, commentText })
     );
     setCommentText('');
-  }, [commentText, dispatch, item.contentid]);
+  }, [commentText, dispatch, item.contentid, setCommentText]);
 
   return (
     <FormWrapper>
@@ -63,7 +55,7 @@ const CommentForm = ({ item }: DetailItemprops) => {
           <TextAreaWrapper>
             <TextArea
               rows={3}
-              onChange={onChange}
+              onChange={onChangeCommentText}
               value={commentText}
               placeholder="댓글을 입력하세요."
             />

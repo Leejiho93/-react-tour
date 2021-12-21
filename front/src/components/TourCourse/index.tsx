@@ -10,9 +10,9 @@ import {
   Wrapper,
 } from './style';
 import { DetailItemInfo } from '../DetailItem/style';
-import { DetailItemprops } from '../../modules/detail';
+import { DetailItemprops, TourInfo } from '../../modules/detail';
 
-const TourCourse = ({ item }: DetailItemprops) => {
+const TourCourse: React.FC<DetailItemprops> = ({ item }) => {
   const [imageSrc, setImageSrc] = useState(
     Array.isArray(item.info)
       ? item.info[0].subdetailimg
@@ -32,7 +32,7 @@ const TourCourse = ({ item }: DetailItemprops) => {
       : item.info.subdetailoverview
   );
   const changeImageSrc = React.useCallback(
-    (src: any) => () => {
+    (src: TourInfo) => () => {
       setImageSrc(src.subdetailimg);
       setImageTitle(src.subname);
       setSubId(src.subcontentid);
@@ -49,7 +49,7 @@ const TourCourse = ({ item }: DetailItemprops) => {
         <CourseList>
           {item.info && Array.isArray(item.info) ? (
             item.info.map((course) => (
-              <Item key={course.subcontentid}>
+              <Item key={subId}>
                 <div
                   className={imageTitle == course.subname ? 'active' : ''}
                   onClick={changeImageSrc(course)}

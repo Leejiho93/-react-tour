@@ -17,19 +17,19 @@ import { searchAsync } from '../modules/detail';
 import { loadUserAsync } from '../modules/user';
 import { SagaStore, wrapper } from './_app';
 
-const Search = () => {
+const Search: React.FC = () => {
   const router = useRouter();
   const { data, loading } = useSelector(
     (state: RootState) => state.detail.searchResult
   );
   const dispatch = useDispatch();
-  const [pageNo, setPageNo] = useState(1);
-  const [arrange, setArrange] = useState('Q');
+  const [pageNo, setPageNo] = useState<number>(1);
+  const [arrange, setArrange] = useState<'P' | 'Q'>('Q');
   const search = String(router.query.search);
   const { items, totalCount } = data;
   const item = items && items.item;
 
-  const onChange = useCallback((page: number) => {
+  const onChange = useCallback((page) => {
     setPageNo(page);
   }, []);
 
@@ -78,10 +78,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, query }) => {
       const cookie = req ? req.headers.cookie : '';
-      axios.defaults.headers!.Cookie = '';
-
-      if (req && cookie) {
-        axios.defaults.headers!.Cookie = cookie;
+      if (axios.defaults.headers) {
+        req && cookie
+          ? (axios.defaults.headers.Cookie = cookie)
+          : (axios.defaults.headers.Cookie = '');
       }
       if (!store.getState().user.me) {
         store.dispatch(loadUserAsync.request());
@@ -90,14 +90,14 @@ export const getServerSideProps = wrapper.getServerSideProps(
       store.dispatch(
         searchAsync.request({
           search: String(query.search),
-          pageNo: Number(query.pageNo),
+          pageNo: 1,
           arrange: 'Q',
         })
       );
 
       store.dispatch(END);
 
-      return await (store as SagaStore).sagaTask!.toPromise();
+      return await (store as SagaStore).sagaTask.toPromise();
     }
 );
 

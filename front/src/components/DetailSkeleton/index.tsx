@@ -7,7 +7,7 @@ import {
   Wrapper,
 } from './style';
 
-const DetailSkeleton = () => {
+const DetailSkeleton: React.FC = () => {
   return (
     <Wrapper>
       <TitleBox>

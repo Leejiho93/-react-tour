@@ -2,7 +2,7 @@ import { CommentData, LoadCommentResponse } from '../../modules/comment';
 import CommentItem from '../../containers/CommentItem';
 import { CommentTitle, Wrapper } from './style';
 
-const CommentList = ({ data }: LoadCommentResponse) => {
+const CommentList: React.FC<LoadCommentResponse> = ({ data }) => {
   return (
     <>
       <CommentTitle>

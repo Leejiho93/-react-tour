@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ImageSkeleton, SkeletonBox, Wrapper } from './style';
 
-const MainSkelton = () => {
+const MainSkelton: React.FC = () => {
   return (
     <Wrapper>
       <SkeletonBox>

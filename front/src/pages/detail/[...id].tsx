@@ -50,15 +50,16 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req }) => {
       const cookie = req ? req.headers.cookie : '';
-      axios.defaults.headers!.Cookie = '';
-      if (req && cookie) {
-        axios.defaults.headers!.Cookie = cookie;
+      if (axios.defaults.headers) {
+        req && cookie
+          ? (axios.defaults.headers.Cookie = cookie)
+          : (axios.defaults.headers.Cookie = '');
       }
       if (!store.getState().user.me) {
         store.dispatch(loadUserAsync.request());
       }
       store.dispatch(END);
-      return await (store as SagaStore).sagaTask!.toPromise();
+      return await (store as SagaStore).sagaTask.toPromise();
     }
 );
 
