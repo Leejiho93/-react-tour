@@ -1,28 +1,19 @@
-// import { NextPage } from 'next';
-// import { ErrorProps } from 'next/error';
-// import React from 'react';
+import { NextPageContext, NextPage } from 'next';
 
-// interface Props extends ErrorProps {
-//   statusCode?: number;
-// }
+interface ErrorComponentProps {
+  statusCode?: number | null;
+}
+const Error: NextPage<ErrorComponentProps> = ({ statusCode }) => {
+  return (
+    <p>
+      {statusCode ? `서버 ${statusCode} 에러 발생` : '클라이언트 에러 발생'}
+    </p>
+  );
+};
 
-// const MyError: NextPage<Props> = ({ statusCode }) => (
-//   <div>
-//     <h1>{statusCode} 에러 발생</h1>
-//   </div>
-// );
+Error.getInitialProps = ({ res, err }: NextPageContext) => {
+  const statusCode = res ? res.statusCode : err ? err.statusCode : null;
+  return { statusCode };
+};
 
-// MyError.defaultProps = {
-//   statusCode: 400,
-// };
-
-// MyError.getInitialProps = async (context) => {
-//   const statusCode = context.res
-//     ? context.res.statusCode
-//     : context.err
-//     ? context.err.statusCode
-//     : null;
-//   return { statusCode };
-// };
-
-// export default MyError;
+export default Error;

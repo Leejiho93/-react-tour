@@ -76,6 +76,7 @@ export const Title = styled.h2`
   font-weight: 700;
   pargin: 50px 0;
   text-align: center;
+  font-family: BMJUA;
 `;
 
 export const NullPage = styled.div`
@@ -149,5 +150,15 @@ export const HotMenu = styled.div`
   }
   ${({ theme }) => theme.window.mobileL} {
     margin: 100px 30px 20px 30px;
+  }
+`;
+
+// 상세 페이지
+
+export const DtailWrapper = styled.div`
+  width: 980px;
+  margin: 0 auto;
+  ${({ theme }) => theme.window.laptop} {
+    width: 100%;
   }
 `;

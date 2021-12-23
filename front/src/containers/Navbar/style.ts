@@ -51,9 +51,8 @@ export const Logo = styled.div`
   align-items: center;
   margin-left: 30px;
   flex: 1.5;
-  color: #ffa03e;
-  & a {
-    color: #ffae59;
+  & a h1 {
+    color: #ff8c15;
     font-family: BMeuljiro;
     font-size: 40px;
   }
@@ -61,7 +60,6 @@ export const Logo = styled.div`
     flex: 1;
   }
   ${({ theme }) => theme.window.tablet} {
-    // width: 100%;
     & a {
       padding: 20px 0;
     }
@@ -80,9 +78,6 @@ export const Category = styled.div<{ toggle: boolean }>`
     font-family: BMJUA;
     color: #000;
     margin-left: 10px;
-  }
-  ${({ theme }) => theme.window.laptop} {
-    // display: none;
   }
   ${({ theme }) => theme.window.tablet} {
     display: ${(props) => (props.toggle ? 'block' : 'none')};
@@ -167,15 +162,12 @@ export const LogoutButton = styled.button`
   padding: 6px 10px;
   border: 1px solid #5f6368;
   border-radius: 4px;
-  color: #e8eaed;
-  background-color: #3c3d40;
+  background-color: #e8eaed;
+  color: #3c3d40;
   margin-right: 30px;
   cursor: pointer;
   font-family: 'Gowun Batang', serif;
-  font-weight: 500;
-  &:hover {
-    background-color: #4a4b4e;
-  }
+  font-weight: 600;
   ${({ theme }) => theme.window.tablet} {
     border: none;
     color: #000;

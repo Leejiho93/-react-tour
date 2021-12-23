@@ -41,7 +41,6 @@ function searchAPI({ search, pageNo, arrange }: SearchPayload) {
 function* searchDetailSaga(action: ReturnType<typeof searchAsync.request>) {
   try {
     const result: SearchResponse = yield call(searchAPI, action.payload);
-    console.log('search result', result.data);
     yield put(searchAsync.success(result.data));
   } catch (e: any) {
     console.error(e);

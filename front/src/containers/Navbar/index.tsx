@@ -17,33 +17,33 @@ import { logoutAsync } from '../../modules/user';
 import SearchForm from '../SearchForm';
 import { MenuOutlined } from '@ant-design/icons';
 import HeadItem from '../../components/HeaderItem';
+import useToggle from '../../../utils/useToggle';
 
 const Navbar: React.FC = () => {
-  const [toggle, setToggle] = React.useState(false);
+  const [toggle, toggleHanburger, setToggle] = useToggle(false);
   const { me } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const onClickLogout = React.useCallback(() => {
     dispatch(logoutAsync.request());
     setToggle(false);
-  }, [dispatch]);
-  const toggleHanburger = React.useCallback(() => {
-    setToggle(!toggle);
-  }, [toggle]);
-  const falseHamburger = React.useCallback(() => {
+  }, [dispatch, setToggle]);
+
+  const closeHamburger = React.useCallback(() => {
     setToggle(false);
-  }, []);
+  }, [setToggle]);
+
   return (
     <Wrapper>
       <NavbarWrapper>
-        <Logo onClick={falseHamburger}>
+        <Logo onClick={closeHamburger}>
           <Link href="/">
             <a>
-              <span>어디갈래</span>
+              <h1>어디갈래</h1>
             </a>
           </Link>
         </Logo>
 
-        <Category toggle={toggle} onClick={falseHamburger}>
+        <Category toggle={toggle} onClick={toggleHanburger}>
           <ul>
             <HeadItem title="관광지" contentTypeId={12} />
             <HeadItem title="문화시설" contentTypeId={14} />
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
           ) : (
             <>
               <Link href="/login">
-                <a onClick={falseHamburger}>
+                <a onClick={closeHamburger}>
                   <span>로그인</span>
                 </a>
               </Link>
@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
           <MenuOutlined onClick={toggleHanburger} />
         </HamburgerMenu>
       </NavbarWrapper>
-      <MobileSearch onClick={falseHamburger}>
+      <MobileSearch onClick={closeHamburger}>
         <SearchForm />
       </MobileSearch>
     </Wrapper>

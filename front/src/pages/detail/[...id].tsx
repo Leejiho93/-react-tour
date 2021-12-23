@@ -4,7 +4,6 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import DetailItem from '../../components/DetailItem';
 import { IReducerState, RootState } from '../../modules';
 import { detailAsync } from '../../modules/detail';
-import { DtailWrapper } from './style';
 import CommentForm from '../../containers/CommentForm';
 import { loadCommentAsync } from '../../modules/comment';
 import CommentList from '../../components/CommentList';
@@ -14,13 +13,13 @@ import { loadUserAsync } from '../../modules/user';
 import { END } from 'redux-saga';
 import { NextPage } from 'next';
 import DetailSkeleton from '../../components/DetailSkeleton';
+import { DtailWrapper } from '../../../styles/common';
 
 const Detail: NextPage<IReducerState> = ({ detail }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
   const { item } = detail.detailResult.data.items;
-  const { loading } = detail.detailResult;
   const { commentList } = useSelector((state: RootState) => state.comment);
   const contentId = router.query.id && router.query.id[1];
   const contentTypeId = router.query.id && router.query.id[0];
@@ -39,7 +38,7 @@ const Detail: NextPage<IReducerState> = ({ detail }) => {
   }, [contentId, dispatch]);
   return (
     <DtailWrapper>
-      {!loading && item ? <DetailItem item={item} /> : <DetailSkeleton />}
+      {item ? <DetailItem item={item} /> : <DetailSkeleton />}
       {<CommentList data={commentList} />}
       {item && <CommentForm item={item} />}
     </DtailWrapper>
@@ -55,11 +54,12 @@ export const getServerSideProps = wrapper.getServerSideProps(
           ? (axios.defaults.headers.Cookie = cookie)
           : (axios.defaults.headers.Cookie = '');
       }
-      if (!store.getState().user.me) {
-        store.dispatch(loadUserAsync.request());
-      }
+
+      store.dispatch(loadUserAsync.request());
+
       store.dispatch(END);
-      return await (store as SagaStore).sagaTask.toPromise();
+      await (store as SagaStore).sagaTask.toPromise();
+      return { props: {} };
     }
 );
 

@@ -56,7 +56,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
           content={<p>{data.content}</p>}
           datetime={
             <span>
-              {new Date(data.createdAt).toLocaleString({
+              {new Date(data.createdAt).toLocaleString('ko-KR', {
                 timeZone: 'Asia/Seoul',
               })}
             </span>

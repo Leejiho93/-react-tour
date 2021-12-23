@@ -83,10 +83,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
           ? (axios.defaults.headers.Cookie = cookie)
           : (axios.defaults.headers.Cookie = '');
       }
-      if (!store.getState().user.me) {
-        store.dispatch(loadUserAsync.request());
-      }
 
+      store.dispatch(loadUserAsync.request());
       store.dispatch(
         searchAsync.request({
           search: String(query.search),
@@ -97,7 +95,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       store.dispatch(END);
 
-      return await (store as SagaStore).sagaTask.toPromise();
+      await (store as SagaStore).sagaTask.toPromise();
+      return { props: {} };
     }
 );
 

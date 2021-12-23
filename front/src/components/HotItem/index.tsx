@@ -17,7 +17,15 @@ const HotItem: React.FC<IHotItem> = ({ list }) => {
             <HotTitle>
               {filter ? list.title.replace(filter[0], '') : list.title}
             </HotTitle>
-            <HotImage src={list.firstimage} alt="이미지" />
+            {list.firstimage ? (
+              <HotImage
+                src={list.firstimage}
+                alt={list.title}
+                width={400}
+                height={250}
+                layout="responsive"
+              />
+            ) : null}
           </Wrapper>
         </a>
       </Link>

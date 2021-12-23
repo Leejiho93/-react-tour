@@ -7,6 +7,7 @@ import {
   DetailItemOverview,
   DetailItemTitle,
   DetailItemWrapper,
+  ImageWrapper,
 } from './style';
 import TourSpot from '../TourSpot';
 import TourCulture from '../TourCulture';
@@ -21,14 +22,14 @@ import Kakaomap from '../Kakaomap';
 import useToggle from '../../../utils/useToggle';
 
 const DetailItem: React.FC<DetailItemprops> = ({ item }) => {
-  const { title, firstimage, firstimage2, overview, contenttypeid } = item;
+  const { title, firstimage, overview, contenttypeid } = item;
   const [more, onToggleMore] = useToggle(true);
   const [minHeight, onToggleMinHeight] = useToggle(false);
 
   useEffect(() => {
     const moreHeight = (document.getElementById('moreDiv') as HTMLDivElement)
       .clientHeight;
-    if (moreHeight < 160) {
+    if (moreHeight < 155) {
       onToggleMinHeight();
     } else {
       onToggleMore();
@@ -39,10 +40,17 @@ const DetailItem: React.FC<DetailItemprops> = ({ item }) => {
     <>
       <DetailItemWrapper>
         <DetailItemTitle>{title}</DetailItemTitle>
-        <DetailItemImage
-          src={firstimage ? firstimage : firstimage2}
-          alt="대표이미지"
-        />
+        <ImageWrapper>
+          {firstimage && (
+            <DetailItemImage
+              src={firstimage}
+              alt={title}
+              width={980}
+              height={800}
+              layout="responsive"
+            />
+          )}
+        </ImageWrapper>
         <DetailItemInfo>상세정보</DetailItemInfo>
         <DetailItemOverview
           id="moreDiv"

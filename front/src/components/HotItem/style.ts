@@ -1,13 +1,11 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
-export const HotImage = styled.img`
+export const HotImage = styled(Image)`
   width: 400px;
   height: 250px;
   transition: transform 1s ease;
   transform: scale(1.5);
-  ${({ theme }) => theme.window.pc} {
-    width: 100%;
-  }
 `;
 
 export const HotTitle = styled.div`
@@ -26,6 +24,25 @@ export const HotTitle = styled.div`
   transform: translate(-50%, -50%);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
+  ${({ theme }) => theme.window.pc} {
+    font-size: 27px;
+  }
+
+  ${({ theme }) => theme.window.laptop} {
+    font-size: 25px;
+  }
+  ${({ theme }) => theme.window.tablet} {
+    font-size: 23px;
+  }
+  ${({ theme }) => theme.window.mobileL} {
+    font-size: 27px;
+  }
+  ${({ theme }) => theme.window.mobileM} {
+    font-size: 25px;
+  }
+  ${({ theme }) => theme.window.mobileS} {
+    font-size: 23px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -38,13 +55,7 @@ export const Wrapper = styled.div`
     transform: scale(1.2);
   }
   ${({ theme }) => theme.window.pc} {
-    width: 360px;
-    height: 220px;
-  }
-
-  ${({ theme }) => theme.window.laptop} {
-  }
-  ${({ theme }) => theme.window.tablet} {
     width: 100%;
+    margin: 0px;
   }
 `;

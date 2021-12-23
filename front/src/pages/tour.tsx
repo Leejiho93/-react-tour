@@ -42,12 +42,13 @@ const areaArray = [
   ['제주', 39],
 ];
 
-const Region: React.FC = () => {
+const Tour: React.FC = () => {
   const router = useRouter();
+  const { title, contentTypeId } = router.query;
   const [areaCode, setAreaCode] = useState<number | undefined>(undefined);
   const [pageNo, setPageNo] = useState<number>(1);
   const [arrange, setArrange] = useState<'P' | 'Q'>('P');
-  const { title, contentTypeId } = router.query;
+
   const { data, loading } = useSelector(
     (state: RootState) => state.detail.regionResult
   );
@@ -56,12 +57,18 @@ const Region: React.FC = () => {
 
   useEffect(() => {
     setAreaCode(undefined);
+    setPageNo(1);
   }, [title]);
+
+  useEffect(() => {
+    setPageNo(1);
+  }, [areaCode]);
 
   useEffect(() => {
     if (!contentTypeId) {
       return;
     }
+
     dispatch(
       regionAsync.request({
         arrange: arrange,
@@ -121,6 +128,8 @@ const Region: React.FC = () => {
           total={data.totalCount}
           showSizeChanger={false}
           onChange={onChange}
+          defaultPageSize={12}
+          current={pageNo}
         />
       </div>
     </Wrapper>
@@ -131,25 +140,27 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, query }) => {
       const cookie = req ? req.headers.cookie : '';
+
       if (axios.defaults.headers) {
         req && cookie
           ? (axios.defaults.headers.Cookie = cookie)
           : (axios.defaults.headers.Cookie = '');
       }
-      if (!store.getState().user.me) {
-        store.dispatch(loadUserAsync.request());
-      }
+
+      store.dispatch(loadUserAsync.request());
       store.dispatch(
         regionAsync.request({
           contentTypeId: Number(query.contentTypeId),
           arrange: 'P',
-          areaCode: undefined,
+          pageNo: 1,
         })
       );
+
       store.dispatch(END);
 
-      return await (store as SagaStore).sagaTask.toPromise();
+      await (store as SagaStore).sagaTask.toPromise();
+      return { props: {} };
     }
 );
 
-export default Region;
+export default Tour;

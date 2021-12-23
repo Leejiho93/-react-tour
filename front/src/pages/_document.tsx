@@ -5,9 +5,16 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
+import { ReactElement } from 'react';
+import Helmet, { HelmetData } from 'react-helmet';
 import { ServerStyleSheet } from 'styled-components';
 
-class MyDocument extends Document {
+interface Props {
+  helmet: HelmetData;
+  styles: ReactElement;
+}
+
+class MyDocument extends Document<Props> {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
@@ -15,12 +22,17 @@ class MyDocument extends Document {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
+            sheet.collectStyles(
+              <>
+                <App {...props} />
+              </>
+            ),
         });
 
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
+        helmet: Helmet.renderStatic(),
         styles: (
           <>
             {initialProps.styles}
@@ -34,21 +46,17 @@ class MyDocument extends Document {
   }
 
   render() {
+    const { htmlAttributes, bodyAttributes, ...helmet } = this.props.helmet;
+    const htmlAttrs = htmlAttributes.toComponent();
+    const bodyAttrs = bodyAttributes.toComponent();
+
     return (
-      <Html>
+      <Html {...htmlAttrs} lang="ko">
         <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="true"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
-            rel="stylesheet"
-          />
+          {this.props.styles}
+          {Object.values(helmet).map((el) => el.toComponent())}
         </Head>
-        <body>
+        <body {...bodyAttrs}>
           <Main />
           <NextScript />
         </body>

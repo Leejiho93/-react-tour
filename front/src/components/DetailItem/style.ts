@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
 export const DetailItemWrapper = styled.div`
@@ -24,14 +25,21 @@ export const DetailItemTitle = styled.h2`
   }
 `;
 
-export const DetailItemImage = styled.img`
+export const DetailItemImage = styled(Image)`
   width: 980px;
   padding: 0 0 50px 0;
   ${({ theme }) => theme.window.laptop} {
-    width: 90%;
+    width: 100%;
   }
   ${({ theme }) => theme.window.tablet} {
     padding: 0;
+  }
+`;
+
+export const ImageWrapper = styled.div`
+  width: 100%;
+  ${({ theme }) => theme.window.laptop} {
+    width: 90%;
   }
 `;
 
@@ -65,7 +73,7 @@ export const DetailItemOverview = styled.div<{ more: boolean }>`
   font-weight: 600;
   font-size: 17px;
   font-family: 'Gowun Batang', serif;
-  height: ${(props) => (props.more ? '100%;' : '160px;')} 
+  height: ${(props) => (props.more ? '100%;' : '155px;')} 
   overflow: hidden;
 
   

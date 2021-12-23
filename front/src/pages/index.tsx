@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { allAsync } from '../modules/detail';
 import HotList from '../components/HotList';
@@ -14,11 +13,7 @@ const Home: React.FC = () => {
   const region = data.items.item;
   const festival = data.items.festival;
   const sleep = data.items.sleep;
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(allAsync.request());
-  }, [dispatch]);
   return (
     <>
       <div>
@@ -43,20 +38,18 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req }) => {
       const cookie = req ? req.headers.cookie : '';
-      const storeState = store.getState();
       if (axios.defaults.headers) {
         req && cookie
           ? (axios.defaults.headers.Cookie = cookie)
           : (axios.defaults.headers.Cookie = '');
       }
-      if (!storeState.user.me) {
-        store.dispatch(loadUserAsync.request());
-      }
 
+      store.dispatch(loadUserAsync.request());
       store.dispatch(allAsync.request());
 
       store.dispatch(END);
-      return await (store as SagaStore).sagaTask.toPromise();
+      await (store as SagaStore).sagaTask.toPromise();
+      return { props: {} };
     }
 );
 

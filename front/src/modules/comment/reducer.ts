@@ -64,9 +64,7 @@ const comment = createReducer(initialState, {
       const index = draft.commentList.findIndex(
         (v) => v.id === action.payload.data
       );
-      if (index) {
-        draft.commentList.splice(index, 1);
-      }
+      draft.commentList.splice(index, 1);
     }),
   [DELETE_COMMENT_FAILURE]: (state, action) =>
     produce(state, (draft) => {
@@ -81,11 +79,9 @@ const comment = createReducer(initialState, {
       const index = draft.commentList.findIndex(
         (v) => v.id === Number(action.payload.id)
       );
-      if (index) {
-        draft.commentList.map((c, i) => {
-          i === index ? (c.content = action.payload.editComment) : c.content;
-        });
-      }
+      draft.commentList.map((c, i) => {
+        i === index ? (c.content = action.payload.editComment) : c.content;
+      });
       draft.commentEditedError = false;
     }),
   [MODIFY_COMMENT_FAILURE]: (state) =>

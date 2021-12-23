@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Li = styled.li`
   width: 50%;
+  padding: 0 10px;
   float: left;
   font-family: 'Gowun Batang', serif;
   font-weight: 500;
@@ -21,6 +22,7 @@ export const Li = styled.li`
   ${({ theme }) => theme.window.tablet} {
     width: 100%;
     float: none;
+    padding: 0;
   }
 `;
 

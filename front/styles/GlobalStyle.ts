@@ -4,28 +4,27 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
   ${reset}
   @font-face {
+    font-display: swap;
     font-family: "BMeuljiro";
     font-weight: 900;
-    src: url("/fonts/BMEULJIROTTF.ttf") format("truetype");
+    src: url("/fonts/BMEULJIRO.woff") format("woff");
   }
   @font-face {
-    font-family: "InkLipquid";
-    font-weight: 200;
-    src: url("/fonts/InkLipquidFonts.ttf") format("truetype");
-  }
-  @font-face {
+    font-display: swap;
     font-family: "BMJUA";
     font-weight: 600;
-    src: url("/fonts/BMJUA_ttf.ttf") format("truetype");
+    src: url("/fonts/BMJUA.woff") format("woff");
   }
   @font-face {
+    font-display: swap;
     font-family: "BMHANNA";
     font-weight: 600;
-    src: url("/fonts/BMHANNA_11yrs_ttf.ttf") format("truetype");
+    src: url("/fonts/BMHANNA_11yrs.woff") format("woff");
   }
   @font-face {
+    font-display: swap;
     font-family: "BMHANNAAir";
-    src: url("/fonts/BMHANNAAir_ttf.ttf") format("truetype");
+    src: url("/fonts/BMHANNAAir.woff") format("woff");
   }
 `;
 

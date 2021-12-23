@@ -1,10 +1,12 @@
+import Image from 'next/image';
 import styled from 'styled-components';
-import { Timeline, Card, Image } from 'antd';
+import { Timeline, Card } from 'antd';
 
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   font-family: BMHANNAAir;
+  justify-content: space-between;
   ${({ theme }) => theme.window.laptop} {
     width: 90%;
   }
@@ -23,17 +25,15 @@ export const Item = styled(Timeline.Item)`
   }
 `;
 
-export const CourseImage = styled.div`
-  flex: 1;
-`;
+export const CourseImage = styled.div``;
 
 export const CourseList = styled(Timeline)`
-  flex: 1;
+  margin-top: 10px;
 `;
 
 export const CardWrapper = styled(Card)`
   width: 300px;
-  height: 250px;
+  height: 200px;
   margin: 0 auto;
   & div {
     text-align: center;
@@ -46,22 +46,15 @@ export const CardWrapper = styled(Card)`
   }
 `;
 
-export const ImageReady = styled(Image)`
+export const CardImage = styled(Image)`
   width: 300px;
   height: 250px;
-
-  ${({ theme }) => theme.window.mobileS} {
-    width: 250px;
-    height: 200px;
+  ${({ theme }) => theme.window.tablet} {
+    width: 100%;
   }
-`;
-
-export const CardImage = styled.img`
-  width: 300px;
-  height: 250px;
   ${({ theme }) => theme.window.mobileS} {
-    width: 250px;
-    height: 200px;
+    // width: 250px;
+    // height: 200px;
   }
 `;
 
@@ -74,7 +67,7 @@ export const SubDetail = styled.div`
   line-height: 18px;
   & span {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 22px;
     padding: 5px;
     line-height: 25px;
     font-family: BMJUA;

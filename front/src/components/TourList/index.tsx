@@ -11,7 +11,11 @@ const TourList: React.FC<ITourList> = ({ list }) => {
   return (
     <ListWrapper>
       {list ? (
-        list.map((item) => <TourItem list={item} key={item.contentid} />)
+        Array.isArray(list) ? (
+          list.map((item) => <TourItem list={item} key={item.contentid} />)
+        ) : (
+          <TourItem list={list} />
+        )
       ) : (
         <EmptyResult>검색 결과가 없습니다.</EmptyResult>
       )}

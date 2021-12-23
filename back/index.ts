@@ -9,6 +9,11 @@ import { sequelize } from "./models";
 import userAPIRouter from "./routes/user";
 import detailAPIRouter from "./routes/detail";
 import commentAPIRouter from "./routes/comment";
+import * as hpp from "hpp";
+import * as helmet from "helmet";
+import * as morgan from "morgan";
+
+const prod = process.env.NODE_ENV === "production";
 
 const app = express();
 
@@ -21,13 +26,26 @@ sequelize
     console.error(e);
   });
 
-const corsOptions = {
+const corsDevOptions = {
+  origin: true,
+  credentials: true,
+};
+const corsProdOptions = {
   origin: true,
   credentials: true,
 };
 passportConfig();
 
-app.use(cors(corsOptions));
+if (prod) {
+  app.use(hpp());
+  app.use(helmet());
+  app.use(morgan("combined"));
+  app.use(cors(corsProdOptions));
+} else {
+  app.use(morgan("dev"));
+  app.use(cors(corsDevOptions));
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -56,6 +74,6 @@ app.use("/api/user", userAPIRouter);
 app.use("/api/comment", commentAPIRouter);
 app.use("/api/detail", detailAPIRouter);
 
-app.listen(8081, () => {
+app.listen(prod ? process.env.PORT : 8081, () => {
   console.log("server is running");
 });
