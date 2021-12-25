@@ -1,4 +1,4 @@
-import { Form } from 'antd';
+import { Button, Form } from 'antd';
 import router from 'next/router';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { DetailItemprops } from '../../modules/detail';
 import {
   ButtonWrapper,
   FormWrapper,
-  SubmitButton,
+  // SubmitButton,
   TextArea,
   TextAreaWrapper,
 } from './style';
@@ -61,9 +61,9 @@ const CommentForm: React.FC<DetailItemprops> = ({ item }) => {
             />
           </TextAreaWrapper>
           <ButtonWrapper>
-            <SubmitButton htmlType="submit" type="primary">
+            <Button htmlType="submit" type="primary">
               등록
-            </SubmitButton>
+            </Button>
           </ButtonWrapper>
         </Form>
       ) : (
@@ -72,9 +72,9 @@ const CommentForm: React.FC<DetailItemprops> = ({ item }) => {
             <TextArea rows={3} placeholder="댓글을 작성하려면 로그인 하세요." />
           </TextAreaWrapper>
           <ButtonWrapper>
-            <SubmitButton htmlType="submit" type="primary">
+            <Button htmlType="submit" type="primary">
               등록
-            </SubmitButton>
+            </Button>
           </ButtonWrapper>
         </Form>
       )}

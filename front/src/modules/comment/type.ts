@@ -3,7 +3,6 @@ import * as action from './action';
 
 // 댓글 초기값
 export interface CommentState {
-  commentInfo: CommentData | {};
   commentList: CommentData[];
   commentAdded: boolean;
   isAddingComment: boolean;
@@ -41,12 +40,14 @@ export interface CommentData {
 //  댓글 삭제
 export interface DeleteCommentPayload {
   id: number;
+  contentid: number;
 }
 
 //  댓글 수정
 export interface ModifyCommentPayload {
   id: number;
   editComment: string;
+  contentid: number;
 }
 export type ModifyCommentResponse = {
   data: ModifyCommentPayload;

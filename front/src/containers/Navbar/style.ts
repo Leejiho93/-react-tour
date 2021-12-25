@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const NavbarWrapper = styled.div`
   display: flex;
-  padding: 20px 0;
+  padding: 10px 0;
   justify-content: center;
   align-items: center;
   border-bottom: 3px solid #eeeeee;
@@ -17,7 +17,7 @@ export const NavbarWrapper = styled.div`
   ${({ theme }) => theme.window.tablet} {
     flex-direction: column;
     align-items: flex-start;
-    padding: 0;
+    // padding: 0;
   }
 `;
 
@@ -51,18 +51,13 @@ export const Logo = styled.div`
   align-items: center;
   margin-left: 30px;
   flex: 1.5;
-  & a h1 {
-    color: #ff8c15;
-    font-family: BMeuljiro;
-    font-size: 40px;
-  }
   ${({ theme }) => theme.window.laptop} {
     flex: 1;
   }
   ${({ theme }) => theme.window.tablet} {
-    & a {
-      padding: 20px 0;
-    }
+    // & a {
+    //   padding: 20px 0;
+    // }
   }
 `;
 
@@ -70,6 +65,7 @@ export const Category = styled.div<{ toggle: boolean }>`
   display: flex;
   flex: 3;
   justify-content: center;
+  // padding: 20px 0;
   & ul {
     display: flex;
   }
@@ -106,6 +102,7 @@ export const Search = styled.div`
   display: flex;
   justify-content: center;
   flex: 2;
+  // padding: 20px 0;
   ${({ theme }) => theme.window.laptop} {
     display: none;
   }

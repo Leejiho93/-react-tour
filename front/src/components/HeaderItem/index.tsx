@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
+import { Li } from './style';
 
 interface IHeadItem {
   title: string;
@@ -8,7 +9,7 @@ interface IHeadItem {
 
 const HeadItem: React.FC<IHeadItem> = ({ title, contentTypeId }) => {
   return (
-    <>
+    <Li>
       <Link
         href={{
           pathname: '/tour',
@@ -18,10 +19,10 @@ const HeadItem: React.FC<IHeadItem> = ({ title, contentTypeId }) => {
       >
         <a>
           {/* <li>{title}</li> */}
-          <li>{title}</li>
+          {title}
         </a>
       </Link>
-    </>
+    </Li>
   );
 };
 

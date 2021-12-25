@@ -9,21 +9,21 @@ interface IHotItem {
 
 const HotItem: React.FC<IHotItem> = ({ list }) => {
   const filter = list.title.match(/\[.*\]/);
+  const { contenttypeid, contentid, firstimage, title } = list;
   return (
     <>
-      <Link href={`/detail/${list.contenttypeid}/${list.contentid}`} passHref>
+      <Link href={`/detail/${contenttypeid}/${contentid}`} passHref>
         <a>
           <Wrapper>
-            <HotTitle>
-              {filter ? list.title.replace(filter[0], '') : list.title}
-            </HotTitle>
-            {list.firstimage ? (
+            <HotTitle>{filter ? title.replace(filter[0], '') : title}</HotTitle>
+            {firstimage ? (
               <HotImage
-                src={list.firstimage}
-                alt={list.title}
-                width={400}
-                height={250}
+                src={firstimage}
+                alt={title}
+                width={150}
+                height={100}
                 layout="responsive"
+                priority={true}
               />
             ) : null}
           </Wrapper>

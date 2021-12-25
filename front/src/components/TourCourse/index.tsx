@@ -73,6 +73,7 @@ const TourCourse: React.FC<DetailItemprops> = ({ item }) => {
                   alt="코스이미지"
                   width={300}
                   height={200}
+                  priority={true}
                 />
               ) : (
                 <Image

@@ -36,6 +36,12 @@ export const SearchWrapper = styled.div`
   width: 100%;
   display: flex;
   position: relative;
+  & label {
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+  }
+
   ${({ theme }) => theme.window.laptop} {
     justify-content: center;
   }

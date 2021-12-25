@@ -24,6 +24,7 @@ const TourItem: React.FC<ITourItem> = ({ list }) => {
                 width={280}
                 height={220}
                 placeholder="empty"
+                loading="eager"
               />
             ) : (
               <Image

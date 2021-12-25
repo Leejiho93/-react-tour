@@ -28,7 +28,8 @@ const Tour = ({ Component, pageProps }: AppProps) => {
             { charSet: 'UTF-8' },
             {
               name: 'viewport',
-              content: 'width=device-width, initial-scale=1, maximum-scale=1',
+              content:
+                'content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"',
             },
             {
               httpEquiv: 'X-UA-Compatible',

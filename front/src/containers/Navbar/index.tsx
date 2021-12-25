@@ -18,6 +18,7 @@ import SearchForm from '../SearchForm';
 import { MenuOutlined } from '@ant-design/icons';
 import HeadItem from '../../components/HeaderItem';
 import useToggle from '../../../utils/useToggle';
+import Image from 'next/image';
 
 const Navbar: React.FC = () => {
   const [toggle, toggleHanburger, setToggle] = useToggle(false);
@@ -38,7 +39,13 @@ const Navbar: React.FC = () => {
         <Logo onClick={closeHamburger}>
           <Link href="/">
             <a>
-              <h1>어디갈래</h1>
+              <Image
+                src="/logo.png"
+                width={130}
+                height={60}
+                alt="어디갈래"
+                priority={true}
+              />
             </a>
           </Link>
         </Logo>
@@ -57,7 +64,7 @@ const Navbar: React.FC = () => {
         </Category>
 
         <Search>
-          <SearchForm />
+          <SearchForm label="pc" />
         </Search>
 
         <Account toggle={toggle}>
@@ -80,7 +87,7 @@ const Navbar: React.FC = () => {
         </HamburgerMenu>
       </NavbarWrapper>
       <MobileSearch onClick={closeHamburger}>
-        <SearchForm />
+        <SearchForm label="mobile" />
       </MobileSearch>
     </Wrapper>
   );

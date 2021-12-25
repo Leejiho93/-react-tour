@@ -11,6 +11,14 @@ export const FormWrapper = styled.div`
 
 export const ButtonWrapper = styled(Form.Item)`
   text-align: end;
+  .ant-btn-primary {
+    background-color: #ffae59;
+    border: #1a73e8;
+    border-radius: 5px;
+    &:hover {
+      background-color: #ffb86e;
+    }
+  }
 `;
 
 export const TextAreaWrapper = styled(Form.Item)`
@@ -20,13 +28,4 @@ export const TextArea = styled.textarea`
   width: 100%;
   border-radius: 5px;
   padding: 10px;
-`;
-
-export const SubmitButton = styled(Button)`
-  background-color: #ffae59;
-  border: #1a73e8;
-  border-radius: 5px;
-  &:hover {
-    background-color: #ffb86e;
-  }
 `;

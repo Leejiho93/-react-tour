@@ -10,13 +10,14 @@ export const CardImage = styled(Image)`
 
 export const CardWrapper = styled(Card)`
   width: 300px;
-  height: 320px;
+  height: 340px;
   margin: 10px;
 `;
 
 export const CardMeta = styled(Card.Meta)`
   text-align: center;
   padding: 0px;
+
   &.ant-card-meta-title {
     font-weight: bold;
   }

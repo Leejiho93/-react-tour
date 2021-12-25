@@ -16,7 +16,6 @@ import {
 } from './action';
 import { createReducer } from 'typesafe-actions';
 const initialState: CommentState = {
-  commentInfo: {},
   commentList: [],
   commentAdded: false,
   isAddingComment: false,
@@ -35,8 +34,7 @@ const comment = createReducer(initialState, {
   [ADD_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
       draft.isAddingComment = false;
-      draft.commentInfo = action.payload;
-      draft.commentList.push(action.payload);
+      draft.commentList = action.payload;
     }),
   [ADD_COMMENT_FAILURE]: (state, action) =>
     produce(state, (draft) => {
@@ -61,10 +59,7 @@ const comment = createReducer(initialState, {
     }),
   [DELETE_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
-      const index = draft.commentList.findIndex(
-        (v) => v.id === action.payload.data
-      );
-      draft.commentList.splice(index, 1);
+      draft.commentList = action.payload;
     }),
   [DELETE_COMMENT_FAILURE]: (state, action) =>
     produce(state, (draft) => {
@@ -76,12 +71,7 @@ const comment = createReducer(initialState, {
     }),
   [MODIFY_COMMENT_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
-      const index = draft.commentList.findIndex(
-        (v) => v.id === Number(action.payload.id)
-      );
-      draft.commentList.map((c, i) => {
-        i === index ? (c.content = action.payload.editComment) : c.content;
-      });
+      draft.commentList = action.payload;
       draft.commentEditedError = false;
     }),
   [MODIFY_COMMENT_FAILURE]: (state) =>

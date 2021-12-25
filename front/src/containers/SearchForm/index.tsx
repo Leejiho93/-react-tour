@@ -4,7 +4,11 @@ import { Input, SearchButton, SearchWrapper } from './style';
 import { SearchOutlined } from '@ant-design/icons';
 import useInput from '../../../utils/useInput';
 
-const SearchForm: React.FC = () => {
+interface ISearchForm {
+  label: string;
+}
+
+const SearchForm: React.FC<ISearchForm> = ({ label }) => {
   const [search, onChangeSearch] = useInput('');
   const router = useRouter();
   const onSearch = useCallback(
@@ -24,7 +28,13 @@ const SearchForm: React.FC = () => {
     <>
       <form onSubmit={onSearch}>
         <SearchWrapper>
-          <Input value={search} onChange={onChangeSearch} />
+          <label htmlFor={`${label}-search`}></label>
+          <Input
+            type="text"
+            id={`${label}-search`}
+            value={search}
+            onChange={onChangeSearch}
+          />
           <SearchButton type="submit">
             <SearchOutlined style={{ color: 'white' }} />
           </SearchButton>

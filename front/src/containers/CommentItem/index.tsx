@@ -28,10 +28,12 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
       cancelButtonText: '취소',
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteCommentAsync.request({ id: data.id }));
+        dispatch(
+          deleteCommentAsync.request({ id: data.id, contentid: data.contentId })
+        );
       }
     });
-  }, [dispatch, data.id]);
+  }, [dispatch, data.id, data.contentId]);
 
   return (
     <>
@@ -68,6 +70,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
             text={data.content}
             id={data.id}
             toggleEdit={onToggleEdit}
+            contentid={data.contentId}
           />
         </>
       )}

@@ -27,7 +27,7 @@ export const addCommentAsync = createAsyncAction(
   ADD_COMMENT_REQUEST,
   ADD_COMMENT_SUCCESS,
   ADD_COMMENT_FAILURE
-)<AddCommentPayload, CommentData, AxiosError>();
+)<AddCommentPayload, CommentData[], AxiosError>();
 
 export const loadCommentAsync = createAsyncAction(
   LOAD_COMMENT_REQUEST,
@@ -39,10 +39,10 @@ export const deleteCommentAsync = createAsyncAction(
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE
-)<DeleteCommentPayload, DeleteCommentPayload, AxiosError>();
+)<DeleteCommentPayload, CommentData[], AxiosError>();
 
 export const modifyCommentAsync = createAsyncAction(
   MODIFY_COMMENT_REQUEST,
   MODIFY_COMMENT_SUCCESS,
   MODIFY_COMMENT_FAILURE
-)<ModifyCommentPayload, ModifyCommentPayload, AxiosError>();
+)<ModifyCommentPayload, CommentData[], AxiosError>();

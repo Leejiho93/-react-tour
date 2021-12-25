@@ -48,6 +48,7 @@ const DetailItem: React.FC<DetailItemprops> = ({ item }) => {
               width={980}
               height={800}
               layout="responsive"
+              priority={true}
             />
           )}
         </ImageWrapper>

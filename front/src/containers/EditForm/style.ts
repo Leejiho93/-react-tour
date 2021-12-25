@@ -16,4 +16,11 @@ export const CancelButton = styled(Button)`
 export const ButtonWrapper = styled.div`
   text-align: end;
   margin-bottom: 0px;
+  .ant-btn-primary {
+    background-color: #ffae59;
+    border: #1a73e8;
+    border-radius: 5px;
+    &:hover {
+      background-color: #ffb86e;
+    }
 `;

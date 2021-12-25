@@ -7,15 +7,15 @@ const router = express.Router();
 
 router.post(`/:id`, isLoggedIn, async (req, res, next) => {
   try {
-    const newComment = await Comment.create({
+    await Comment.create({
       contentId: req.params.id,
       UserId: req.user!.id,
       content: req.body.content,
     });
 
-    const comment = await Comment.findOne({
+    const comments = await Comment.findAll({
       where: {
-        id: newComment.id,
+        contentId: req.params.id,
       },
       include: [
         {
@@ -25,7 +25,7 @@ router.post(`/:id`, isLoggedIn, async (req, res, next) => {
       ],
     });
 
-    return res.json(comment);
+    return res.json(comments);
   } catch (e) {
     console.error(e);
     return next(e);
@@ -53,24 +53,46 @@ router.get(`/:id`, async (req, res, next) => {
   }
 });
 
-router.delete(`/:id`, isLoggedIn, async (req, res, next) => {
+router.delete(`/:id/:contentid`, isLoggedIn, async (req, res, next) => {
   try {
     await Comment.destroy({ where: { id: req.params.id } });
-    return res.send(req.params.id);
+
+    const comments = await Comment.findAll({
+      where: {
+        contentId: req.params.contentid,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ["id", "nickname"],
+        },
+      ],
+    });
+    return res.json(comments);
   } catch (e) {
     console.error(e);
     return next(e);
   }
 });
 
-router.put("/:id", isLoggedIn, async (req, res, next) => {
+router.put("/:id/:contentid", isLoggedIn, async (req, res, next) => {
   try {
     await Comment.update(
       { content: req.body.content },
       { where: { id: req.params.id } }
     );
-
-    return res.send({ id: req.params.id, editComment: req.body.content });
+    const comments = await Comment.findAll({
+      where: {
+        contentId: req.params.contentid,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ["id", "nickname"],
+        },
+      ],
+    });
+    return res.json(comments);
   } catch (e) {
     console.error(e);
     return next(e);

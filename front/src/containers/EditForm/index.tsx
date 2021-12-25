@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
-import { Form } from 'antd';
-import {
-  FormWrapper,
-  SubmitButton,
-  TextArea,
-  TextAreaWrapper,
-} from '../CommentForm/style';
+import { Button, Form } from 'antd';
+import { FormWrapper, TextArea, TextAreaWrapper } from '../CommentForm/style';
 import { CancelButton, ButtonWrapper } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { modifyCommentAsync } from '../../modules/comment';
@@ -17,9 +12,15 @@ interface EditFormProps {
   text: string;
   id: number;
   toggleEdit: () => void;
+  contentid: number;
 }
 
-const EditForm: React.FC<EditFormProps> = ({ text, id, toggleEdit }) => {
+const EditForm: React.FC<EditFormProps> = ({
+  text,
+  id,
+  toggleEdit,
+  contentid,
+}) => {
   const [input, onChangeInput] = useInput(text);
 
   const dispatch = useDispatch();
@@ -41,9 +42,9 @@ const EditForm: React.FC<EditFormProps> = ({ text, id, toggleEdit }) => {
         icon: 'warning',
       });
     }
-    dispatch(modifyCommentAsync.request({ id: id, editComment: input }));
+    dispatch(modifyCommentAsync.request({ id, editComment: input, contentid }));
     toggleEdit();
-  }, [input, id, dispatch, toggleEdit]);
+  }, [input, id, dispatch, toggleEdit, contentid]);
   return (
     <FormWrapper>
       <Form onFinish={onSubmit}>
@@ -55,9 +56,9 @@ const EditForm: React.FC<EditFormProps> = ({ text, id, toggleEdit }) => {
             placeholder="댓글을 입력하세요."
           />
           <ButtonWrapper>
-            <SubmitButton htmlType="submit" type="primary">
+            <Button htmlType="submit" type="primary">
               수정
-            </SubmitButton>
+            </Button>
             <CancelButton onClick={toggleEdit}>취소</CancelButton>
           </ButtonWrapper>
         </TextAreaWrapper>
