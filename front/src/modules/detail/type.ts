@@ -81,7 +81,7 @@ export interface SearchItem {
   title: string;
 }
 
-// 지역기반 검색
+// 지역기반
 export interface RegionPayload {
   arrange?: string;
   areaCode?: number;
@@ -146,9 +146,7 @@ export interface DetailData {
   pageNo: number;
   totalCount: number;
 }
-// export interface DetailPropsItem {
-//   item: IDetailItem[];
-// }
+
 export interface DetailItemprops {
   item: IDetailItem;
 }
@@ -192,9 +190,7 @@ export interface TourInfo {
 }
 
 // 상세정보 sub
-export interface TourSpotProps {
-  intro: TourSpot;
-}
+
 export interface TourSpot {
   contentId: number;
   contentTypeId: number;
@@ -215,9 +211,6 @@ export interface TourSpot {
   heritage3?: number;
 }
 
-// export interface TourCultureProps {
-//   intro: TourCulture;
-// }
 export interface TourCulture {
   contentId: number;
   contentTypeId: number;
@@ -236,9 +229,6 @@ export interface TourCulture {
   spendtime?: string;
 }
 
-export interface TourEventProps {
-  intro: TourEvent;
-}
 export interface TourEvent {
   contentId: number;
   contentTypeId: number;
@@ -262,9 +252,6 @@ export interface TourEvent {
   usetimefestival?: string;
 }
 
-export interface TourCourseProps {
-  intro: TourCourse;
-}
 export interface TourCourse {
   contentId: number;
   contentTypeId: number;
@@ -275,9 +262,6 @@ export interface TourCourse {
   theme?: string;
 }
 
-export interface TourSportsProps {
-  intro: TourSports;
-}
 export interface TourSports {
   contentId: number;
   contentTypeId: number;
@@ -297,9 +281,6 @@ export interface TourSports {
   usetimeleports?: string;
 }
 
-export interface TourSleepProps {
-  intro: TourSleep;
-}
 export interface TourSleep {
   contentId: number;
   contentTypeId: number;
@@ -335,9 +316,6 @@ export interface TourSleep {
   refundregulation?: string;
 }
 
-export interface TourMallProps {
-  intro: TourMall;
-}
 export interface TourMall {
   contentId: number;
   contentTypeId: number;
@@ -358,9 +336,6 @@ export interface TourMall {
   shopguide?: string;
 }
 
-export interface TourFoodProps {
-  intro: TourFood;
-}
 export interface TourFood {
   contentId: number;
   contentTypeId: number;

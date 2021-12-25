@@ -41,7 +41,6 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
         <CommentStyle
           mine={id === data.UserId ? 1 : 0}
           actions={[
-            // <span key="comment-nested-reply-to">답글</span>,
             id === data.UserId ? (
               <span onClick={onToggleEdit} key="comment-modify">
                 수정

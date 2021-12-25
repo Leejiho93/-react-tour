@@ -49,8 +49,5 @@ export interface ModifyCommentPayload {
   editComment: string;
   contentid: number;
 }
-export type ModifyCommentResponse = {
-  data: ModifyCommentPayload;
-};
 
 export type CommentAction = ActionType<typeof action>;
