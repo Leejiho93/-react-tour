@@ -31,7 +31,7 @@ const corsDevOptions = {
   credentials: true,
 };
 const corsProdOptions = {
-  origin: true,
+  origin: /wdywg\.site$/,
   credentials: true,
 };
 passportConfig();
@@ -58,7 +58,6 @@ app.use(
       httpOnly: true,
       secure: false,
       maxAge: 1000 * 60 * 60,
-      // sameSite: "none",
     },
     name: "dqpsa",
   })

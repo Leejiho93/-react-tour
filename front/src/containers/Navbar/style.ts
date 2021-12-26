@@ -84,7 +84,6 @@ export const Category = styled.div<{ toggle: boolean }>`
     }
     & ul li {
       margin-left: 0;
-      padding: 12px 5px;
       width: 100%;
       text-align: center;
       &:hover {
@@ -92,6 +91,7 @@ export const Category = styled.div<{ toggle: boolean }>`
       }
     }
     & a {
+      padding: 12px 5px;
       margin-left: 0;
       font-size: 22px;
     }

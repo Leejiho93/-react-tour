@@ -37,7 +37,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
             },
             {
               name: 'description',
-              content: '대한민국 관광 소개 사이트',
+              content: '대한민국 관광지 소개',
             },
             {
               name: 'og:title',
@@ -45,11 +45,15 @@ const Tour = ({ Component, pageProps }: AppProps) => {
             },
             {
               name: 'og:description',
-              content: '대한민국 관광 소개 사이트',
+              content: '대한민국 관광지 소개',
             },
             {
               property: 'og:type',
               content: 'website',
+            },
+            {
+              property: 'og:image',
+              content: 'https://wdywg.site/favicon.ico',
             },
           ]}
           link={[

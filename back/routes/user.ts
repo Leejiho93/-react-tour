@@ -9,7 +9,6 @@ const router = express.Router();
 
 // 내정보
 router.get("/", isLoggedIn, (req, res) => {
-  console.log("loaduser 실행");
   const user = req.user!.toJSON() as User;
   return res.json(user);
 });
@@ -55,12 +54,10 @@ router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       console.error(err);
-      console.log("login err: ", err);
       return next(err);
     }
     if (info) {
       console.error(info);
-      console.log("info: ", info);
       return res.status(401).send(info.message);
     }
     return req.login(user, async (loginErr) => {
