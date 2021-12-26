@@ -10,7 +10,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from '../../styles/theme';
 import GlobalStyle from '../../styles/GlobalStyle';
 import Layout from '../components/Layout';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import 'antd/dist/antd.css';
 
 export interface SagaStore extends Store {
