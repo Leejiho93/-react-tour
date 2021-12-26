@@ -6,5 +6,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "typeRoots": ["./types"]
-  }
+  },
+  "include": [".sequelizerc"]
 }
