@@ -75,5 +75,5 @@ app.use("/api/comment", commentAPIRouter);
 app.use("/api/detail", detailAPIRouter);
 
 app.listen(prod ? process.env.PORT : 8081, () => {
-  console.log("server is running");
+  console.log(`server is running on ${process.env.PORT}`);
 });
