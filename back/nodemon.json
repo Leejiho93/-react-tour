@@ -8,6 +8,6 @@
     "nodemon.json"
   ],
   "exec": "ts-node index.ts",
-  "ext": "ts json",
+  "ext": "js json",
   "ignore": [".git", "node_modules", "dist"]
 }
