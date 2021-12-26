@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "start": "tsc &&  pm2 start index.js"
+    "start": "tsc && cross-env NODE_ENV=production pm2 start index.js"
   },
   "keywords": [],
   "author": "",
