@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "cross-env ANALYZE=true NODE_ENV=production next build",
-    "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production PORT=80 pm2 next start",
     "lint": "next lint"
   },
