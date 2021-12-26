@@ -31,7 +31,8 @@ const corsDevOptions = {
   credentials: true,
 };
 const corsProdOptions = {
-  origin: /wdywg\.site$/,
+  // origin: /wdywg\.site$/,
+  origin: true,
   credentials: true,
 };
 passportConfig();
