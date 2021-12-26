@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
-    "build": "cross-env ANALYZE=true next build",
+    "dev": "next dev",
+    "build": "cross-env ANALYZE=true NODE_ENV=production next build",
     "prestart": "npm run build",
-    "start": "cross-env NODE_ENV=production PORT=80 pm2 start server",
+    "start": "cross-env NODE_ENV=production PORT=80 pm2 start server.js",
     "lint": "next lint"
   },
   "dependencies": {
