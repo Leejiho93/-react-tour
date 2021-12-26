@@ -6,9 +6,7 @@ class Comment extends Model {
   public id!: number;
   public contentId!: number;
   public content!: string;
-  //   public addComment!: HasManyAddAssociationMixin<Comment, number>;
   public readonly User?: User;
-  //   public readonly Comments?: Comment[];
 }
 
 Comment.init(
