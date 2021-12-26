@@ -7,7 +7,10 @@ const env =
   "development";
 // const env = prod ? "production" : "development";
 const { database, username, password } = config[env];
-const sequelize = new Sequelize(database, username, password, config[env]);
+// const sequelize = new Sequelize(database, username, password, config[env]);
+const sequelize = new Sequelize(database, username, password, {
+  dialect: "mysql",
+});
 
 export { sequelize };
 export default sequelize;
