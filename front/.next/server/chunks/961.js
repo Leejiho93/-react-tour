@@ -611,7 +611,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-(external_axios_default()).defaults.baseURL = `http://localhost:8081/api`;
+const backUrl =  true ? `http://13.124.28.44` : 0;
+(external_axios_default()).defaults.baseURL = `${backUrl}/api`;
 (external_axios_default()).defaults.withCredentials = true;
 
 const rootReducer = (state, action) => {
