@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import config from "../config/config";
+import config from "../config";
 
 const env =
   (process.env.NODE_ENV as "production" | "test" | "development") ||
