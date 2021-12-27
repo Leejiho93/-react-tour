@@ -12,7 +12,11 @@ import { IUserReducerState } from './user/reducer';
 import { ICommentReducerState } from './comment/reducer';
 import { IDetailReducerState } from './detail/reducer';
 
-axios.defaults.baseURL = `http://localhost:8081/api`;
+const backUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'http://13.124.28.44'
+    : `http://localhost:8081/api`;
+axios.defaults.baseURL = backUrl;
 axios.defaults.withCredentials = true;
 
 export interface IReducerState {
