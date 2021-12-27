@@ -14,7 +14,7 @@ import { IDetailReducerState } from './detail/reducer';
 
 const backUrl =
   process.env.NODE_ENV === 'production'
-    ? `http://13.124.28.44`
+    ? 'http://api.wdywg.site'
     : `http://localhost:8081`;
 axios.defaults.baseURL = `${backUrl}/api`;
 axios.defaults.withCredentials = true;
