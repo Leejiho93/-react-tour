@@ -611,7 +611,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-const backUrl =  true ? `http://13.124.28.44` : 0;
+const backUrl =  true ? 'http://api.wdywg.site' : 0;
 (external_axios_default()).defaults.baseURL = `${backUrl}/api`;
 (external_axios_default()).defaults.withCredentials = true;
 
