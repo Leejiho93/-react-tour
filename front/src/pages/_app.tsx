@@ -53,7 +53,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
             },
             {
               property: 'og:image',
-              content: 'https://wdywg.site/favicon.ico',
+              content: 'http://wdywg.site/favicon.ico',
             },
           ]}
           link={[
