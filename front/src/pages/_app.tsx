@@ -25,8 +25,6 @@ const Tour = ({ Component, pageProps }: AppProps) => {
         <Head>
           <title>어디갈래</title>
           <meta charSet="utf-8" />
-          {/* <meta httpEquiv="content-type" content="text/html" charSet="UTF-8" /> */}
-          {/* <meta httpEquiv="X-UA-Compatible" /> */}
           <meta name="description" content="대한민국 관광지 소개" />
           <meta
             name="viewport"
@@ -37,25 +35,6 @@ const Tour = ({ Component, pageProps }: AppProps) => {
           <meta property="og:type" content="website" />
           <meta property="og:image" content="http://wdywg.site/og.png" />
         </Head>
-        {/* <Helmet>
-          <title>어디갈래</title>
-          <meta charSet="UTF-8" />
-          <meta httpEquiv="X-UA-Compatible" />
-          <meta name="description" content="대한민국 관광지 소개" />
-          <meta
-            name="viewport"
-            content='width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"'
-          />
-          <meta property="og:title" content="어디갈래" />
-          <meta property="og:description" content="대한민국 관광지 소개" />
-          <meta property="og:type" content="website" />
-          <meta property="og:image" content="http://wdywg.site/og.png" />
-          <link rel="shortcut icon" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
-          />
-        </Helmet> */}
         <GlobalStyle />
         <Layout>
           <Component {...pageProps} />
