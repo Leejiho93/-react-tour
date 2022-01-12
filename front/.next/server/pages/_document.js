@@ -85,8 +85,6 @@ class MyDocument extends next_document.default {
         children: [this.props.styles, /*#__PURE__*/jsx_runtime_.jsx("meta", {
           charSet: "utf-8"
         }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          httpEquiv: "X-UA-Compatible"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
           name: "description",
           content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
         }), /*#__PURE__*/jsx_runtime_.jsx("meta", {

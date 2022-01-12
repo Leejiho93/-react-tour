@@ -25,7 +25,8 @@ const Tour = ({ Component, pageProps }: AppProps) => {
         <Head>
           <title>어디갈래</title>
           <meta charSet="utf-8" />
-          <meta httpEquiv="X-UA-Compatible" />
+          {/* <meta httpEquiv="content-type" content="text/html" charSet="UTF-8" /> */}
+          {/* <meta httpEquiv="X-UA-Compatible" /> */}
           <meta name="description" content="대한민국 관광지 소개" />
           <meta
             name="viewport"
