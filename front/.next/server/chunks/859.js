@@ -972,7 +972,7 @@ class Head extends _react.Component {
 
 }
 
-exports.Head = Head;
+__webpack_unused_export__ = Head;
 Head.contextType = _utils.HtmlContext;
 
 function Main() {

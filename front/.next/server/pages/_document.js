@@ -74,7 +74,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_0__.default {
     const bodyAttrs = bodyAttributes.toComponent();
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(next_document__WEBPACK_IMPORTED_MODULE_0__.Html, _objectSpread(_objectSpread({}, htmlAttrs), {}, {
       lang: "ko",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(next_document__WEBPACK_IMPORTED_MODULE_0__.Head, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("head", {
         children: [this.props.styles, Object.values(helmet).map(el => el.toComponent())]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("body", _objectSpread(_objectSpread({}, bodyAttrs), {}, {
         children: [/*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx(next_document__WEBPACK_IMPORTED_MODULE_0__.Main, {}), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx(next_document__WEBPACK_IMPORTED_MODULE_0__.NextScript, {})]
