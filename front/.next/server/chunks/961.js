@@ -1075,7 +1075,7 @@ const Tour = ({
           content: "website"
         }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
           property: "og:image",
-          content: "http://wdywg.site/favicon.ico"
+          content: "http://wdywg.site/og.png"
         }), /*#__PURE__*/jsx_runtime_.jsx("link", {
           rel: "shortcut icon"
         }), /*#__PURE__*/jsx_runtime_.jsx("link", {
