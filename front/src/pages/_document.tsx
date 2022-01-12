@@ -54,14 +54,14 @@ class MyDocument extends Document<Props> {
       <Html {...htmlAttrs} lang="ko">
         <Head>
           {this.props.styles}
-          {/* {Object.values(helmet).map((el) => el.toComponent())} */}
-          <title>어디갈래</title>
+          {Object.values(helmet).map((el) => el.toComponent())}
+          {/* <title>어디갈래</title>
           <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" />
           <meta name="description" content="대한민국 관광지 소개" />
           <meta
             name="viewport"
-            content='content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"'
+            content='width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"'
           />
           <meta property="og:title" content="어디갈래" />
           <meta property="og:description" content="대한민국 관광지 소개" />
@@ -71,7 +71,7 @@ class MyDocument extends Document<Props> {
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
-          />
+          /> */}
         </Head>
         <body {...bodyAttrs}>
           <Main />
