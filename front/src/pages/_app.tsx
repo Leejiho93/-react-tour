@@ -11,6 +11,7 @@ import theme from '../../styles/theme';
 import GlobalStyle from '../../styles/GlobalStyle';
 import Layout from '../components/Layout';
 import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import 'antd/dist/antd.css';
 
 export interface SagaStore extends Store {
@@ -21,7 +22,10 @@ const Tour = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Helmet>
+        <Head>
+          <title>어디갈래</title>
+        </Head>
+        {/* <Helmet>
           <title>어디갈래</title>
           <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" />
@@ -39,7 +43,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
           />
-        </Helmet>
+        </Helmet> */}
         <GlobalStyle />
         <Layout>
           <Component {...pageProps} />

@@ -5,20 +5,27 @@ exports.id = 660;
 exports.ids = [660];
 exports.modules = {
 
-/***/ 7485:
+/***/ 7323:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6859);
-/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6481);
-/* harmony import */ var react_helmet__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_helmet__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9914);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5282);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ _document)
+});
+
+// EXTERNAL MODULE: ./node_modules/next/document.js
+var next_document = __webpack_require__(6859);
+;// CONCATENATED MODULE: external "react-helmet"
+const external_react_helmet_namespaceObject = require("react-helmet");
+var external_react_helmet_default = /*#__PURE__*/__webpack_require__.n(external_react_helmet_namespaceObject);
+// EXTERNAL MODULE: external "styled-components"
+var external_styled_components_ = __webpack_require__(9914);
+// EXTERNAL MODULE: external "react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(5282);
+;// CONCATENATED MODULE: ./src/pages/_document.tsx
 const _excluded = ["htmlAttributes", "bodyAttributes"];
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -38,22 +45,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_0__.default {
+class MyDocument extends next_document.default {
   static async getInitialProps(ctx) {
-    const sheet = new styled_components__WEBPACK_IMPORTED_MODULE_2__.ServerStyleSheet();
+    const sheet = new external_styled_components_.ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () => originalRenderPage({
-        enhanceApp: App => props => sheet.collectStyles( /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-          children: /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx(App, _objectSpread({}, props))
+        enhanceApp: App => props => sheet.collectStyles( /*#__PURE__*/jsx_runtime_.jsx(jsx_runtime_.Fragment, {
+          children: /*#__PURE__*/jsx_runtime_.jsx(App, _objectSpread({}, props))
         }))
       });
 
-      const initialProps = await next_document__WEBPACK_IMPORTED_MODULE_0__.default.getInitialProps(ctx);
+      const initialProps = await next_document.default.getInitialProps(ctx);
       return _objectSpread(_objectSpread({}, initialProps), {}, {
-        helmet: react_helmet__WEBPACK_IMPORTED_MODULE_1___default().renderStatic(),
-        styles: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+        helmet: external_react_helmet_default().renderStatic(),
+        styles: /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
           children: [initialProps.styles, sheet.getStyleElement()]
         })
       });
@@ -72,19 +79,46 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_0__.default {
 
     const htmlAttrs = htmlAttributes.toComponent();
     const bodyAttrs = bodyAttributes.toComponent();
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(next_document__WEBPACK_IMPORTED_MODULE_0__.Html, _objectSpread(_objectSpread({}, htmlAttrs), {}, {
+    return /*#__PURE__*/(0,jsx_runtime_.jsxs)(next_document.Html, _objectSpread(_objectSpread({}, htmlAttrs), {}, {
       lang: "ko",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(next_document__WEBPACK_IMPORTED_MODULE_0__.Head, {
-        children: [this.props.styles, Object.values(helmet).map(el => el.toComponent())]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("body", _objectSpread(_objectSpread({}, bodyAttrs), {}, {
-        children: [/*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx(next_document__WEBPACK_IMPORTED_MODULE_0__.Main, {}), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx(next_document__WEBPACK_IMPORTED_MODULE_0__.NextScript, {})]
+      children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(next_document.Head, {
+        children: [this.props.styles, /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          charSet: "UTF-8"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          httpEquiv: "X-UA-Compatible"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          name: "description",
+          content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          name: "viewport",
+          content: "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes,viewport-fit=cover"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          property: "og:title",
+          content: "\uC5B4\uB514\uAC08\uB798"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          property: "og:description",
+          content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          property: "og:type",
+          content: "website"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          property: "og:image",
+          content: "http://wdywg.site/og.png"
+        }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+          rel: "shortcut icon"
+        }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
+        })]
+      }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("body", _objectSpread(_objectSpread({}, bodyAttrs), {}, {
+        children: [/*#__PURE__*/jsx_runtime_.jsx(next_document.Main, {}), /*#__PURE__*/jsx_runtime_.jsx(next_document.NextScript, {})]
       }))]
     }));
   }
 
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyDocument);
+/* harmony default export */ const _document = (MyDocument);
 
 /***/ }),
 
@@ -137,13 +171,6 @@ module.exports = require("react");
 
 /***/ }),
 
-/***/ 6481:
-/***/ ((module) => {
-
-module.exports = require("react-helmet");
-
-/***/ }),
-
 /***/ 5282:
 /***/ ((module) => {
 
@@ -172,7 +199,7 @@ module.exports = require("styled-jsx/server");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [859], () => (__webpack_exec__(7485)));
+var __webpack_exports__ = __webpack_require__.X(0, [859], () => (__webpack_exec__(7323)));
 module.exports = __webpack_exports__;
 
 })();

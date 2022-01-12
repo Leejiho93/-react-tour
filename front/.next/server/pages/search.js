@@ -277,6 +277,13 @@ module.exports = require("next/dist/shared/lib/utils.js");
 
 /***/ }),
 
+/***/ 701:
+/***/ ((module) => {
+
+module.exports = require("next/head");
+
+/***/ }),
+
 /***/ 6731:
 /***/ ((module) => {
 
@@ -288,13 +295,6 @@ module.exports = require("next/router");
 /***/ ((module) => {
 
 module.exports = require("react");
-
-/***/ }),
-
-/***/ 6481:
-/***/ ((module) => {
-
-module.exports = require("react-helmet");
 
 /***/ }),
 
