@@ -21,7 +21,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Helmet
+        {/* <Helmet
           title="어디갈래"
           htmlAttributes={{ lang: 'ko' }}
           meta={[
@@ -66,7 +66,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
               href: 'https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap',
             },
           ]}
-        />
+        /> */}
         <GlobalStyle />
         <Layout>
           <Component {...pageProps} />

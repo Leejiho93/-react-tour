@@ -1013,8 +1013,6 @@ const Layout = ({
 };
 
 /* harmony default export */ const components_Layout = (Layout);
-// EXTERNAL MODULE: external "react-helmet"
-var external_react_helmet_ = __webpack_require__(6481);
 // EXTERNAL MODULE: ./node_modules/antd/dist/antd.css
 var antd = __webpack_require__(4722);
 ;// CONCATENATED MODULE: ./src/pages/_app.tsx
@@ -1040,7 +1038,6 @@ function _app_defineProperty(obj, key, value) { if (key in obj) { Object.defineP
 
 
 
-
 const Tour = ({
   Component,
   pageProps
@@ -1048,43 +1045,7 @@ const Tour = ({
   return /*#__PURE__*/jsx_runtime_.jsx(jsx_runtime_.Fragment, {
     children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_styled_components_.ThemeProvider, {
       theme: styles_theme,
-      children: [/*#__PURE__*/jsx_runtime_.jsx(external_react_helmet_.Helmet, {
-        title: "\uC5B4\uB514\uAC08\uB798",
-        htmlAttributes: {
-          lang: 'ko'
-        },
-        meta: [{
-          charSet: 'UTF-8'
-        }, {
-          name: 'viewport',
-          content: 'content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"'
-        }, {
-          httpEquiv: 'X-UA-Compatible',
-          content: 'IE=edge'
-        }, {
-          name: 'description',
-          content: '대한민국 관광지 소개'
-        }, {
-          property: 'og:title',
-          content: '어디갈래'
-        }, {
-          property: 'og:description',
-          content: '대한민국 관광지 소개'
-        }, {
-          property: 'og:type',
-          content: 'website'
-        }, {
-          property: 'og:image',
-          content: 'http://wdywg.site/favicon.ico'
-        }],
-        link: [{
-          rel: 'shortcut icon',
-          href: '/favicon.ico'
-        }, {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap'
-        }]
-      }), /*#__PURE__*/jsx_runtime_.jsx(styles_GlobalStyle, {}), /*#__PURE__*/jsx_runtime_.jsx(components_Layout, {
+      children: [/*#__PURE__*/jsx_runtime_.jsx(styles_GlobalStyle, {}), /*#__PURE__*/jsx_runtime_.jsx(components_Layout, {
         children: /*#__PURE__*/jsx_runtime_.jsx(Component, _app_objectSpread({}, pageProps))
       })]
     })
