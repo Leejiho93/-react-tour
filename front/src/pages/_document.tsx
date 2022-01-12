@@ -55,6 +55,11 @@ class MyDocument extends Document<Props> {
         <Head>
           {this.props.styles}
           {/* {Object.values(helmet).map((el) => el.toComponent())} */}
+          <title>어디갈래</title>
+          <meta property="og:title" content="어디갈래" />
+          <meta property="og:description" content="대한민국 관광지 소개" />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="http://wdywg.site/favicon.ico" />
         </Head>
         <body {...bodyAttrs}>
           <Main />

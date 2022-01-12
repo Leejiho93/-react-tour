@@ -40,11 +40,11 @@ const Tour = ({ Component, pageProps }: AppProps) => {
               content: '대한민국 관광지 소개',
             },
             {
-              name: 'og:title',
+              property: 'og:title',
               content: '어디갈래',
             },
             {
-              name: 'og:description',
+              property: 'og:description',
               content: '대한민국 관광지 소개',
             },
             {
