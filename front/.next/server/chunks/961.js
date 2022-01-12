@@ -1048,42 +1048,40 @@ const Tour = ({
   return /*#__PURE__*/jsx_runtime_.jsx(jsx_runtime_.Fragment, {
     children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_styled_components_.ThemeProvider, {
       theme: styles_theme,
-      children: [/*#__PURE__*/jsx_runtime_.jsx(external_react_helmet_.Helmet, {
-        title: "\uC5B4\uB514\uAC08\uB798",
-        htmlAttributes: {
-          lang: 'ko'
-        },
-        meta: [{
-          charSet: 'UTF-8'
-        }, {
-          name: 'viewport',
-          content: 'content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"'
-        }, {
-          httpEquiv: 'X-UA-Compatible',
-          content: 'IE=edge'
-        }, {
-          name: 'description',
-          content: '대한민국 관광지 소개'
-        }, {
-          property: 'og:title',
-          content: '어디갈래'
-        }, {
-          property: 'og:description',
-          content: '대한민국 관광지 소개'
-        }, {
-          property: 'og:type',
-          content: 'website'
-        }, {
-          property: 'og:image',
-          content: 'http://wdywg.site/favicon.ico'
-        }],
-        link: [{
-          rel: 'shortcut icon',
-          href: '/favicon.ico'
-        }, {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap'
-        }]
+      children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(external_react_helmet_.Helmet, {
+        children: [/*#__PURE__*/jsx_runtime_.jsx("title", {
+          children: "\uC5B4\uB514\uAC08\uB798"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          charSet: "utf-8"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          name: "viewport",
+          content: "content=\"width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86\""
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          httpEquiv: "X-UA-Compatible"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          name: "description",
+          content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          name: "viewport",
+          content: "width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86\""
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          property: "og:title",
+          content: "\uC5B4\uB514\uAC08\uB798"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          property: "og:description",
+          content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          property: "og:type",
+          content: "website"
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          property: "og:image",
+          content: "http://wdywg.site/favicon.ico"
+        }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+          rel: "shortcut icon"
+        }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
+        })]
       }), /*#__PURE__*/jsx_runtime_.jsx(styles_GlobalStyle, {}), /*#__PURE__*/jsx_runtime_.jsx(components_Layout, {
         children: /*#__PURE__*/jsx_runtime_.jsx(Component, _app_objectSpread({}, pageProps))
       })]
