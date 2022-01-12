@@ -1052,10 +1052,7 @@ const Tour = ({
         children: [/*#__PURE__*/jsx_runtime_.jsx("title", {
           children: "\uC5B4\uB514\uAC08\uB798"
         }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          charSet: "utf-8"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          name: "viewport",
-          content: "content=\"width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86\""
+          charSet: "UTF-8"
         }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
           httpEquiv: "X-UA-Compatible"
         }), /*#__PURE__*/jsx_runtime_.jsx("meta", {

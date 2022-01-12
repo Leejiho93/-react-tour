@@ -23,11 +23,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <Helmet>
           <title>어디갈래</title>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content='content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"'
-          />
+          <meta charSet="UTF-8" />
           <meta httpEquiv="X-UA-Compatible" />
           <meta name="description" content="대한민국 관광지 소개" />
           <meta
