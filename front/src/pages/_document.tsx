@@ -56,12 +56,12 @@ class MyDocument extends Document<Props> {
           {this.props.styles}
           {/* {Object.values(helmet).map((el) => el.toComponent())} */}
           {/* <title>어디갈래</title> */}
-          <meta charSet="UTF-8" />
+          <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" />
           <meta name="description" content="대한민국 관광지 소개" />
           <meta
             name="viewport"
-            content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=yes,viewport-fit=cover"
+            content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
           />
           <meta property="og:title" content="어디갈래" />
           <meta property="og:description" content="대한민국 관광지 소개" />
