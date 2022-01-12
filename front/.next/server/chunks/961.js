@@ -1075,7 +1075,7 @@ const Tour = ({
           content: 'website'
         }, {
           property: 'og:image',
-          content: 'https://wdywg.site/favicon.ico'
+          content: 'http://wdywg.site/favicon.ico'
         }],
         link: [{
           rel: 'shortcut icon',
