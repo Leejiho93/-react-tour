@@ -52,10 +52,10 @@ class MyDocument extends Document<Props> {
 
     return (
       <Html {...htmlAttrs} lang="ko">
-        <head>
+        <Head>
           {this.props.styles}
-          {Object.values(helmet).map((el) => el.toComponent())}
-        </head>
+          {/* {Object.values(helmet).map((el) => el.toComponent())} */}
+        </Head>
         <body {...bodyAttrs}>
           <Main />
           <NextScript />

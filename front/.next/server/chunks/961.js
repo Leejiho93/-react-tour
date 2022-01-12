@@ -1066,7 +1066,7 @@ const Tour = ({
           content: '대한민국 관광지 소개'
         }, {
           name: 'og:title',
-          content: '어디갈래?'
+          content: '어디갈래'
         }, {
           name: 'og:description',
           content: '대한민국 관광지 소개'

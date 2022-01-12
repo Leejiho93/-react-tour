@@ -41,7 +41,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
             },
             {
               name: 'og:title',
-              content: '어디갈래?',
+              content: '어디갈래',
             },
             {
               name: 'og:description',
