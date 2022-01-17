@@ -24,7 +24,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <Head>
           <title>어디갈래</title>
-          <meta charSet="utf-8" />
+          {/* <meta charSet="utf-8" />
           <meta name="description" content="대한민국 관광지 소개" />
           <meta
             name="viewport"
@@ -33,7 +33,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
           <meta property="og:title" content="어디갈래" />
           <meta property="og:description" content="대한민국 관광지 소개" />
           <meta property="og:type" content="website" />
-          <meta property="og:image" content="http://wdywg.site/og.png" />
+          <meta property="og:image" content="http://wdywg.site/og.png" /> */}
         </Head>
         <GlobalStyle />
         <Layout>

@@ -1049,30 +1049,10 @@ const Tour = ({
   return /*#__PURE__*/jsx_runtime_.jsx(jsx_runtime_.Fragment, {
     children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_styled_components_.ThemeProvider, {
       theme: styles_theme,
-      children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)((head_default()), {
-        children: [/*#__PURE__*/jsx_runtime_.jsx("title", {
+      children: [/*#__PURE__*/jsx_runtime_.jsx((head_default()), {
+        children: /*#__PURE__*/jsx_runtime_.jsx("title", {
           children: "\uC5B4\uB514\uAC08\uB798"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          charSet: "utf-8"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          name: "description",
-          content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          name: "viewport",
-          content: "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          property: "og:title",
-          content: "\uC5B4\uB514\uAC08\uB798"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          property: "og:description",
-          content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          property: "og:type",
-          content: "website"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          property: "og:image",
-          content: "http://wdywg.site/og.png"
-        })]
+        })
       }), /*#__PURE__*/jsx_runtime_.jsx(styles_GlobalStyle, {}), /*#__PURE__*/jsx_runtime_.jsx(components_Layout, {
         children: /*#__PURE__*/jsx_runtime_.jsx(Component, _app_objectSpread({}, pageProps))
       })]

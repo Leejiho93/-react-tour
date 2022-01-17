@@ -26,12 +26,6 @@ var external_styled_components_ = __webpack_require__(9914);
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(5282);
 ;// CONCATENATED MODULE: ./src/pages/_document.tsx
-const _excluded = ["htmlAttributes", "bodyAttributes"];
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -70,48 +64,45 @@ class MyDocument extends next_document.default {
   }
 
   render() {
-    const _this$props$helmet = this.props.helmet,
-          {
-      htmlAttributes,
-      bodyAttributes
-    } = _this$props$helmet,
-          helmet = _objectWithoutProperties(_this$props$helmet, _excluded);
-
-    const htmlAttrs = htmlAttributes.toComponent();
-    const bodyAttrs = bodyAttributes.toComponent();
-    return /*#__PURE__*/(0,jsx_runtime_.jsxs)(next_document.Html, _objectSpread(_objectSpread({}, htmlAttrs), {}, {
-      lang: "ko",
-      children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(next_document.Head, {
-        children: [this.props.styles, /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          charSet: "utf-8"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          name: "description",
-          content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          name: "viewport",
-          content: "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          property: "og:title",
-          content: "\uC5B4\uB514\uAC08\uB798"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          property: "og:description",
-          content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          property: "og:type",
-          content: "website"
-        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-          property: "og:image",
-          content: "http://wdywg.site/og.png"
-        }), /*#__PURE__*/jsx_runtime_.jsx("link", {
-          rel: "shortcut icon"
-        }), /*#__PURE__*/jsx_runtime_.jsx("link", {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
+    // const { htmlAttributes, bodyAttributes, ...helmet } = this.props.helmet;
+    // const htmlAttrs = htmlAttributes.toComponent();
+    // const bodyAttrs = bodyAttributes.toComponent();
+    return (
+      /*#__PURE__*/
+      // <Html {...htmlAttrs} lang="ko">
+      (0,jsx_runtime_.jsxs)(next_document.Html, {
+        children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(next_document.Head, {
+          children: [this.props.styles, /*#__PURE__*/jsx_runtime_.jsx("meta", {
+            charSet: "utf-8"
+          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+            name: "description",
+            content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
+          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+            name: "viewport",
+            content: "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
+          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+            property: "og:title",
+            content: "\uC5B4\uB514\uAC08\uB798"
+          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+            property: "og:description",
+            content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
+          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+            property: "og:type",
+            content: "website"
+          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+            property: "og:image",
+            content: "http://wdywg.site/og.png"
+          }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+            rel: "shortcut icon"
+          }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
+          })]
+        }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("body", {
+          children: [/*#__PURE__*/jsx_runtime_.jsx(next_document.Main, {}), /*#__PURE__*/jsx_runtime_.jsx(next_document.NextScript, {})]
         })]
-      }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("body", _objectSpread(_objectSpread({}, bodyAttrs), {}, {
-        children: [/*#__PURE__*/jsx_runtime_.jsx(next_document.Main, {}), /*#__PURE__*/jsx_runtime_.jsx(next_document.NextScript, {})]
-      }))]
-    }));
+      })
+    );
   }
 
 }
