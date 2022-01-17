@@ -71,26 +71,11 @@ class MyDocument extends next_document.default {
       /*#__PURE__*/
       // <Html {...htmlAttrs} lang="ko">
       (0,jsx_runtime_.jsxs)(next_document.Html, {
+        lang: "ko",
         children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(next_document.Head, {
-          children: [this.props.styles, /*#__PURE__*/jsx_runtime_.jsx("meta", {
-            name: "description",
-            content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
-          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-            name: "viewport",
-            content: "width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
-          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-            property: "og:title",
-            content: "\uC5B4\uB514\uAC08\uB798"
-          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-            property: "og:description",
-            content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
-          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-            property: "og:type",
-            content: "website"
-          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
-            property: "og:image",
-            content: "http://wdywg.site/og.png"
-          }), /*#__PURE__*/jsx_runtime_.jsx("link", {
+          children: [/*#__PURE__*/jsx_runtime_.jsx("meta", {
+            charSet: "UTF-8"
+          }), this.props.styles, "s", /*#__PURE__*/jsx_runtime_.jsx("link", {
             rel: "shortcut icon"
           }), /*#__PURE__*/jsx_runtime_.jsx("link", {
             rel: "stylesheet",

@@ -52,11 +52,11 @@ class MyDocument extends Document<Props> {
 
     return (
       // <Html {...htmlAttrs} lang="ko">
-      <Html>
+      <Html lang="ko">
         <Head>
-          {this.props.styles}
-          {/* <meta charSet="UTF-8" /> */}
-          <meta name="description" content="대한민국 관광지 소개" />
+          <meta charSet="UTF-8" />
+          {this.props.styles}s
+          {/* <meta name="description" content="대한민국 관광지 소개" />
           <meta
             name="viewport"
             content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
@@ -64,7 +64,7 @@ class MyDocument extends Document<Props> {
           <meta property="og:title" content="어디갈래" />
           <meta property="og:description" content="대한민국 관광지 소개" />
           <meta property="og:type" content="website" />
-          <meta property="og:image" content="http://wdywg.site/og.png" />
+          <meta property="og:image" content="http://wdywg.site/og.png" /> */}
           <link rel="shortcut icon" />
           <link
             rel="stylesheet"
