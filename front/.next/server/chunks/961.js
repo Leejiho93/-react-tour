@@ -1049,10 +1049,12 @@ const Tour = ({
   return /*#__PURE__*/jsx_runtime_.jsx(jsx_runtime_.Fragment, {
     children: /*#__PURE__*/(0,jsx_runtime_.jsxs)(external_styled_components_.ThemeProvider, {
       theme: styles_theme,
-      children: [/*#__PURE__*/jsx_runtime_.jsx((head_default()), {
-        children: /*#__PURE__*/jsx_runtime_.jsx("title", {
+      children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)((head_default()), {
+        children: [/*#__PURE__*/jsx_runtime_.jsx("title", {
           children: "\uC5B4\uB514\uAC08\uB798"
-        })
+        }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
+          charSet: "UTF-8"
+        })]
       }), /*#__PURE__*/jsx_runtime_.jsx(styles_GlobalStyle, {}), /*#__PURE__*/jsx_runtime_.jsx(components_Layout, {
         children: /*#__PURE__*/jsx_runtime_.jsx(Component, _app_objectSpread({}, pageProps))
       })]

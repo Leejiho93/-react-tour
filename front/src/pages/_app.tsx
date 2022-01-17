@@ -24,6 +24,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={theme}>
         <Head>
           <title>어디갈래</title>
+          <meta charSet="UTF-8" />
           {/* <meta charSet="utf-8" />
           <meta name="description" content="대한민국 관광지 소개" />
           <meta

@@ -55,7 +55,7 @@ class MyDocument extends Document<Props> {
       <Html>
         <Head>
           {this.props.styles}
-          <meta charSet="utf-8" />
+          {/* <meta charSet="UTF-8" /> */}
           <meta name="description" content="대한민국 관광지 소개" />
           <meta
             name="viewport"

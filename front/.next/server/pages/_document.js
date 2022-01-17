@@ -73,8 +73,6 @@ class MyDocument extends next_document.default {
       (0,jsx_runtime_.jsxs)(next_document.Html, {
         children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)(next_document.Head, {
           children: [this.props.styles, /*#__PURE__*/jsx_runtime_.jsx("meta", {
-            charSet: "utf-8"
-          }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
             name: "description",
             content: "\uB300\uD55C\uBBFC\uAD6D \uAD00\uAD11\uC9C0 \uC18C\uAC1C"
           }), /*#__PURE__*/jsx_runtime_.jsx("meta", {
