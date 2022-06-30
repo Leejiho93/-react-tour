@@ -46,13 +46,12 @@ class MyDocument extends Document<Props> {
   }
 
   render() {
-    // const { htmlAttributes, bodyAttributes, ...helmet } = this.props.helmet;
-    // const htmlAttrs = htmlAttributes.toComponent();
-    // const bodyAttrs = bodyAttributes.toComponent();
+    const { htmlAttributes, bodyAttributes, ...helmet } = this.props.helmet;
+    const htmlAttrs = htmlAttributes.toComponent();
+    const bodyAttrs = bodyAttributes.toComponent();
 
     return (
-      // <Html {...htmlAttrs} lang="ko">
-      <Html lang="ko">
+      <Html {...htmlAttrs} lang="ko">
         <Head>
           <meta charSet="UTF-8" />
           {this.props.styles}
@@ -71,8 +70,7 @@ class MyDocument extends Document<Props> {
             href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap"
           />
         </Head>
-        {/* <body {...bodyAttrs}> */}
-        <body>
+        <body {...bodyAttrs}>
           <Main />
           <NextScript />
         </body>

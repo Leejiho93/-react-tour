@@ -1,34 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![메인](https://user-images.githubusercontent.com/63515344/176602132-27390831-28c0-448e-af08-a153b2bf3885.png)
 
-## Getting Started
+즐거운 여행을 위해 인기 관광지를 제공해주는 사이트입니다.
 
-First, run the development server:
+## 🔗Link
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+[어디갈래](http://www.wdywg.site/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+테스트용
+아이디: test123
+비밀번호: 1q2w3e4r!
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 🛠 사용 기술
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- front-end: `typescript` `next.js` `redux` `redux-saga` `styled-components`
+- back-end: `express` `sequelize(mysql)`
+- server: `aws ec2`
+- apis: `한국관광공사_국문 관광정보 서비스` `kakao maps`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### 🏷️ 구현 기능
 
-## Learn More
+- 로그인, 회원가입
+- 카테고리별 관광지
+- 검색 기능
+- 정렬 (인기순, 최신순)
+- 댓글 추가, 수정, 삭제
+- 카카오맵을 이용한 길찾기
+- 반응형, 스켈레톤
+- custom hooks (input, toggle)
 
-To learn more about Next.js, take a look at the following resources:
+### 💡성능최적화
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 폰트 ttf에서 woff로 변환
+- meta tag를 추가해 SEO 개선
+- usecallback을 통한 렌더링 최적화
+- next/image로 이미지 최적화
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Lighthouse 개선
 
-## Deploy on Vercel
+![3-2](https://user-images.githubusercontent.com/63515344/176602283-39d193f4-0d59-4180-ba56-06a7eb9c0f0f.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![last](https://user-images.githubusercontent.com/63515344/176602344-f80f3f1e-6f1b-45c1-8c78-01c685e19dc3.png)
