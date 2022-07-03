@@ -2,13 +2,14 @@
 
 즐거운 여행을 위해 인기 관광지를 제공해주는 사이트입니다.
 
-## 🔗Link
+#### 🔗Link
 
 [어디갈래](http://www.wdywg.site/)
 
-테스트용
-아이디: test123
-비밀번호: 1q2w3e4r!
+##### 🔒 테스트용 계정
+
+- 아이디: test123
+- 비밀번호: 1q2w3e4r!
 
 ### 🛠 사용 기술
 
@@ -35,8 +36,8 @@
 - usecallback을 통한 렌더링 최적화
 - next/image로 이미지 최적화
 
-### Lighthouse 개선
+#### Lighthouse 개선
 
-![3-2](https://user-images.githubusercontent.com/63515344/176602283-39d193f4-0d59-4180-ba56-06a7eb9c0f0f.png)
+![before](https://user-images.githubusercontent.com/63515344/176900482-c893e5d6-71ba-4805-b2cc-5e9ff1705d91.png)
 
-![last](https://user-images.githubusercontent.com/63515344/176602344-f80f3f1e-6f1b-45c1-8c78-01c685e19dc3.png)
+![after](https://user-images.githubusercontent.com/63515344/176900498-c3d006aa-529d-4c44-9c54-45e4ce2a6446.png)
