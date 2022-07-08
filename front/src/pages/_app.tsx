@@ -8,9 +8,8 @@ import { applyMiddleware, compose, createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../styles/theme';
-import GlobalStyle from '../../styles/GlobalStyle';
+import fontFace from '../../styles/fontFace';
 import Layout from '../components/Layout';
-import { Helmet } from 'react-helmet';
 import Head from 'next/head';
 import 'antd/dist/antd.css';
 
@@ -23,20 +22,13 @@ const Tour = ({ Component, pageProps }: AppProps) => {
     <>
       <ThemeProvider theme={theme}>
         <Head>
-          <meta charSet="UTF-8" />
+          <style>{fontFace}</style>
           <title>어디갈래</title>
-          <meta name="description" content="대한민국 관광지 소개" />
           <meta
             name="viewport"
             content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
           />
-          <meta property="og:title" content="어디갈래" />
-          <meta property="og:description" content="대한민국 관광지 소개" />
-          <meta property="og:type" content="website" />
-          <meta property="og:image" content="http://wdywg.site/og.png" />
-          <link rel="shortcut icon" />
         </Head>
-        <GlobalStyle />
         <Layout>
           <Component {...pageProps} />
         </Layout>

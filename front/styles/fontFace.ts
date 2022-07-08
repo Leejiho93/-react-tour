@@ -1,7 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-const GlobalStyle = createGlobalStyle`
+export const fontFace = `
   ${reset}
   @font-face {
     font-display: swap;
@@ -28,4 +27,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default GlobalStyle;
+export default fontFace;
