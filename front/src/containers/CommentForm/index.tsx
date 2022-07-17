@@ -58,6 +58,7 @@ const CommentForm: React.FC<DetailItemprops> = ({ item }) => {
               onChange={onChangeCommentText}
               value={commentText}
               placeholder="댓글을 입력하세요."
+              maxLength={350}
             />
           </TextAreaWrapper>
           <ButtonWrapper>
