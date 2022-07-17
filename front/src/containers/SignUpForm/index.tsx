@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useCallback } from 'react';
 import Router from 'next/router';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { signupAsync, signupReset } from '../../modules/user';
@@ -12,11 +11,10 @@ import {
   SignupLabel,
   SignupPassword,
   Title,
-  ValidationError,
   Wrapper,
 } from './style';
 import { SubWrapper, ButtonWrapper } from '../LoginForm/style';
-import { Form } from 'antd';
+import { Form, Input } from 'antd';
 import Link from 'next/link';
 import { UserOutlined, LockOutlined, SmileOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2';
@@ -24,10 +22,11 @@ import useInput from '../../../utils/useInput';
 
 const SignUpForm: React.FC = () => {
   const [id, onChangeId] = useInput('');
-  const [password, onChangePassword] = useInput('');
+  const [password, setPassword] = React.useState('');
   const [nickname, onChangeNickname] = useInput('');
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
-
+  const [validate, setValidate] = React.useState(false);
+  const passwordRef = React.useRef<HTMLInputElement>(null);
+  const nicknameRef = React.useRef<Input>(null);
   const dispatch = useDispatch();
 
   const { me, isSignedup, isSigningup, signupError } = useSelector(
@@ -59,24 +58,29 @@ const SignUpForm: React.FC = () => {
     }
   }, [isSignedup, dispatch]);
 
-  const onSubmit = useCallback(() => {
-    const checkPassword = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
-    if (!checkPassword.test(password)) {
-      return setPasswordErrorMessage(
-        '8~20자의 영문자, 숫자, 특수문자를 사용하세요.'
-      );
-    } else {
-      setPasswordErrorMessage('');
+  React.useEffect(() => {
+    if (signupError === '이미 사용중인 닉네임입니다.') {
+      nicknameRef.current && nicknameRef.current.focus();
     }
+  }, [signupError]);
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const regex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/g;
+    regex.test(e.target.value) ? setValidate(true) : setValidate(false);
+    setPassword(e.target.value);
+  };
 
-    dispatch(
-      signupAsync.request({
-        userId: id,
-        password,
-        nickname,
-      })
-    );
-  }, [id, password, nickname, dispatch]);
+  const onSubmit = useCallback(() => {
+    validate
+      ? dispatch(
+          signupAsync.request({
+            userId: id,
+            password,
+            nickname,
+          })
+        )
+      : passwordRef.current && passwordRef.current.focus();
+  }, [id, password, nickname, validate, dispatch]);
   return (
     <Wrapper>
       <Title>회원가입</Title>
@@ -106,10 +110,15 @@ const SignUpForm: React.FC = () => {
             value={password}
             onChange={onChangePassword}
             placeholder="비밀번호"
+            maxLength={20}
+            ref={passwordRef}
           />
         </SignupLabel>
-        <ValidationError>{passwordErrorMessage}</ValidationError>
-
+        {password === '' ? null : validate ? null : (
+          <p>
+            비밀번호는 8~20글자이고, 숫자,문자,특수문자 모두 포함해야합니다.
+          </p>
+        )}
         <SignupLabel
           name="nickname"
           rules={[{ required: true, message: '닉네임를 입력해주세요.' }]}
@@ -120,6 +129,7 @@ const SignUpForm: React.FC = () => {
             onChange={onChangeNickname}
             id="nickname"
             placeholder="닉네임"
+            ref={nicknameRef}
           />
         </SignupLabel>
         <ButtonWrapper>

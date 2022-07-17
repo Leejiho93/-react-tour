@@ -54,6 +54,7 @@ const EditForm: React.FC<EditFormProps> = ({
             onChange={onChangeInput}
             value={input}
             placeholder="댓글을 입력하세요."
+            maxLength={200}
           />
           <ButtonWrapper>
             <Button htmlType="submit" type="primary">

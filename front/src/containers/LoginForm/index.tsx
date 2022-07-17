@@ -20,13 +20,23 @@ import useInput from '../../../utils/useInput';
 
 const LoginForm: React.FC = () => {
   const [id, onChangeId] = useInput('');
-  const [password, onChangePassword] = useInput('');
+  const [password, setPassword] = React.useState('');
+  const [validate, setValidate] = React.useState(false);
+  const passwordRef = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
   const { loginError } = useSelector((state: RootState) => state.user);
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const regex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/g;
+    regex.test(e.target.value) ? setValidate(true) : setValidate(false);
+    setPassword(e.target.value);
+  };
   const onSubmit = React.useCallback(() => {
-    dispatch(loginAsync.request({ userId: id, password }));
-  }, [id, password, dispatch]);
+    validate
+      ? dispatch(loginAsync.request({ userId: id, password }))
+      : passwordRef.current && passwordRef.current.focus();
+  }, [id, password, validate, dispatch]);
 
   return (
     <Wrapper>
@@ -55,9 +65,15 @@ const LoginForm: React.FC = () => {
             value={password}
             onChange={onChangePassword}
             placeholder="비밀번호"
+            maxLength={20}
+            ref={passwordRef}
           />
         </LoginLabel>
-
+        {password === '' ? null : validate ? null : (
+          <p>
+            비밀번호는 8~20글자이고, 숫자,문자,특수문자 모두 포함해야합니다.
+          </p>
+        )}
         <ButtonWrapper>
           <LoginButton htmlType="submit">로그인 </LoginButton>
         </ButtonWrapper>
