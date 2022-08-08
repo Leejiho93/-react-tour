@@ -141,7 +141,7 @@ export interface DetailResponse {
   data: DetailData;
 }
 export interface DetailData {
-  items: { item: IDetailItem | null };
+  items: { item: [IDetailItem] };
   numOfRows: number;
   pageNo: number;
   totalCount: number;

@@ -32,15 +32,14 @@ const Detail: NextPage<IReducerState> = ({ detail }) => {
       })
     );
   }, [contentId, contentTypeId, dispatch]);
-
   useEffect(() => {
     dispatch(loadCommentAsync.request({ contentId: Number(contentId) }));
   }, [contentId, dispatch]);
   return (
     <DtailWrapper>
-      {item ? <DetailItem item={item} /> : <DetailSkeleton />}
+      {item ? <DetailItem item={item[0]} /> : <DetailSkeleton />}
       {<CommentList data={commentList} />}
-      {item && <CommentForm item={item} />}
+      {item && <CommentForm item={item[0]} />}
     </DtailWrapper>
   );
 };

@@ -10,8 +10,7 @@ router.get("/search", async (req, res, next) => {
   const pageNo = req.query.pageNo;
   const keyword = encodeURIComponent(req.query.search as string);
   const arrange = `&arrange=${encodeURIComponent(req.query.arrange as string)}`;
-  const url = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchKeyword?ServiceKey=${process.env.SERVICEKEY_E}&numOfRows=12&pageNo=${pageNo}${arrange}&MobileOS=ETC&MobileApp=Test
-  &keyword=${keyword}`;
+  const url = `https://apis.data.go.kr/B551011/KorService/searchKeyword?ServiceKey=${process.env.SERVICEKEY_E}&numOfRows=12&pageNo=${pageNo}${arrange}&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&keyword=${keyword}`;
   try {
     const response = await axios.get(url);
 
@@ -27,9 +26,9 @@ router.get("/search", async (req, res, next) => {
 router.get("/:contenttypeid/:contentid", async (req, res, next) => {
   const contentId = encodeURIComponent(req.params.contentid as string);
   const contentTypeId = encodeURIComponent(req.params.contenttypeid as string);
-  const url = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=${process.env.SERVICEKEY_E}&contentId=${contentId}&contentTypeId=${contentTypeId}&MobileOS=ETC&MobileApp=Test&defaultYN=Y&firstImageYN=Y&overviewYN=Y&addrinfoYN=Y&mapinfoYN=Y`;
-  const intro = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailIntro?ServiceKey=${process.env.SERVICEKEY_E}&contentId=${contentId}&contentTypeId=${contentTypeId}&MobileOS=ETC&MobileApp=Test&defaultYN=Y&firstImageYN=Y&overviewYN=Y&addrinfoYN=Y&mapinfoYN=Y`;
-  const info = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailInfo?ServiceKey=${process.env.SERVICEKEY_E}&contentId=${contentId}&contentTypeId=${contentTypeId}&MobileOS=ETC&MobileApp=Test`;
+  const url = `https://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=${process.env.SERVICEKEY_E}&contentId=${contentId}&contentTypeId=${contentTypeId}&MobileOS=ETC&MobileApp=AppTest&_type=json&defaultYN=Y&firstImageYN=Y&overviewYN=Y&addrinfoYN=Y&mapinfoYN=Y`;
+  const intro = `https://apis.data.go.kr/B551011/KorService/detailIntro?ServiceKey=${process.env.SERVICEKEY_E}&contentId=${contentId}&contentTypeId=${contentTypeId}&MobileOS=ETC&MobileApp=AppTest&_type=json`;
+  const info = `https://apis.data.go.kr/B551011/KorService/detailInfo?ServiceKey=${process.env.SERVICEKEY_E}&contentId=${contentId}&contentTypeId=${contentTypeId}&MobileOS=ETC&MobileApp=AppTest&_type=json`;
   try {
     const response = await axios.get(url);
     const responseIntro = await axios.get(intro);
@@ -56,7 +55,7 @@ router.get("/region", async (req, res, next) => {
   const numOfRows = req.query.numOfRows
     ? `&numOfRows=${req.query.numOfRows}`
     : "&numOfRows=12";
-  const url = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=${process.env.SERVICEKEY_E}${arrange}${areaCode}${contentTypeId}&MobileOS=ETC&MobileApp=Test${numOfRows}&pageNo=${pageNo}`;
+  const url = `https://apis.data.go.kr/B551011/KorService/areaBasedList?ServiceKey=${process.env.SERVICEKEY_E}${arrange}${areaCode}${contentTypeId}&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y${numOfRows}&pageNo=${pageNo}`;
   try {
     const response = await axios.get(url);
     const data = response.data.response.body;
@@ -68,9 +67,9 @@ router.get("/region", async (req, res, next) => {
 });
 
 router.get("/all", async (req, res, next) => {
-  const area = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=${process.env.SERVICEKEY_E}&MobileOS=ETC&MobileApp=Test&numOfRows=6&arrange=P&contentTypeId=12`;
-  const event = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchFestival?ServiceKey=${process.env.SERVICEKEY_E}&MobileOS=ETC&MobileApp=Test&numOfRows=6&arrange=P`;
-  const sleep = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/searchStay?ServiceKey=${process.env.SERVICEKEY_E}&MobileOS=ETC&MobileApp=Test&numOfRows=6&arrange=P`;
+  const area = `https://apis.data.go.kr/B551011/KorService/areaBasedList?serviceKey=${process.env.SERVICEKEY_E}&numOfRows=6&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=P&contentTypeId=12`;
+  const event = `https://apis.data.go.kr/B551011/KorService/searchFestival?serviceKey=${process.env.SERVICEKEY_E}&numOfRows=6&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=P&eventStartDate=20220101`;
+  const sleep = `https://apis.data.go.kr/B551011/KorService/searchStay?serviceKey=${process.env.SERVICEKEY_E}&numOfRows=6&pageNo=1&MobileOS=ETC&MobileApp=AppTest&_type=json&listYN=Y&arrange=P`;
   try {
     const regionData = await axios.get(area);
     const eventData = await axios.get(event);
