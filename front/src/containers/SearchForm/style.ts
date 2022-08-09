@@ -11,8 +11,7 @@ export const Input = styled.input`
   height: 45px;
   outline: none;
   font-weight: bold;
-  font-family: BMHANNAAir;
-  font-size: 18px;
+  font-size: 15px;
   letter-spacing: 1px;
   ${({ theme }) => theme.window.laptop} {
   }
@@ -30,6 +29,11 @@ export const SearchButton = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 0 15px 15px 0;
+  & span {
+    color: #fff;
+    font-size: 20px;
+    margin-top: 5px;
+  }
 `;
 
 export const SearchWrapper = styled.div`

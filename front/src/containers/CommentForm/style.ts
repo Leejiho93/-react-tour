@@ -28,4 +28,6 @@ export const TextArea = styled.textarea`
   width: 100%;
   border-radius: 5px;
   padding: 10px;
+  resize: none;
+  outline: none;
 `;

@@ -17,7 +17,6 @@ export const NavbarWrapper = styled.div`
   ${({ theme }) => theme.window.tablet} {
     flex-direction: column;
     align-items: flex-start;
-    // padding: 0;
   }
 `;
 
@@ -47,17 +46,15 @@ export const MobileSearch = styled.div`
 
 export const Logo = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  margin-left: 30px;
   flex: 1.5;
   ${({ theme }) => theme.window.laptop} {
-    flex: 1;
   }
   ${({ theme }) => theme.window.tablet} {
-    // & a {
-    //   padding: 20px 0;
-    // }
+    & div {
+      left: 30px;
+    }
   }
 `;
 
@@ -65,7 +62,6 @@ export const Category = styled.div<{ toggle: boolean }>`
   display: flex;
   flex: 3;
   justify-content: center;
-  // padding: 20px 0;
   & ul {
     display: flex;
   }
@@ -98,11 +94,21 @@ export const Category = styled.div<{ toggle: boolean }>`
   }
 `;
 
+export const Ul = styled.ul`
+  margin-bottom: 0;
+  margin-top: 15px;
+  ${({ theme }) => theme.window.laptop} {
+    margin-right: 60px;
+  }
+  ${({ theme }) => theme.window.tablet} {
+    margin-right: 0px;
+  }
+`;
+
 export const Search = styled.div`
   display: flex;
   justify-content: center;
   flex: 2;
-  // padding: 20px 0;
   ${({ theme }) => theme.window.laptop} {
     display: none;
   }
@@ -110,37 +116,15 @@ export const Search = styled.div`
 
 export const Account = styled.div<{ toggle: boolean }>`
   display: flex;
-  flex: 1;
-  justify-content: flex-end;
+  flex: 0.5;
+  justify-content: center;
+  font-size: 28px;
   & a {
-    font-size: 15px;
-    color: #fff;
-    background-color: #1a73e8;
-    padding: 10px 12px;
-    border-radius: 20px;
-    margin-right: 30px;
-    &:hover {
-      background-color: #2b7de9;
-    }
+    color: #000;
   }
   ${({ theme }) => theme.window.tablet} {
     display: ${(props) => (props.toggle ? 'flex' : 'none')};
     width: 100%;
-    justify-content: center;
-    & a {
-      width: 100%;
-      border-radius: 0;
-      text-align: center;
-      color: #000;
-      background-color: #fff;
-      padding: 12px 5px;
-      font-family: BMJUA;
-      font-size: 22px;
-      margin-right: 0px;
-      &:hover {
-        background-color: #e2e2e2;
-      }
-    }
   }
 `;
 

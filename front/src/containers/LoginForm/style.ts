@@ -2,12 +2,10 @@ import { Button, Form, Input } from 'antd';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  height: 80vh;
-  width: 500px;
+  width: 420px;
   padding: 30px;
-  margin: 0 auto;
-  margin-top: 100px;
-  // border: 1px solid #000;
+  margin: 30px auto;
+  border: 1px solid #d9d9d9;
   ${({ theme }) => theme.window.mobileL} {
     width: 100%;
     margin: 0 auto;
@@ -16,11 +14,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
-  margin-top: 50px;
+  margin: 20px 0 50px;
   text-align: center;
   font-size: 40px;
-  margin-bottom: 60px;
-  font-family: BMJUA;
+  font-weight: bold;
   color: #000;
 `;
 
@@ -43,18 +40,30 @@ export const LoginPassword = styled(Input.Password)`
 export const ButtonWrapper = styled.div`
   width: 100%;
   text-align: end;
-  margin-bottom: 20px;
+  margin: 10px 0 20px;
 `;
 
 export const LoginButton = styled(Button)`
   width: 100%;
-  height: 40px;
-  background-color: #1a73e8;
-  border-radius: 5px;
+  height: 45px;
+  background-color: #fea939;
+  border-radius: 20px;
   color: #fff;
+  outline: 0;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
 
   &:hover {
-    background-color: #1890ff;
+    background-color: #feb139;
+    color: #fff;
+  }
+  &:active {
+    background-color: #feb139;
+    color: #fff;
+  }
+  &:focus {
+    background-color: #feb139;
     color: #fff;
   }
 `;
@@ -71,4 +80,11 @@ export const LoginError = styled.div`
   text-align: center;
   margin-bottom: 30px;
   color: red;
+`;
+
+export const SNSForm = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
 `;
