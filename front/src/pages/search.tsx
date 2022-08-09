@@ -10,6 +10,7 @@ import {
   TitleWrapper,
   Wrapper,
 } from '../../styles/common';
+import Layout from '../components/Layout';
 import SortBox from '../components/SortBox';
 import TourList from '../components/TourList';
 import { RootState } from '../modules';
@@ -51,26 +52,28 @@ const Search: React.FC = () => {
   }, [search, pageNo, arrange, dispatch]);
 
   return (
-    <Wrapper>
-      <TitleWrapper>
-        <Title>{search}</Title>
-      </TitleWrapper>
+    <Layout>
+      <Wrapper>
+        <TitleWrapper>
+          <Title>{search}</Title>
+        </TitleWrapper>
 
-      <SortBox arrange={arrange} sortHot={sortHot} sortRecent={sortRecent} />
-      <div>
-        <Spin spinning={loading}>
-          <TourList list={item} />
-        </Spin>
+        <SortBox arrange={arrange} sortHot={sortHot} sortRecent={sortRecent} />
+        <div>
+          <Spin spinning={loading}>
+            <TourList list={item} />
+          </Spin>
 
-        <PaginationCustom
-          total={totalCount}
-          showSizeChanger={false}
-          defaultPageSize={12}
-          onChange={onChange}
-          current={pageNo}
-        />
-      </div>
-    </Wrapper>
+          <PaginationCustom
+            total={totalCount}
+            showSizeChanger={false}
+            defaultPageSize={12}
+            onChange={onChange}
+            current={pageNo}
+          />
+        </div>
+      </Wrapper>
+    </Layout>
   );
 };
 

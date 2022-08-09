@@ -17,10 +17,7 @@ const HeadItem: React.FC<IHeadItem> = ({ title, contentTypeId }) => {
         }}
         as={`/tour?title=${title}&contentTypeId=${contentTypeId}`}
       >
-        <a>
-          {/* <li>{title}</li> */}
-          {title}
-        </a>
+        <a>{title}</a>
       </Link>
     </Li>
   );

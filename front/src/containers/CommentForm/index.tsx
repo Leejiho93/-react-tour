@@ -7,13 +7,7 @@ import useInput from '../../../utils/useInput';
 import { RootState } from '../../modules';
 import { addCommentAsync } from '../../modules/comment';
 import { DetailItemprops } from '../../modules/detail';
-import {
-  ButtonWrapper,
-  FormWrapper,
-  // SubmitButton,
-  TextArea,
-  TextAreaWrapper,
-} from './style';
+import { ButtonWrapper, FormWrapper, TextArea, TextAreaWrapper } from './style';
 
 const CommentForm: React.FC<DetailItemprops> = ({ item }) => {
   const [commentText, onChangeCommentText, setCommentText] = useInput('');
@@ -58,7 +52,8 @@ const CommentForm: React.FC<DetailItemprops> = ({ item }) => {
               onChange={onChangeCommentText}
               value={commentText}
               placeholder="댓글을 입력하세요."
-              maxLength={350}
+              maxLength={400}
+              required
             />
           </TextAreaWrapper>
           <ButtonWrapper>

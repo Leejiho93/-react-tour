@@ -14,6 +14,7 @@ import {
   Ul,
   Wrapper,
 } from '../../styles/common';
+import Layout from '../components/Layout';
 import SortBox from '../components/SortBox';
 import TourList from '../components/TourList';
 import { RootState } from '../modules';
@@ -96,43 +97,45 @@ const Tour: React.FC = () => {
     setArrange('Q');
   }, []);
   return (
-    <Wrapper>
-      <TitleWrapper>
-        <Title>{title}</Title>
-      </TitleWrapper>
+    <Layout>
+      <Wrapper>
+        <TitleWrapper>
+          <Title>{title}</Title>
+        </TitleWrapper>
 
-      <Select>
-        <Ul>
-          {areaArray.map((item) => (
-            <Li
-              className={item[1] === areaCode ? 'active' : ''}
-              onClick={changeAreaCode(item[1])}
-              key={item[0]}
-            >
-              {item[0]}
-            </Li>
-          ))}
-        </Ul>
-      </Select>
+        <Select>
+          <Ul>
+            {areaArray.map((item) => (
+              <Li
+                className={item[1] === areaCode ? 'active' : ''}
+                onClick={changeAreaCode(item[1])}
+                key={item[0]}
+              >
+                {item[0]}
+              </Li>
+            ))}
+          </Ul>
+        </Select>
 
-      <SortBox arrange={arrange} sortHot={sortHot} sortRecent={sortRecent} />
-      <div>
-        {loading ? (
-          <Spin spinning={true}>
-            <NullPage />
-          </Spin>
-        ) : (
-          <TourList list={data.items.item} />
-        )}
-        <PaginationCustom
-          total={data.totalCount}
-          showSizeChanger={false}
-          onChange={onChange}
-          defaultPageSize={12}
-          current={pageNo}
-        />
-      </div>
-    </Wrapper>
+        <SortBox arrange={arrange} sortHot={sortHot} sortRecent={sortRecent} />
+        <div>
+          {loading ? (
+            <Spin spinning={true}>
+              <NullPage />
+            </Spin>
+          ) : (
+            <TourList list={data.items.item} />
+          )}
+          <PaginationCustom
+            total={data.totalCount}
+            showSizeChanger={false}
+            onChange={onChange}
+            defaultPageSize={12}
+            current={pageNo}
+          />
+        </div>
+      </Wrapper>
+    </Layout>
   );
 };
 

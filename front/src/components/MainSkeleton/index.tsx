@@ -1,27 +1,15 @@
 import * as React from 'react';
-import { ImageSkeleton, SkeletonBox, Wrapper } from './style';
+import { ImageSkeleton, Wrapper } from './style';
 
 const MainSkelton: React.FC = () => {
   return (
     <Wrapper>
-      <SkeletonBox>
-        <ImageSkeleton />
-      </SkeletonBox>
-      <SkeletonBox>
-        <ImageSkeleton />
-      </SkeletonBox>
-      <SkeletonBox>
-        <ImageSkeleton />
-      </SkeletonBox>
-      <SkeletonBox>
-        <ImageSkeleton />
-      </SkeletonBox>
-      <SkeletonBox>
-        <ImageSkeleton />
-      </SkeletonBox>
-      <SkeletonBox>
-        <ImageSkeleton />
-      </SkeletonBox>
+      <ImageSkeleton />
+      <ImageSkeleton />
+      <ImageSkeleton />
+      <ImageSkeleton />
+      <ImageSkeleton />
+      <ImageSkeleton />
     </Wrapper>
   );
 };

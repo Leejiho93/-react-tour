@@ -102,7 +102,15 @@ const SignUpForm: React.FC = () => {
 
         <SignupLabel
           name="password"
-          rules={[{ required: true, message: '비밀번호를 입력해주세요.' }]}
+          rules={[
+            { required: true, message: '비밀번호를 입력해주세요.' },
+            {
+              pattern:
+                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/g,
+              message:
+                '비밀번호는 8~20글자이고, 숫자,문자,특수문자 모두 포함해야합니다.',
+            },
+          ]}
         >
           <SignupPassword
             prefix={<LockOutlined />}
@@ -114,11 +122,7 @@ const SignUpForm: React.FC = () => {
             ref={passwordRef}
           />
         </SignupLabel>
-        {password === '' ? null : validate ? null : (
-          <p>
-            비밀번호는 8~20글자이고, 숫자,문자,특수문자 모두 포함해야합니다.
-          </p>
-        )}
+
         <SignupLabel
           name="nickname"
           rules={[{ required: true, message: '닉네임를 입력해주세요.' }]}

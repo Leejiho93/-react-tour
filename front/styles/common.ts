@@ -162,3 +162,10 @@ export const DtailWrapper = styled.div`
     width: 100%;
   }
 `;
+
+// 로그인 회원가입
+export const FormTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 100px 0 0;
+`;

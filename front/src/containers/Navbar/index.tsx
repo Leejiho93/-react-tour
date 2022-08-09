@@ -10,19 +10,23 @@ import {
   Wrapper,
   HamburgerMenu,
   LogoutButton,
+  Ul,
 } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { logoutAsync } from '../../modules/user';
 import SearchForm from '../SearchForm';
-import { MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined, UserOutlined, DownOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Space, Avatar } from 'antd';
 import HeadItem from '../../components/HeaderItem';
 import useToggle from '../../../utils/useToggle';
 import Image from 'next/image';
+import useInput from '../../../utils/useInput';
 
 const Navbar: React.FC = () => {
   const [toggle, toggleHanburger, setToggle] = useToggle(false);
   const { me } = useSelector((state: RootState) => state.user);
+  const [search, onChangeSearch, setSearch] = useInput('');
   const dispatch = useDispatch();
   const onClickLogout = React.useCallback(() => {
     dispatch(logoutAsync.request());
@@ -41,7 +45,7 @@ const Navbar: React.FC = () => {
             <a>
               <Image
                 src="/logo.png"
-                width={130}
+                width={137}
                 height={60}
                 alt="어디갈래"
                 priority={true}
@@ -51,7 +55,7 @@ const Navbar: React.FC = () => {
         </Logo>
 
         <Category toggle={toggle} onClick={toggleHanburger}>
-          <ul>
+          <Ul>
             <HeadItem title="관광지" contentTypeId={12} />
             <HeadItem title="문화시설" contentTypeId={14} />
             <HeadItem title="축제" contentTypeId={15} />
@@ -60,34 +64,44 @@ const Navbar: React.FC = () => {
             <HeadItem title="숙박" contentTypeId={32} />
             <HeadItem title="쇼핑" contentTypeId={38} />
             <HeadItem title="식당" contentTypeId={39} />
-          </ul>
+          </Ul>
         </Category>
 
         <Search>
-          <SearchForm label="pc" />
+          <SearchForm
+            label="pc"
+            search={search}
+            onChangeSearch={onChangeSearch}
+          />
         </Search>
 
         <Account toggle={toggle}>
           {me ? (
             <>
+              <Avatar size={40}>{me.nickname.slice(0, 2)}</Avatar>
               <LogoutButton onClick={onClickLogout}>로그아웃 </LogoutButton>
             </>
           ) : (
             <>
-              <Link href="/login">
+              <Link href="/login" passHref>
                 <a onClick={closeHamburger}>
-                  <span>로그인</span>
+                  <UserOutlined></UserOutlined>
                 </a>
               </Link>
             </>
           )}
         </Account>
+
         <HamburgerMenu>
           <MenuOutlined onClick={toggleHanburger} />
         </HamburgerMenu>
       </NavbarWrapper>
       <MobileSearch onClick={closeHamburger}>
-        <SearchForm label="mobile" />
+        <SearchForm
+          label="mobile"
+          search={search}
+          onChangeSearch={onChangeSearch}
+        />
       </MobileSearch>
     </Wrapper>
   );

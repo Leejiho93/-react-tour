@@ -1,15 +1,18 @@
-import React, { useCallback } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { Input, SearchButton, SearchWrapper } from './style';
 import { SearchOutlined } from '@ant-design/icons';
-import useInput from '../../../utils/useInput';
-
 interface ISearchForm {
   label: string;
+  search: string;
+  onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchForm: React.FC<ISearchForm> = ({ label }) => {
-  const [search, onChangeSearch] = useInput('');
+const SearchForm: React.FC<ISearchForm> = ({
+  label,
+  search,
+  onChangeSearch,
+}) => {
   const router = useRouter();
   const onSearch = useCallback(
     (e: React.FormEvent) => {
@@ -24,6 +27,7 @@ const SearchForm: React.FC<ISearchForm> = ({ label }) => {
     },
     [router, search]
   );
+
   return (
     <>
       <form onSubmit={onSearch}>
@@ -34,9 +38,11 @@ const SearchForm: React.FC<ISearchForm> = ({ label }) => {
             id={`${label}-search`}
             value={search}
             onChange={onChangeSearch}
+            autoComplete="off"
+            required
           />
           <SearchButton type="submit">
-            <SearchOutlined style={{ color: 'white' }} />
+            <SearchOutlined />
           </SearchButton>
         </SearchWrapper>
       </form>
