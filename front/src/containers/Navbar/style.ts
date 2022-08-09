@@ -1,3 +1,4 @@
+import { Avatar } from 'antd';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -17,6 +18,7 @@ export const NavbarWrapper = styled.div`
   ${({ theme }) => theme.window.tablet} {
     flex-direction: column;
     align-items: flex-start;
+    padding: 10px 0 0;
   }
 `;
 
@@ -162,4 +164,8 @@ export const LogoutButton = styled.button`
       background-color: #e2e2e2;
     }
   }
+`;
+
+export const MyAvatar = styled(Avatar)`
+  cursor: pointer;
 `;

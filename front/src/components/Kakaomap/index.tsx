@@ -32,6 +32,15 @@ const Kakaomap: React.FC<DetailItemprops> = ({ item }) => {
         });
         marker.setMap(map);
 
+        // const iwContent = `<div style="display:flex;flex-direction:column;justify-content:center;align-items:center;padding:5px;">${title} <br><a href="https://map.kakao.com/link/map/${title},${mapy},${mapx}" style="color:blue" target="_blank">길찾기</a></div>`;
+        // const iwPosition = new kakao.maps.LatLng(mapy, mapx);
+
+        // const infowindow = new kakao.maps.InfoWindow({
+        //   position: iwPosition,
+        //   content: iwContent,
+        // });
+
+        // infowindow.open(map, marker);
         // 지도 확대 막기
         map.setZoomable(false);
 

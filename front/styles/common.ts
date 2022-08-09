@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Pagination } from 'antd';
+import { Pagination, Spin } from 'antd';
 
 export const Bar = styled.div`
   width: 940px;
@@ -77,10 +77,6 @@ export const Title = styled.h2`
   pargin: 50px 0;
   text-align: center;
   font-family: BMJUA;
-`;
-
-export const NullPage = styled.div`
-  height: 100vh;
 `;
 
 // 공통
@@ -168,4 +164,12 @@ export const FormTitle = styled.div`
   display: flex;
   justify-content: center;
   padding: 100px 0 0;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const LoadingBar = styled(Spin)`
+  & i {
+    background-color: #fea939;
+  }
 `;

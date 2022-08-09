@@ -9,15 +9,15 @@ import {
   MobileSearch,
   Wrapper,
   HamburgerMenu,
-  LogoutButton,
   Ul,
+  MyAvatar,
 } from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { logoutAsync } from '../../modules/user';
 import SearchForm from '../SearchForm';
-import { MenuOutlined, UserOutlined, DownOutlined } from '@ant-design/icons';
-import { Dropdown, Menu, Space, Avatar } from 'antd';
+import { MenuOutlined, UserOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Avatar } from 'antd';
 import HeadItem from '../../components/HeaderItem';
 import useToggle from '../../../utils/useToggle';
 import Image from 'next/image';
@@ -26,7 +26,7 @@ import useInput from '../../../utils/useInput';
 const Navbar: React.FC = () => {
   const [toggle, toggleHanburger, setToggle] = useToggle(false);
   const { me } = useSelector((state: RootState) => state.user);
-  const [search, onChangeSearch, setSearch] = useInput('');
+  const [search, onChangeSearch] = useInput('');
   const dispatch = useDispatch();
   const onClickLogout = React.useCallback(() => {
     dispatch(logoutAsync.request());
@@ -36,6 +36,19 @@ const Navbar: React.FC = () => {
   const closeHamburger = React.useCallback(() => {
     setToggle(false);
   }, [setToggle]);
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="내정보">
+        <Link href="/profile">
+          <a>내정보</a>
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="로그아웃" onClick={onClickLogout}>
+        로그아웃
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <Wrapper>
@@ -78,8 +91,9 @@ const Navbar: React.FC = () => {
         <Account toggle={toggle}>
           {me ? (
             <>
-              <Avatar size={40}>{me.nickname.slice(0, 2)}</Avatar>
-              <LogoutButton onClick={onClickLogout}>로그아웃 </LogoutButton>
+              <Dropdown overlay={menu}>
+                <MyAvatar size={40}>{me.nickname.slice(0, 2)}</MyAvatar>
+              </Dropdown>
             </>
           ) : (
             <>
