@@ -11,7 +11,7 @@ const TourFood: React.FC<DetailItemprops> = ({ item }) => {
     opentimefood,
     treatmenu,
     infocenterfood,
-  } = item.intro;
+  } = item.intro[0];
   return (
     <IntroWrapper>
       <ul>

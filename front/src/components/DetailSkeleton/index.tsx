@@ -16,6 +16,12 @@ const DetailSkeleton: React.FC = () => {
       <SkeletonBox>
         <ImageSkeleton />
       </SkeletonBox>
+      <SkeletonBox>
+        <ImageSkeleton />
+      </SkeletonBox>
+      <SkeletonBox>
+        <ImageSkeleton />
+      </SkeletonBox>
     </Wrapper>
   );
 };

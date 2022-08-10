@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
   margin: 30px auto;
   border: 1px solid #d9d9d9;
   ${({ theme }) => theme.window.mobileL} {
-    width: 100%;
+    width: 94%;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 30px;
   }
 `;
 

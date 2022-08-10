@@ -1,4 +1,3 @@
-import { Spin } from 'antd';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
@@ -10,6 +9,7 @@ import {
   TitleWrapper,
   Wrapper,
 } from '../../styles/common';
+import KategorySkeleton from '../components/KategorySkeleton';
 import Layout from '../components/Layout';
 import SortBox from '../components/SortBox';
 import TourList from '../components/TourList';
@@ -60,10 +60,7 @@ const Search: React.FC = () => {
 
         <SortBox arrange={arrange} sortHot={sortHot} sortRecent={sortRecent} />
         <div>
-          <Spin spinning={loading}>
-            <TourList list={item} />
-          </Spin>
-
+          {loading ? <KategorySkeleton /> : <TourList list={item} />}
           <PaginationCustom
             total={totalCount}
             showSizeChanger={false}

@@ -6,7 +6,7 @@ import { IntroWrapper } from '../SubItem/style';
 const TourMall: React.FC<DetailItemprops> = ({ item }) => {
   const { addr1, homepage } = item;
   const { infocentershopping, shopguide, opentime, restdateshopping } =
-    item.intro;
+    item.intro[0];
   return (
     <IntroWrapper>
       <ul>

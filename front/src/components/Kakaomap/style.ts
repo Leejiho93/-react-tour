@@ -17,10 +17,9 @@ export const Map = styled.div`
   ${({ theme }) => theme.window.laptop} {
   }
   ${({ theme }) => theme.window.tablet} {
-    height: 350px;
   }
   ${({ theme }) => theme.window.mobileL} {
-    height: 250px;
+    height: 320px;
   }
 `;
 
@@ -33,20 +32,20 @@ export const Infowindow = styled.div`
   position: absolute;
   text-align: center;
   z-index: 99;
-  width: 240px;
-  height: 120px;
+  width: 260px;
+  height: 140px;
   background-color: #fff;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 3px 3px 5px 0px rgb(0 0 0 / 20%);
-  padding: 20px;
+  padding: 10px;
 
   & div {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   & span {
-    font-size: 20px;
-    font-family: BMJUA;
+    font-size: 18px;
+    font-weight: bold;
   }
 
   & b {
@@ -65,11 +64,11 @@ export const Infowindow = styled.div`
     }
   }
   ${({ theme }) => theme.window.mobileL} {
-    width: 200px;
+    width: 280px;
     height: 100px;
 
     & div {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     & span {
       font-size: 18px;

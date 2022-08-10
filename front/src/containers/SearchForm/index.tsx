@@ -39,6 +39,7 @@ const SearchForm: React.FC<ISearchForm> = ({
             value={search}
             onChange={onChangeSearch}
             autoComplete="off"
+            maxLength={20}
             required
           />
           <SearchButton type="submit">

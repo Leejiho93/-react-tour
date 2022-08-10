@@ -1,4 +1,3 @@
-import { Spin } from 'antd';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -6,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { END } from 'redux-saga';
 import {
   Li,
-  NullPage,
   PaginationCustom,
   Select,
   Title,
@@ -14,6 +12,7 @@ import {
   Ul,
   Wrapper,
 } from '../../styles/common';
+import KategorySkeleton from '../components/KategorySkeleton';
 import Layout from '../components/Layout';
 import SortBox from '../components/SortBox';
 import TourList from '../components/TourList';
@@ -119,13 +118,7 @@ const Tour: React.FC = () => {
 
         <SortBox arrange={arrange} sortHot={sortHot} sortRecent={sortRecent} />
         <div>
-          {loading ? (
-            <Spin spinning={true}>
-              <NullPage />
-            </Spin>
-          ) : (
-            <TourList list={data.items.item} />
-          )}
+          {loading ? <KategorySkeleton /> : <TourList list={data.items.item} />}
           <PaginationCustom
             total={data.totalCount}
             showSizeChanger={false}

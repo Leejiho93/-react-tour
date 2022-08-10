@@ -8,20 +8,22 @@ export const DetailItemWrapper = styled.div`
 `;
 
 export const DetailItemTitle = styled.h2`
-  font-family: BMJUA;
   font-size: 50px;
   font-weight: 600;
   padding: 50px 0;
+  text-align: center;
   ${({ theme }) => theme.window.laptop} {
+    width: 90%;
     padding: 100px 0 50px;
   }
   ${({ theme }) => theme.window.tablet} {
-    font-size: 45px;
-    width: 90%;
-    text-align: center;
+    font-size: 40px;
   }
   ${({ theme }) => theme.window.mobileL} {
-    font-size: 40px;
+    font-size: 35px;
+  }
+  ${({ theme }) => theme.window.mobileM} {
+    font-size: 30px;
   }
 `;
 
@@ -51,7 +53,6 @@ export const DetailItemInfo = styled.h3`
   font-weight: 600;
   margin: 30px 0;
   padding: 20px 10px 15px;
-  // font-family: 'Gowun Batang', serif;
 
   & span {
     font-size: 18px;
@@ -88,7 +89,7 @@ export const ButtonWrapper = styled.div`
   text-align: center;
   border: 1px solid #000;
   cursor: pointer;
-  padding: 10px;
+  padding: 5px;
   font-weight: 600;
   & span {
     padding: 0 3px;

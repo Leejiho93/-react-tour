@@ -34,8 +34,8 @@ router.get("/:contenttypeid/:contentid", async (req, res, next) => {
     const responseIntro = await axios.get(intro);
     const responseInfo = await axios.get(info);
     const data = response.data.response.body;
-    data.items.item.intro = responseIntro.data.response.body.items.item;
-    data.items.item.info = responseInfo.data.response.body.items.item;
+    data.items.item[0].intro = responseIntro.data.response.body.items.item;
+    data.items.item[0].info = responseInfo.data.response.body.items.item;
     return res.json(data);
   } catch (e) {
     console.error(e);
