@@ -11,16 +11,19 @@ export const DetailItemTitle = styled.h2`
   font-size: 50px;
   font-weight: 600;
   padding: 50px 0;
+  text-align: center;
   ${({ theme }) => theme.window.laptop} {
     width: 90%;
-    text-align: center;
     padding: 100px 0 50px;
   }
   ${({ theme }) => theme.window.tablet} {
-    font-size: 45px;
+    font-size: 40px;
   }
   ${({ theme }) => theme.window.mobileL} {
-    font-size: 40px;
+    font-size: 35px;
+  }
+  ${({ theme }) => theme.window.mobileM} {
+    font-size: 30px;
   }
 `;
 

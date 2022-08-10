@@ -11,6 +11,7 @@ declare global {
 
 const Kakaomap: React.FC<DetailItemprops> = ({ item }) => {
   const { mapx, mapy, title } = item;
+  const filter = item.title.match(/\[.*\]/);
   useEffect(() => {
     const script = document.createElement('script');
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.NEXT_PUBLIC_KAKAO_MAPS}`;
@@ -61,7 +62,9 @@ const Kakaomap: React.FC<DetailItemprops> = ({ item }) => {
               <span>{title}</span>
             </div>
             <a
-              href={`https://map.kakao.com/link/to/${title},${mapy},${mapx}`}
+              href={`https://map.kakao.com/link/to/${
+                filter ? title.replace(filter[0], '') : title
+              },${mapy},${mapx}`}
               target="_blank"
               rel="noreferrer"
             >

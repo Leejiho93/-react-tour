@@ -12,7 +12,7 @@ const TourSleep: React.FC<DetailItemprops> = ({ item }) => {
     checkouttime,
     refundregulation,
     scalelodging,
-  } = item.intro;
+  } = item.intro[0];
   return (
     <IntroWrapper>
       <ul>

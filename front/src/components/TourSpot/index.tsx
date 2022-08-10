@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DetailItemprops } from '../../modules/detail';
 import SubItem from '../SubItem';
 import { IntroWrapper } from '../SubItem/style';
 
 const TourSpot: React.FC<DetailItemprops> = ({ item }) => {
   const { addr1, homepage } = item;
-  const { infocenter, usetime } = item.intro;
+  const { infocenter, usetime } = item.intro[0];
+  useEffect(() => {
+    console.log('item', item);
+  }, [item]);
   return (
     <IntroWrapper>
       <ul>

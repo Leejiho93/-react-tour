@@ -6,7 +6,7 @@ import { IntroWrapper } from '../SubItem/style';
 const TourCulture: React.FC<DetailItemprops> = ({ item }) => {
   const { addr1, homepage } = item;
   const { infocenterculture, parkingculture, parkingfee, usetimeculture } =
-    item.intro;
+    item.intro[0];
   return (
     <IntroWrapper>
       <ul>

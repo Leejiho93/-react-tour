@@ -13,34 +13,34 @@ import { DetailItemprops, TourInfo } from '../../modules/detail';
 import { Image } from 'antd';
 
 const TourCourse: React.FC<DetailItemprops> = ({ item }) => {
-  const [imageSrc, setImageSrc] = useState(
-    Array.isArray(item.info)
-      ? item.info[0].subdetailimg
-      : item.info.subdetailimg
-  );
-  const [imageTitle, setImageTitle] = useState(
-    Array.isArray(item.info) ? item.info[0].subname : item.info.subname
-  );
-  const [subOverview, setSubOverview] = useState(
-    Array.isArray(item.info)
-      ? item.info[0].subdetailoverview
-      : item.info.subdetailoverview
-  );
-  const changeImageSrc = React.useCallback(
-    (src: TourInfo) => () => {
-      setImageSrc(src.subdetailimg);
-      setImageTitle(src.subname);
-      setSubOverview(src.subdetailoverview);
-    },
-    []
-  );
+  // const [imageSrc, setImageSrc] = useState(
+  //   Array.isArray(item.info)
+  //     ? item.info[0].subdetailimg
+  //     : item.info.subdetailimg
+  // );
+  // const [imageTitle, setImageTitle] = useState(
+  //   Array.isArray(item.info) ? item.info[0].subname : item.info.subname
+  // );
+  // const [subOverview, setSubOverview] = useState(
+  //   Array.isArray(item.info)
+  //     ? item.info[0].subdetailoverview
+  //     : item.info.subdetailoverview
+  // );
+  // const changeImageSrc = React.useCallback(
+  // (src: TourInfo) => () => {
+  // setImageSrc(src.subdetailimg);
+  // setImageTitle(src.subname);
+  // setSubOverview(src.subdetailoverview);
+  //   },
+  //   []
+  // );
   return (
     <>
       <DetailItemInfo>
-        코스 <span>({item.intro.distance})</span>
+        코스 <span>({item.intro[0].distance})</span>
       </DetailItemInfo>
       <Wrapper>
-        <CourseList>
+        {/* <CourseList>
           {item.info && Array.isArray(item.info) ? (
             item.info.map((course) => (
               <Item key={course.subcontentid}>
@@ -62,8 +62,8 @@ const TourCourse: React.FC<DetailItemprops> = ({ item }) => {
               </div>
             </Item>
           )}
-        </CourseList>
-        <CourseImage>
+        </CourseList> */}
+        {/* <CourseImage>
           <CardWrapper
             hoverable
             cover={
@@ -86,9 +86,9 @@ const TourCourse: React.FC<DetailItemprops> = ({ item }) => {
               )
             }
           ></CardWrapper>
-        </CourseImage>
+        </CourseImage> */}
       </Wrapper>
-      <SubDetail>
+      {/* <SubDetail>
         <div>
           <span>
             {`- `}
@@ -98,7 +98,7 @@ const TourCourse: React.FC<DetailItemprops> = ({ item }) => {
         {subOverview ? (
           <p dangerouslySetInnerHTML={{ __html: subOverview }} />
         ) : null}
-      </SubDetail>
+      </SubDetail> */}
     </>
   );
 };

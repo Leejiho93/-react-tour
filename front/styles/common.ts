@@ -131,6 +131,13 @@ export const HotMenu = styled.div`
     & span {
       font-size: 20px;
       font-family: BMJUA, sans-serif;
+
+      ${({ theme }) => theme.window.mobileL} {
+        font-size: 18px;
+      }
+      ${({ theme }) => theme.window.mobileM} {
+        font-size: 16px;
+      }
     }
     & span:last-child {
       font-size: 17px;
@@ -143,9 +150,15 @@ export const HotMenu = styled.div`
     ${({ theme }) => theme.window.mobileL} {
       font-size: 35px;
     }
+    ${({ theme }) => theme.window.mobileM} {
+      font-size: 30px;
+    }
+  }
+  ${({ theme }) => theme.window.laptop} {
+    margin: 100px 50px 15px 40px;
   }
   ${({ theme }) => theme.window.mobileL} {
-    margin: 100px 30px 20px 30px;
+    margin: 100px 30px 10px 30px;
   }
 `;
 

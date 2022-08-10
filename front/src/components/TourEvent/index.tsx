@@ -5,7 +5,7 @@ import { IntroWrapper } from '../SubItem/style';
 
 const TourEvent: React.FC<DetailItemprops> = ({ item }) => {
   const { addr1, homepage, tel } = item;
-  const { usetimefestival, playtime, discountinfofestival } = item.intro;
+  const { usetimefestival, playtime, discountinfofestival } = item.intro[0];
   return (
     <IntroWrapper>
       <ul>

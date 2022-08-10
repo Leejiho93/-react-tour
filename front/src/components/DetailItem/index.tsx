@@ -84,7 +84,7 @@ const DetailItem: React.FC<DetailItemprops> = ({ item }) => {
         {<Kakaomap item={item} />}
 
         {(() => {
-          switch (contenttypeid) {
+          switch (+contenttypeid) {
             case 12:
               return <TourSpot item={item} />;
             case 14:
