@@ -148,11 +148,6 @@ const getServerSideProps = _app__WEBPACK_IMPORTED_MODULE_12__.wrapper.getServerS
   }
 
   store.dispatch(_modules_user__WEBPACK_IMPORTED_MODULE_11__/* .loadUserAsync.request */ .C_.request());
-  store.dispatch(_modules_detail__WEBPACK_IMPORTED_MODULE_10__/* .regionAsync.request */ .TJ.request({
-    contentTypeId: Number(query.contentTypeId),
-    arrange: 'P',
-    pageNo: 1
-  }));
   store.dispatch(redux_saga__WEBPACK_IMPORTED_MODULE_4__.END);
   await store.sagaTask.toPromise();
   return {

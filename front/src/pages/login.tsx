@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import LoginForm from '../containers/LoginForm';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,13 +9,14 @@ import { FormTitle, LoadingBar } from '../../styles/common';
 import Footer from '../components/Footer';
 
 const Login: React.FC = () => {
+  const router = useRouter();
   const { me, isLoggingin } = useSelector((state: RootState) => state.user);
 
   React.useEffect(() => {
     if (me) {
-      Router.replace('/');
+      router.replace('/');
     }
-  }, [me]);
+  }, [me, router]);
 
   return (
     <>

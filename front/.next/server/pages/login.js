@@ -22,7 +22,6 @@ var external_react_ = __webpack_require__(9297);
 var external_react_redux_ = __webpack_require__(79);
 // EXTERNAL MODULE: external "next/router"
 var router_ = __webpack_require__(6731);
-var router_default = /*#__PURE__*/__webpack_require__.n(router_);
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__(1664);
 // EXTERNAL MODULE: ./src/modules/user/index.ts + 1 modules
@@ -147,15 +146,16 @@ var Footer = __webpack_require__(6542);
 
 
 const Login = () => {
+  const router = (0,router_.useRouter)();
   const {
     me,
     isLoggingin
   } = (0,external_react_redux_.useSelector)(state => state.user);
   external_react_.useEffect(() => {
     if (me) {
-      router_default().replace('/');
+      router.replace('/');
     }
-  }, [me]);
+  }, [me, router]);
   return /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
     children: [/*#__PURE__*/jsx_runtime_.jsx(common/* FormTitle */.vw, {
       children: /*#__PURE__*/jsx_runtime_.jsx(next_link.default, {

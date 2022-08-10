@@ -144,14 +144,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       }
 
       store.dispatch(loadUserAsync.request());
-      store.dispatch(
-        regionAsync.request({
-          contentTypeId: Number(query.contentTypeId),
-          arrange: 'P',
-          pageNo: 1,
-        })
-      );
-
       store.dispatch(END);
 
       await (store as SagaStore).sagaTask.toPromise();

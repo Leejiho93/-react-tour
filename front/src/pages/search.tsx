@@ -85,14 +85,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       }
 
       store.dispatch(loadUserAsync.request());
-      store.dispatch(
-        searchAsync.request({
-          search: String(query.search),
-          pageNo: 1,
-          arrange: 'Q',
-        })
-      );
-
       store.dispatch(END);
 
       await (store as SagaStore).sagaTask.toPromise();

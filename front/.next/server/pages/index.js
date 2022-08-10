@@ -227,36 +227,42 @@ var Layout = __webpack_require__(5503);
 
 
 
+
+
+
 const Home = () => {
   const {
     data
   } = (0,external_react_redux_.useSelector)(state => state.detail.allData);
-  const region = data.items.item;
-  const festival = data.items.festival;
-  const sleep = data.items.sleep;
-  return /*#__PURE__*/(0,jsx_runtime_.jsxs)(Layout/* default */.Z, {
-    children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
-      children: [/*#__PURE__*/jsx_runtime_.jsx(components_HotTitle, {
-        title: "\uAD00\uAD11\uC9C0",
-        contentTypeId: 12
-      }), /*#__PURE__*/jsx_runtime_.jsx(components_HotList, {
-        list: region
+  const dispatch = (0,external_react_redux_.useDispatch)();
+  (0,external_react_.useEffect)(() => {
+    dispatch(detail/* allAsync.request */.cU.request());
+  }, [dispatch]);
+  return /*#__PURE__*/jsx_runtime_.jsx(Layout/* default */.Z, {
+    children: data ? /*#__PURE__*/(0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
+      children: [/*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
+        children: [/*#__PURE__*/jsx_runtime_.jsx(components_HotTitle, {
+          title: "\uAD00\uAD11\uC9C0",
+          contentTypeId: 12
+        }), /*#__PURE__*/jsx_runtime_.jsx(components_HotList, {
+          list: data.items.item
+        })]
+      }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
+        children: [/*#__PURE__*/jsx_runtime_.jsx(components_HotTitle, {
+          title: "\uCD95\uC81C",
+          contentTypeId: 15
+        }), /*#__PURE__*/jsx_runtime_.jsx(components_HotList, {
+          list: data.items.festival
+        })]
+      }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
+        children: [/*#__PURE__*/jsx_runtime_.jsx(components_HotTitle, {
+          title: "\uC219\uC18C",
+          contentTypeId: 32
+        }), /*#__PURE__*/jsx_runtime_.jsx(components_HotList, {
+          list: data.items.sleep
+        })]
       })]
-    }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
-      children: [/*#__PURE__*/jsx_runtime_.jsx(components_HotTitle, {
-        title: "\uCD95\uC81C",
-        contentTypeId: 15
-      }), /*#__PURE__*/jsx_runtime_.jsx(components_HotList, {
-        list: festival
-      })]
-    }), /*#__PURE__*/(0,jsx_runtime_.jsxs)("div", {
-      children: [/*#__PURE__*/jsx_runtime_.jsx(components_HotTitle, {
-        title: "\uC219\uC18C",
-        contentTypeId: 32
-      }), /*#__PURE__*/jsx_runtime_.jsx(components_HotList, {
-        list: sleep
-      })]
-    })]
+    }) : /*#__PURE__*/jsx_runtime_.jsx(MainSkeleton, {})
   });
 };
 
@@ -270,7 +276,6 @@ const getServerSideProps = _app.wrapper.getServerSideProps(store => async ({
   }
 
   store.dispatch(user/* loadUserAsync.request */.C_.request());
-  store.dispatch(detail/* allAsync.request */.cU.request());
   store.dispatch(external_redux_saga_.END);
   await store.sagaTask.toPromise();
   return {
