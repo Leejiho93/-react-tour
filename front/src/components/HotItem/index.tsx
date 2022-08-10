@@ -23,7 +23,6 @@ const HotItem: React.FC<IHotItem> = ({ list }) => {
                 width={150}
                 height={100}
                 layout="responsive"
-                priority={true}
               />
             ) : null}
           </Wrapper>

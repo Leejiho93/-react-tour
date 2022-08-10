@@ -1,0 +1,12 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/detail/[...id]": "pages/detail/[...id].js",
+  "/": "pages/index.js",
+  "/login": "pages/login.js",
+  "/profile": "pages/profile.js",
+  "/search": "pages/search.js",
+  "/signup": "pages/signup.js",
+  "/tour": "pages/tour.js"
+}
