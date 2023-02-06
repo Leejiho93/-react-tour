@@ -14,8 +14,7 @@ import { IDetailReducerState } from './detail/reducer';
 
 const backUrl =
   process.env.NODE_ENV === 'production'
-    ? // ? 'http://api.nicetravel.kr'
-      'http://localhost:80'
+    ? 'http://api.nicetravel.kr'
     : `http://localhost:8081`;
 axios.defaults.baseURL = `${backUrl}/api`;
 axios.defaults.withCredentials = true;

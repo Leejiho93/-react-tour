@@ -617,8 +617,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-const backUrl =  true ? // ? 'http://api.nicetravel.kr'
-'http://localhost:80' : 0;
+const backUrl =  true ? 'http://api.nicetravel.kr' : 0;
 (external_axios_default()).defaults.baseURL = `${backUrl}/api`;
 (external_axios_default()).defaults.withCredentials = true;
 
