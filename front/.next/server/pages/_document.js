@@ -72,7 +72,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_0__.default {
           content: "website"
         }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx("meta", {
           property: "og:image",
-          content: "http://wdywg.site/og.png"
+          content: "http://nicetravel.kr/og.png"
         }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx("link", {
           rel: "shortcut icon"
         }), /*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx("link", {

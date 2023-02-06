@@ -52,7 +52,7 @@ class MyDocument extends Document<Props> {
           <meta property="og:title" content="어디갈래" />
           <meta property="og:description" content="대한민국 관광지 소개" />
           <meta property="og:type" content="website" />
-          <meta property="og:image" content="http://wdywg.site/og.png" />
+          <meta property="og:image" content="http://nicetravel.kr/og.png" />
           <link rel="shortcut icon" />
           <link
             rel="stylesheet"
