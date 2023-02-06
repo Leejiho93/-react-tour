@@ -31,7 +31,8 @@ const corsDevOptions = {
   credentials: true,
 };
 const corsProdOptions = {
-  origin: /nicetravel\.kr$/,
+  // origin: /nicetravel\.kr$/,
+  origin: true,
   credentials: true,
 };
 passportConfig();
