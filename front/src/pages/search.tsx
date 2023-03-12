@@ -76,7 +76,7 @@ const Search: React.FC = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, query }) => {
+    async ({ req }) => {
       const cookie = req ? req.headers.cookie : '';
       if (axios.defaults.headers) {
         req && cookie

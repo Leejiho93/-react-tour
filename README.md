@@ -35,9 +35,3 @@
 - meta tag를 추가해 SEO 개선
 - usecallback을 통한 렌더링 최적화
 - next/image로 이미지 최적화
-
-#### Lighthouse 개선
-
-![before](https://user-images.githubusercontent.com/63515344/176900482-c893e5d6-71ba-4805-b2cc-5e9ff1705d91.png)
-
-![after](https://user-images.githubusercontent.com/63515344/176900498-c3d006aa-529d-4c44-9c54-45e4ce2a6446.png)

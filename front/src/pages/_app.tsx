@@ -9,7 +9,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../styles/theme';
 import fontFace from '../../styles/fontFace';
-import Layout from '../components/Layout';
 import Head from 'next/head';
 import 'antd/dist/antd.css';
 
@@ -29,9 +28,7 @@ const Tour = ({ Component, pageProps }: AppProps) => {
             content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
           />
         </Head>
-        {/* <Layout> */}
         <Component {...pageProps} />
-        {/* </Layout> */}
       </ThemeProvider>
     </>
   );
